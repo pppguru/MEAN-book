@@ -1,0 +1,97 @@
+<div class="row signup-merchant">
+     <div class="col-sm-12">
+          <form class="form" name="form" ng-submit="form.$valid && modal.submit(form)" novalidate>
+
+               <div class="form-group" ng-class="{ 'has-success': form.businessName.$valid && form.$submitted, 'has-error': form.businessName.$invalid && form.$submitted }">
+                    <input type="text" id="businessName" name="businessName" class="form-control" placeholder="{{'business.name' | translate}}" ng-model="modal.data.user.businessName" required/>
+                    <p class="help-block" ng-show="form.businessName.$error.required && form.$submitted">
+                         {{'_is.required' | translate:{a: 'business.name'} }}
+                    </p>
+               </div>
+
+               <div layout="row">
+                    <div class="address-completed">
+                         <div class="form-group">
+						<label for="streetAddress">{{'address' | translate}}:</label>
+                              <input id="streetAddress" type="text" name="streetAddress" class="form-control" placeholder="{{'address' | translate}}" googleplace address="modal.data.user.address" ng-model="modal.data.user.address.streetAddress" required/>
+                         </div>
+
+                         <div class="row">
+                              <div class="col-sm-6">
+                                   <div class="form-group">
+								<label for="streetNumeric">{{'city' | translate}}:</label>
+                                        <input id="streetNumeric" type="text" name="streetNumeric" class="form-control" placeholder="{{'city' | translate}}"  ng-model="modal.data.user.address.city" required/>
+                                   </div>
+                              </div>
+                              <div class="col-sm-6">
+                                   <div class="form-group">
+								<label for="zipCode">{{'zip.code' | translate}}:</label>
+                                        <input id="zipCode" type="text" name="zipCode" class="form-control" placeholder="{{'zip.code' | translate}}"  ng-model="modal.data.user.address.zip" required/>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+               <div class="form-group" ng-class="{ 'has-success': form.email.$valid && form.$submitted, 'has-error': form.email.$invalid && form.$submitted }">
+				<label for="email">{{'business.email' | translate}}:</label>
+				<input type="email" id="email" name="email" placeholder="Business email" class="form-control" ng-model="modal.data.user.email" required mongoose-error/>
+                    <p class="help-block" ng-show="form.email.$error.email && form.$submitted">
+                         {{'Please enter a valid email' | translate}}
+                    </p>
+                    <p class="help-block" ng-show="form.email.$error.required && form.$submitted">
+                         {{'what.email' | translate}}
+                    </p>
+                    <p class="help-block" ng-show="form.email.$error.mongoose">
+                         {{ modal.data.errors.email }}
+                    </p>
+               </div>
+               <div class="form-group" ng-class="{ 'has-success': form.phone.$valid && form.$submitted, 'has-error': form.phone.$invalid && form.$submitted }">
+					<label for="email">{{'phone' | translate}}:</label>
+					<input type="text" name="phone" id="phone" placeholder="{{'phone' | translate}}" class="form-control" ng-model="modal.data.user.phone" allowed-chars="[^0-9]" required/>
+                         <p class="help-block" ng-show="form.phone.$error.required && form.$submitted">
+                              {{'_is.required' | translate:{a: 'phone'} }}
+                         </p>
+                    </div>
+
+               <div class="form-group" ng-class="{ 'has-success': form.password.$valid && form.$submitted, 'has-error': form.password.$invalid && form.$submitted }">
+				<label for="password">{{'password' | translate}}:</label>
+				<input type="password" placeholder="Password" id="password" name="password" class="form-control" ng-model="modal.data.user.password" ng-minlength="3" required mongoose-error/>
+                    <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && form.$submitted">
+                         {{'password.length' | translate}}
+                    </p>
+                    <p class="help-block" ng-show="form.password.$error.mongoose">
+                         {{ modal.data.errors.password }}
+                    </p>
+               </div>
+               <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && form.$submitted, 'has-error': form.confirmPassword.$invalid && form.$submitted }">
+				<label for="confirm">{{'confirm.password' | translate}}:</label>
+				<input type="password" placeholder="Confirm password" id="confirm" name="confirmPassword" class="form-control" ng-model="modal.data.user.confirmPassword" match="modal.data.user.password" ng-minlength="3" required/>
+                    <p class="help-block" ng-show="form.confirmPassword.$error.match && form.$submitted">
+                         {{'password.match' | translate}}
+                    </p>
+               </div>
+
+               <md-checkbox ng-model="agreed" aria-label="agreements">
+                    <div layout="row" layout-wrap>
+                         <span>{{'i.agree' | translate}}</span>&nbsp;
+                         <a href="">{{'Terms & Conditions' | translate}}</a>&nbsp;
+                         {{'and' | translate}}
+                         &nbsp;<a href="">{{'privacy.policy' | translate}}</a>
+                    </div>
+               </md-checkbox>
+
+               <div layout="column" flex="none">
+                    <md-button ng-disabled="!agreed" class="md-primary md-raised" type="submit">
+                         {{'sign.up' | translate }}
+                    </md-button>
+               </div>
+
+          </form>
+
+          <p class="subtitle">
+               {{'already.have.account' | translate }} <br><a ng-click="modal.changeModal('login')">{{'login.with.email' | translate}}</a>
+          </p>
+
+     </div>
+</div>

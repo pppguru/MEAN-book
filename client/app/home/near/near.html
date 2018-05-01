@@ -1,0 +1,46 @@
+<div class="near with-sidebar">
+	<div class="container">
+		<div class="row">
+			<aside class=" col-sm-3">
+				<ol class="breadcrumb text-uppercase">
+					<li><a ui-sref="main">{{'home' | translate}}</a></li>
+					<li><a class="active">Near Me</a></li>
+				</ol>
+				<user-map-card ng-if="vm.markers" ng-repeat="user in vm.users track by user._id" user="user" marker="vm.getMarker(user._id)" pinned="vm.map.window.pinned" ng-click="vm.centerMap(user.address.coordinates)"></user-map-card>
+			</aside>
+			<div class="near-section col-sm-9">
+
+				<div class="search-wrapper">
+					<input type="text" class="form-control" placeholder="Search on map..." googleplace ng-model="vm.centerAddress" address="vm.center" center="vm.map.center">
+				</div>
+
+				<ui-gmap-google-map center="vm.map.center"
+								zoom="vm.map.zoom"
+								options="vm.mapOptions"
+								ng-if="vm.map"
+								events="vm.map.events"
+								control="vm.map.control">
+
+					<ui-gmap-window show="vm.map.window.show"
+								 coords="vm.map.window.model"
+								 control="vm.map.window"
+								 templateUrl="'user-map-card.html'"
+								 templateParameter="vm.map.window.model.user"
+								 options="vm.map.window.options">
+					</ui-gmap-window>
+
+					<ui-gmap-markers models="vm.markers"
+								  options="'options'"
+								  coords="'self'"
+								  icon="'icon'"
+								  fit="true"
+								  events="vm.map.markersEvents"
+								  options="vm.markersOptions"
+								  ng-if="vm.markers">
+					</ui-gmap-markers>
+					<!--fit="true"-->
+				</ui-gmap-google-map>
+			</div>
+		</div>
+	</div>
+</div>

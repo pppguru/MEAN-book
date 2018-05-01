@@ -1,0 +1,4 @@
+client/touch.js
+client/components/translate/i18n/*.js
+server/config/environment/shared.js
+/server/scripts/

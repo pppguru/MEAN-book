@@ -1,0 +1,30 @@
+<div class="follow-item">
+     <div ui-sref="{{vm.type === 'user' ? 'community.user({id: vm.data._id})' : 'community.author({id: vm.data._id})'}}">
+          <div class="follow-image">
+               <img ng-src="{{::vm.data.imageUrl || '/assets/images/avatar.png'}}" alt="user image">
+          </div>
+     </div>
+
+     <div ui-sref="{{vm.type === 'user' ? 'community.user({id: vm.data._id})' : 'community.author({id: vm.data._id})'}}">
+          <div class="follow-name">{{::vm.data | userName}}</div>
+     </div>
+
+     <div class="follow-address" ng-if="vm.type === 'user'">
+          <img src="assets/images/map.png" srcset="assets/images/map@2x.png 2x, assets/images/map@3x.png 3x" alt="Marker">
+          <a ng-if="vm.data.address.streetAddress">{{::(vm.data.address.streetAddress + ', ' + vm.data.address.city)}}</a>
+          <a ng-if="!vm.data.address.streetAddress">{{'no.location' | translate}}</a>
+     </div>
+
+     <div class="follow-info">
+          <div>{{'Followers' | translate}} <span>{{::vm.data.numeric.followers || 0}}</span></div>
+          <div ng-if="vm.type === 'user'">{{'Following' | translate}} <span>{{::vm.data.numeric.following || 0}}</span></div>
+     </div>
+     <div class="follow-actions">
+          <md-button class="btn btn-primary" ng-disabled="vm.me()._id === vm.data._id" ng-if="!!vm.unfollow && vm.controls" ng-click="vm.unfollow({_id: vm.data._id, type: vm.type})">{{'unfollow' | translate}}</md-button>
+          <md-button class="btn btn-primary" ng-disabled="vm.me()._id === vm.data._id" ng-if="!!vm.follow && !vm.alreadyFollowing && vm.controls" ng-click="vm.followUser(vm.data._id)">{{'follow' | translate}}</md-button>
+          <md-button class="btn btn-default"
+                     ng-if="vm.type === 'user'"
+                     ng-disabled="vm.me()._id === vm.data._id"
+                     ng-click="vm[vm.me()._id ? 'newMessage' : 'login']({user: vm.data})">{{'message' | translate}}</md-button>
+     </div>
+</div>

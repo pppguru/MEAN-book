@@ -1,0 +1,45 @@
+#sales-history {
+    .chart-year {
+        md-icon {
+            outline: none;
+        }
+    }
+    .year {
+        margin: 0 15px;
+    }
+    .book-panel {
+        color: grey;
+        .number {
+            font-size: 30px;
+        }
+    }
+    h5 {
+        text-transform: capitalize;
+    }
+    table {
+        margin-bottom: 0;
+        thead {
+            background-color: #e4e3e3;
+            tr {
+                th {
+                    height: 40px;
+                    line-height: 28px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                transition: all .5s ease-in;
+                &.not-seen {
+                    opacity: 0;
+                }
+                td {
+                    img {
+                        margin-right: 5px;
+                    }
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}

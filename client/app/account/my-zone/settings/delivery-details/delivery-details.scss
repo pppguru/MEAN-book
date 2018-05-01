@@ -1,0 +1,32 @@
+#delivery-details {
+    #duration {
+        width: 130px;
+        margin-right: 10px;
+    }
+    .update {
+        padding-right: 0;
+        margin-right: 0;
+    }
+    button{
+	    margin-top: 0;
+    }
+    .map-wrapper {
+        .angular-google-map, .angular-google-map-container {
+            min-height: 230px;
+            width: 100%;
+        }
+    }
+    .delivery-types{
+	    .content{
+		    > div{
+			    display: flex;
+			    align-items: center;
+		    }
+	    }
+    }
+    .shipping-info{
+	    .btn-primary{
+		    margin: 15px 0 0 0;
+	    }
+    }
+}

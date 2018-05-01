@@ -1,0 +1,62 @@
+<div class="student with-sidebar">
+	<div class="container">
+		<div class="row">
+			<aside class="col-sm-3">
+				<ol class="breadcrumb text-uppercase">
+					<li><a ui-sref="main">{{'home' | translate}}</a></li>
+					<li><a class="active">{{'Student' | translate}}</a></li>
+				</ol>
+				<bookis-filter-sidebar selected="vm.selected"></bookis-filter-sidebar>
+			</aside>
+			<div class="students-section clearfix col-sm-9">
+				<h1>{{'find.books' | translate}}</h1>
+				<div class="student-filters" layout="row" layout-align="start center" flex>
+					<div class="flex">
+						<bookis-select model="vm.selectedSchool" field="name" change="vm.getStudies(name, value)" options="vm.schools" placeholder="{{'select.x' | translate: {x: 'school'} }}"></bookis-select>
+					</div>
+					<div class="flex">
+						<bookis-select model="vm.selectedStudy" field="name" change="vm.getSemesters(name, value)" disabled="!vm.selectedSchool" options="vm.studies" placeholder="{{'select.x' | translate: {x: 'study'} }}"></bookis-select>
+					</div>
+					<div class="flex">
+						<bookis-select model="vm.selectedSemester" change="vm.getCourses(name, value)" options="vm.semesters" disabled="!vm.selectedSchool || !vm.selectedStudy" placeholder="{{'select.x' | translate: {x: 'semester'} }}"></bookis-select>
+					</div>
+					<div class="flex">
+						<md-button ng-disabled="!vm.selectedSchool || !vm.selectedSemester" ng-click="vm.search()" class="mt0 mb0 btn btn-primary">{{'search' | translate}}</md-button>
+					</div>
+				</div>
+				<div class="book-list-holder col-xs-12">
+					<div class="book-list">
+						<div class="book-list-body">
+							<div class="book-list-item" ng-repeat="book in vm.books track by book._id">
+								<div class="fl-b-10 fl-b-15-sm book-title" ui-sref="allbooks.details({id: book._id})">
+									<div class="book-cover">
+										<img ng-src="{{::book.image.full}}" alt="book image">
+									</div>
+								</div>
+								<div class="fl-b-25 book-name">
+									<a>{{::book.title}}</a>
+									<div class="book-author">
+										{{'by' | translate}} <a ui-sref="allbooks.details.author({aid: book.author[0]._id})" class="ng-binding">{{::book.author | authors}}</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-rating ng-binding">
+									<i class="fa fa-star-o" ng-class="book.rating.avg ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i> {{::book.rating.avg}}/5
+								</div>
+								<div class="fl-b-20 book-price">
+									<span>{{::book.price.amount}},-</span>
+									<div>
+										<a href="#">5 new</a> from 23
+									</div>
+								</div>
+								<div class="fl-b-30 fl-b-20-sm book-actions">
+									<button class="btn btn-default md-button md-ink-ripple" type="button" ng-click="vm.addToWishList({book})">{{vm.inWishlist(book._id) ? 'in.wishlist' : 'Wishlist' | translate}}</button>
+									<a class="btn btn-primary md-button md-ink-ripple" ui-sref="allbooks.details({id: book._id})" target="_blank">{{'buy' | translate}}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<md-whiteframe class="bookis-card" ng-class="{'default-payment' : vm.card.isDefault, 'add-new-payment' : !vm.card}" ng-click="vm.newPayment()">
+     <div ng-if="vm.card">
+          <div class="card-name">{{vm.card.name}}</div>
+          <div class="card-number">
+               <div>XXXX XXXX XXXX {{vm.card.endingWith}}</div>
+          </div>
+          <div class="card-exp">
+               {{vm.card.exp_month < 10 ? '0' + vm.card.exp_month : vm.card.exp_month}}/{{('' + vm.card.exp_year).substring(2,4)}}
+          </div>
+          <div class="actions">
+               <a ng-if="!vm.card.isDefault" ng-click="vm.setDefault({account: vm.card})">{{'set.default' | translate}}</a>
+               <a ng-if="!vm.card.isDefault" ng-click="vm.remove({account: vm.card})">{{'remove' | translate}}</a>
+               <img ng-src="{{vm.images[vm.card.brand]}}" alt="card image">
+          </div>
+     </div>
+     <div ng-if="!vm.card">
+          <md-icon md-svg-src="assets/svg/plus.svg" aria-label="link"></md-icon>
+          <div class="new-method">
+               {{'add.payment.method' | translate}}
+          </div>
+     </div>
+</md-whiteframe>

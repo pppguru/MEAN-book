@@ -1,0 +1,21 @@
+node_modules
+uploads
+public
+.tmp
+.env
+.sass-cache
+.idea
+client/bower_components
+client/index.html
+client/touch.js
+client/touch.txt
+dist
+/server/config/local.env.js
+npm-debug.log
+coverage
+.elasticbeanstalk/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

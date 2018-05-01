@@ -1,0 +1,98 @@
+<div class="sellers with-sidebar">
+	<div class="container">
+		<div class="row">
+			<aside class=" col-sm-3">
+				<ol class="breadcrumb text-uppercase">
+					<li md-truncate><a ui-sref="main">{{'home' | translate}}</a></li>
+					<li md-truncate ui-sref="allbooks.details({id: vm.book._id})"><a>{{::vm.book.title}}</a></li>
+					<li md-truncate class="active">
+						<a>{{'sellers' | translate}}</a>
+					</li>
+				</ol>
+				<bookis-filter-sidebar selected="ses.selected"></bookis-filter-sidebar>
+			</aside>
+			<div class="sellers-section col-sm-9">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="book-cover">
+							<img class="pointable" ui-sref="allbooks.details({id: vm.book._id})" ng-src="{{::vm.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+						</div>
+					</div>
+	                    <div class="book-description col-sm-9">
+						<h1 class="pointable" ui-sref="allbooks.details({id: vm.book._id})">{{::vm.book.title}}</h1>
+						<ul class="genres list-unstyled list-inline">
+							<li><a href="#">{{::vm.book | genres}}</a></li>
+						</ul>
+						<div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({aid: vm.book.author[0]._id})">{{::vm.book.author | authors}}</a></div>
+						<div class="rating" ng-if="vm.total.rating">
+							<i class="fa fa-star-o"></i> {{vm.round(vm.average(), 1)}}/5
+						</div>
+						<div class="rating" ng-if="!vm.total.rating">
+							<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+						</div>
+						<button uib-dropdown-toggle class="btn btn-default"><img src="assets/images/share-icon-orange.png" srcset="assets/images/share-icon-orange@2x.png 2x, assets/images/share-icon-orange@3x.png 3x" alt="Share Books">{{'share' | translate}}</button>
+	                    </div>
+				</div>
+				<div class="book-list-holder">
+					<div class="book-list">
+						<ul class="book-list-head list-inline list-unstyled hidden-xs">
+							<li class="fl-b-30 fl-b-20-sm">Seller Name</li>
+							<li class="fl-b-15">Price</li>
+							<li class="fl-b-15">condition</li>
+							<li class="fl-b-20">delivery</li>
+							<li class="fl-b-20 fl-b-20-sm"></li>
+						</ul>
+						<div class="form-group visible-xs">
+					          <label class="control-label text-capitalize">{{'sort.by' | translate}}:</label>
+					          <bookis-select model="bs.format" options="bs.appConfig.books.formats" change="bs.formatChanged()" placeholder="Select format"></bookis-select>
+					     </div>
+						<div class="book-list-body">
+							<div class="book-list-item" ng-repeat="sale in vm.book.sales | sales:ses.selected track by sale._id">
+								<div class="fl-b-30 fl-b-30-sm seller-info" ui-sref="allbooks.details.seller({uid: sale.seller._id})">
+									<img ng-src="{{sale.seller.imageUrl || '/assets/images/avatar.png'}}" alt="Avatar">
+		                                   <div>
+		                                        <div class="user-name">{{::sale.seller | userName}}</div>
+		                                        <a href="" class="user-address">
+											<img src="assets/images/map.png" srcset="assets/images/map@2x.png 2x, assets/images/map@3x.png 3x" alt="Map">
+											{{::sale.seller | userAddress}}
+										</a>
+		                                   </div>
+								</div>
+								<div class="fl-b-15 fl-b-15-sm price">
+									<span>{{sale.price | salePrice}},-</span>
+									<div class="shipping">
+										Shipping <span>86,-</span>
+									</div>
+								</div>
+								<div class="fl-b-15 condition">
+									<span>
+										<div ng-if="sale.condition !== 'new'">Used -</div>
+										{{::sale.condition}}
+									</span>
+	                                        <div class="format">{{::sale.format}}</div>
+								</div>
+								<div class="fl-b-20 delivery">
+	                                        <span ng-if="sale.delivery === 'both'">Shipping or Meetup</span>
+	                                        <span ng-if="sale.delivery !== 'both'">{{::sale.delivery}} only</span>
+	                                        <a class="policy">Shipping & Return policy</a>
+								</div>
+								<div class="fl-b-20 buttons text-right">
+									<a href="#" class="btn btn-primary btn-blue" ng-click="vm.requestBook(sale)" ng-disabled="vm.me()._id && vm.me()._id === sale.seller._id">
+										<img src="assets/images/marker.png" srcset="assets/images/marker@2x.png 2x, assets/images/marker@3x.png 3x" alt="Marker">
+										<span class="ng-binding">request</span>
+									</a>
+
+									<!-- Add Button
+									<a href="#" class="btn btn-primary">
+										<img src="assets/images/shopping-cart.png" srcset="assets/images/shopping-cart@2x.png 2x, assets/images/shopping-cart@3x.png 3x" alt="Shopping Cart">
+										<span class="ng-binding">add</span>
+									</a> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

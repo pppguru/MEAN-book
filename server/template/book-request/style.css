@@ -1,0 +1,59 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300); /*Calling our web font*/
+#outlook a {
+    padding: 0;
+}
+
+.ReadMsgBody {
+    width: 100%;
+}
+
+.ExternalClass {
+    width: 100%;
+}
+
+.ExternalClass * {
+    line-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-family: "Helvetica","Roboto"
+}
+
+table,
+td {
+    border-collapse: collapse;
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+}
+
+img {
+    border: 0;
+    height: auto;
+    line-height: 100%;
+    outline: none;
+    text-decoration: none;
+    -ms-interpolation-mode: bicubic;
+}
+
+p {
+    display: block;
+    margin: 13px 0;
+}
+@media only screen and (min-width:480px) {
+    .mj-column-per-100,
+    * [aria-labelledby="mj-column-per-100"] {
+        width: 100%!important;
+    }
+    .mj-column-per-50,
+    * [aria-labelledby="mj-column-per-50"] {
+        width: 49%!important;
+    }
+    .mj-column-per-49,
+    * [aria-labelledby="mj-column-per-49"] {
+        width: 49%!important;
+    }
+}

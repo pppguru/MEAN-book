@@ -1,0 +1,65 @@
+<div id="sales-booth-active" class="whishlist-table">
+	<div class="search-wrapper col-xs-12">
+          <div class="buttons">
+               <md-button class="btn btn-primary" ng-click="vm.newSale()">{{'sell.book' | translate}}</md-button>
+               <md-button ng-if="vm.me.role === 'merchant'" class="btn btn-primary" ng-click="vm.bulkSell()">Add many books for sale</md-button>
+          </div>
+          <!-- <div class="book-search">
+               <md-icon ng-if="!vm.searchText" md-svg-src="assets/svg/search.svg" aria-label="search"></md-icon>
+               <md-icon ng-if="vm.searchText" ng-click="vm.searchText=''" md-svg-src="assets/svg/close.svg" aria-label="search"></md-icon>
+               <input type="text" class="form-control" placeholder="{{'search' | translate}}" ng-model="vm.searchText">
+          </div> -->
+     </div>
+	<md-whiteframe class="col-xs-12">
+		<div>
+			<div class="content">
+				<div class="book-list-holder">
+					<div class="book-list">
+						<ul class="book-list-head list-inline list-unstyled hidden-xs">
+							<li class="fl-b-5"></li>
+							<li class="fl-b-25">{{'title' | translate}}</li>
+							<li class="fl-b-15">{{'price' | translate}}</li>
+							<li class="fl-b-15">{{'condition' | translate}}</li>
+							<li class="fl-b-15">{{'date.added' | translate}}</li>
+							<li class="fl-b-25"></li>
+						</ul>
+						<div class="form-group visible-xs">
+							<label class="control-label">{{'sort.by' | translate}}:</label>
+							<bookis-select model="bs.format" options="bs.appConfig.books.formats" change="bs.formatChanged()" placeholder="Select format"></bookis-select>
+						</div>
+						<div class="book-list-body">
+							<div class="book-list-item" ng-repeat="sale in vm.sales | filter: vm.searchText track by sale._id">
+								<div class="fl-b-5 book-title" ui-sref="allbooks.details({id: hit.objectID})">
+									<div class="book-cover">
+										<img class="pointable"
+					                              ng-src="{{sale.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image"
+					                              ui-sref="allbooks.details({id: sale.book._id})">
+									</div>
+								</div>
+								<div class="fl-b-25 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})">{{sale.book.title}}</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})">{{sale.book.author | authors}}</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price">
+									{{sale.price | salePrice}},-
+								</div>
+								<div class="fl-b-15 book-condition">
+									{{sale.condition}}
+								</div>
+								<div class="fl-b-15 book-added">
+									{{::sale.createdAt | date:'MM/dd/yyyy'}}
+								</div>
+								<div class="fl-b-25 book-actions">
+									<md-button class="btn btn-default edit" ng-click="vm.editSale(sale)" ng-disabled="sale.status !== 'available'">{{'edit' | translate}}</md-button>
+				                	<md-button class="btn btn-default remove" ng-click="vm.remove(sale)" ng-disabled="sale.status !== 'available'">{{'remove' | translate}}</md-button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</md-whiteframe>
+</div>

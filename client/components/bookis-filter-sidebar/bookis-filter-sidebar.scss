@@ -1,0 +1,173 @@
+.clear-filters {
+    position: absolute;
+    top: 55px;
+    right: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.bookis-filters {
+    .all-actions {
+        a {
+            font-size: 12px;
+        }
+    }
+
+    & > *:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        padding-bottom: 15px;
+    }
+
+    & > *:not(:first-child) {
+        padding-top: 15px;
+    }
+
+    md-checkbox {
+        &.md-checked {
+            .md-icon {
+                background-color: white;
+                &:after {
+                    border-color: $color-primary;
+                }
+            }
+        }
+        .md-icon {
+            border-color: white;
+            border-radius: 3px;
+            border-width: 1px;
+        }
+
+        span {
+            text-transform: capitalize;
+            color: #fff;
+            opacity: .6;
+            font-size: 12px;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    md-icon {
+        margin: 0;
+        svg {
+            fill: white;
+            height: 20px;
+            width: 20px;
+        }
+    }
+
+    collapsible-filter-item {
+        > div {
+            margin-bottom: 16px;
+        }
+        .filter-item-header {
+            outline: none;
+            display: block;
+
+            .filter-item-title {
+                float: left;
+            }
+        }
+
+        .filter-item-title {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.43;
+            letter-spacing: 2px;
+            color: #fff;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            outline: none;
+        }
+    }
+}
+
+.buttons-toggle {
+
+    &.inverse {
+
+        md-checkbox.formats {
+            span {
+                color: $color-primary;
+                border: 1px solid $color-primary;
+            }
+            &.md-checked {
+                span {
+                    background-color: $color-primary;
+                    color: white;
+                }
+            }
+        }
+        label {
+            color: $color-primary;
+        }
+    }
+    md-checkbox.formats {
+        .md-container {
+            display: none;
+        }
+        .md-label {
+            margin-left: 0;
+        }
+        span {
+            opacity: 1;
+            cursor: pointer;
+            float: left;
+            font-size: 14px;
+            line-height: 1.43;
+            color: #ffffff;
+            padding: 10px 15px;
+            text-transform: uppercase;
+            border: 1px solid white;
+            border-radius: 3px 0 0 3px;
+        }
+        &.md-checked {
+            span {
+                background-color: white;
+                color: $color-primary;
+            }
+        }
+    }
+    input {
+        display: none;
+
+        &:checked + label {
+            background-color: white;
+            color: $color-primary;
+        }
+    }
+
+    > div {
+        &:last-child {
+            label, span.for {
+                border-left: 0;
+                border-radius: 0 3px 3px 0;
+            }
+        }
+    }
+
+    label {
+        cursor: pointer;
+        float: left;
+        font-size: 14px;
+        line-height: 1.43;
+        color: #ffffff;
+        padding: 10px 15px;
+        text-transform: uppercase;
+        border: 1px solid white;
+        border-radius: 3px 0 0 3px;
+    }
+}
+
+.selected-filters {
+    margin-bottom: 10px;
+}
+
+md-checkbox.md-checked .md-icon,
+md-checkbox.md-default-theme.md-checked .md-icon {
+	color: $brand-primary !important;
+	background: white;
+	border-width: 1px;
+//     background-color: rgba(229, 134, 56, 0.87);
+}

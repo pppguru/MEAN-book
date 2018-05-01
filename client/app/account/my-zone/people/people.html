@@ -1,0 +1,14 @@
+<md-tabs class="tabs-small people-nav" md-selected="pe.currentNavItem">
+     <md-tab ng-repeat="item in pe.navigationItems" ui-sref="{{ item.state }}">
+          {{ item.title | translate }}
+          <span class="badge" ng-if="item.number.length">{{ item.number.length }}</span>
+     </md-tab>
+     <div class="search-wrapper">
+          <div class="user-search">
+               <md-icon ng-if="!pe.searchText" md-svg-src="assets/svg/search.svg" aria-label="search"></md-icon>
+               <md-icon ng-if="pe.searchText" ng-click="pe.searchText=''" md-svg-src="assets/svg/close.svg" aria-label="search"></md-icon>
+               <input type="text" class="form-control" placeholder="Search your friends" ng-model="pe.searchText">
+          </div>
+     </div>
+</md-tabs>
+<div ui-view="" id="people"></div>

@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="col-md-6 col-xs-12">
+		<div class="form-group" ng-class="{ 'has-success': form.firstName.$valid && form.$submitted, 'has-error': form.firstName.$invalid && form.$submitted }">
+			<label class="control-label" for="firstName">{{'first.name' | translate}}</label>
+			<div>
+				<input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{'enter.your' | translate:{a: 'first.name'} }}" ng-model="vm.me.firstName" required>
+				<p class="help-block" ng-show="form.firstName.$error.required && form.$submitted">
+					{{'_is.required' | translate:{a: 'first.name'} }}
+				</p>
+			</div>
+		</div>
+
+		<div class="form-group" ng-class="{ 'has-success': form.lastName.$valid && form.$submitted, 'has-error': form.lastName.$invalid && form.$submitted }">
+			<label class="control-label " for="lastName">{{'last.name' | translate}}</label>
+			<div>
+				<input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{'enter.your' | translate:{a: 'last.name'} }}" ng-model="vm.me.lastName" required>
+				<p class="help-block" ng-show="form.lastName.$error.required && form.$submitted">
+					{{'_is.required' | translate:{a: 'last.name'} }}
+				</p>
+				<span class="account-note">{{'name.note' | translate}}</span>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-6 col-xs-12">
+		<div class="form-group" ng-class="{ 'has-success': form.gender.$valid && form.$submitted, 'has-error': form.gender.$invalid && form.$submitted }">
+			<label class="control-label " for="gender">{{'i.am' | translate}}</label>
+			<bookis-select class="gender-select" layout="column" flex="none" id="gender" name="gender" model="vm.me.gender" options="vm.genders" placeholder="Select gender" required="true"></bookis-select>
+			<p class="help-block" ng-show="form.gender.$error.required && form.$submitted">
+				{{'_is.required' | translate:{a: 'gender'} }}
+			</p>
+		</div>
+
+		<div class="form-group" ng-class="{ 'has-success': form.birthday.$valid && form.$submitted, 'has-error': form.birthday.$invalid && form.$submitted }">
+			<label class="control-label " for="birthday">{{'DOB' | translate}}</label>
+			<bookis-birthday layout="column" flex="none" bind="vm.me.birthday" name="birthday" id="birthday"></bookis-birthday>
+		</div>
+	</div>
+</div>

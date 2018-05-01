@@ -1,0 +1,66 @@
+.user-map-card {
+    cursor: pointer;
+    background: white;
+    &:hover {
+        transition: all 1s ease;
+        box-shadow: 0 4px 5px -2px rgba(0, 0, 0, .2), 0 7px 10px 1px rgba(0, 0, 0, .14), 0 2px 16px 1px rgba(0, 0, 0, .12);
+        img.profile-image {
+            transform: scale(1.2);
+            transition: all 1s ease;
+        }
+    }
+    .header {
+        position: relative;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+        background: #f4f4f5;
+        padding-bottom: 14px;
+        margin-bottom: 10px;
+        height: 50px;
+        .user-name {
+            text-transform: capitalize;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0 0 15px;
+        }
+    }
+    .image-wrapper {
+        position: relative;
+        height: 96px;
+        width: 96px;
+        left: 10px;
+        top: -40px;
+        border-radius: 50%;
+        overflow: hidden;
+        & > img {
+            background-size: cover;
+            height: 94px;
+            width: 94px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+    }
+
+    .user-info {
+        padding: 0 0 10px 20px;
+        .value {
+            margin-left: 10px;
+        }
+        .user-detail {
+            color: grey;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+    }
+
+    .fa-map-pin {
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        color: grey;
+        height: 30px;
+        width: 30px;
+    }
+}
+
+
+

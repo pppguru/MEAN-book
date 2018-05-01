@@ -1,0 +1,600 @@
+$icon-font-path: '/assets/fonts/bootstrap/';
+// bootstrap start
+// Core variables and mixins
+@import 'variables_bootstrap';
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+// Reset and dependencies
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/print";
+// Core CSS
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/code";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/tables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/forms";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+// Components
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/navs";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/navbar";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/pagination";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/pager";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/labels";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/badges";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/media";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/list-group";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/panels";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/wells";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/close";
+// Components w/ JavaScript
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/popovers";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/carousel";
+// Utility classes
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+// BOOTSTRAP END
+@import '~bootstrap-social/bootstrap-social.scss';
+@import '~angular-material/angular-material.css';
+$fa-font-path: '/assets/fonts/font-awesome/';
+@import '~font-awesome/scss/font-awesome';
+@import '~ui-cropper/compile/unminified/ui-cropper.css';
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+@import '~angularjs-slider/dist/rzslider.min.css';
+@import '../components/core-scss/variables';
+@import '../components/core-scss/mixins';
+@import url( 'https://code.cdn.mozilla.net/fonts/fira.css');
+@import url( 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i'); // @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,900|Roboto:300,500,700,900);
+/**
+ * App-wide Styles
+ */
+.browserupgrade {
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
+}
+
+.dropdown-menu.arrow:before {
+	position: absolute;
+	top: -7px;
+	right: 9px;
+	display: inline-block;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #ccc;
+	border-left: 7px solid transparent;
+	border-bottom-color: rgba(0, 0, 0, 0.2);
+	content: '';
+}
+
+.dropdown-menu.arrow:after {
+	position: absolute;
+	top: -6px;
+	right: 10px;
+	display: inline-block;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #ffffff;
+	border-left: 6px solid transparent;
+	content: '';
+}
+
+.popover {
+	z-index: 999999;
+	max-width: 90% !important;
+	&.all-books-popover {
+		.genre {
+			cursor: pointer;
+		}
+	}
+}
+
+.rz-pointer {
+	outline: none;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+md-content {
+	background-color: white;
+}
+
+.md-button.md-raised {
+	&:not(.md-primary) {
+		color: color(primary, base) !important;
+	}
+	text-transform: none !important;
+}
+
+md-toast {
+	position: fixed !important;
+	z-index: 9999999 !important;
+
+	&.md-center {
+		left: 50%;
+		transform: translate3d(-50%, 0, 0);
+	}
+
+	&.md-error-toast-theme {
+		div.md-toast-content {
+			color: white !important;
+			background-color: red !important;
+		}
+	}
+
+	&.md-success-toast-theme {
+		div.md-toast-content {
+			color: white !important;
+			background-color: green !important;
+		}
+	}
+}
+
+.pac-container {
+	z-index: 999999!important;
+}
+
+md-tabs.tabs-small {
+	md-ink-bar{
+		background-color: $color-primary;
+		height: 3px;
+	}
+	md-tabs-wrapper {
+		height: 40px !important;
+
+		md-tabs-canvas {
+			height: 40px !important;
+
+			md-pagination-wrapper {
+				height: 40px !important;
+
+				md-tab-item {
+					height: 40px !important;
+					font-size: 12px !important;
+					line-height: 40px !important;
+					opacity: 0.6;
+					font-weight: 400;
+					font-size: 14px;
+					line-height: 1.43;
+					color: #1e8197;
+					padding: 0 15px;
+
+					.md-ripple-container{
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+.dont-break-out {
+	overflow-wrap: break-word;
+	float: left;
+	word-wrap: break-word;
+	-ms-word-break: break-word;
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+}
+
+md-menu-content {
+	padding: 0;
+}
+
+.mr0 {
+	margin-right: 0;
+}
+
+.mt0 {
+	margin-top: 0 !important;
+}
+
+.mb0 {
+	margin-bottom: 0 !important;
+}
+
+.pointable {
+	cursor: pointer;
+}
+
+.with-sidebar {
+	&:after {
+		content: '';
+		background-color: $color-primary;
+		display: block;
+		top: 0;
+		bottom: 0;
+		position: absolute;
+		width: 50%;
+		z-index: 0;
+	}
+
+	> .container {
+		> .row {
+			display: flex;
+			@media (max-width: $screen-xs-max) {
+				display: block;
+			}
+		}
+	}
+
+	aside {
+		z-index: 10;
+
+		@media (min-width: $screen-sm-min){
+			min-height: 115vh;
+		}
+		.breadcrumb {
+			margin-right: auto;
+		}
+
+		& + div[class*="-section"] {
+			z-index: 10;
+			background-color: white;
+			padding-left: 100px;
+
+			h1{
+				@extend .heading-main;
+			}
+			@media (max-width: $screen-sm-max) {
+				padding-left: 15px;
+			}
+		}
+
+		.btn-default{
+			background-color: transparent;
+			border-color: white;
+			color: white;
+
+			&:hover{
+				background-color: rgba(255, 255, 255, 0.3)!important;
+			}
+		}
+		.btn-primary{
+			background-color: white;
+			border-color: white;
+			color: $color-primary;
+
+			&:hover,
+			&:focus{
+				color: $color-primary!important;
+				background-color: #ffebe5!important;
+			}
+		}
+		md-radio-button {
+			color: white!important;
+		}
+		md-radio-button .md-off{
+			border-color: white!important;
+		}
+		md-radio-button .md-on{
+			background-color: white;
+		}
+		.bookis-slider.rzslider{
+			.rz-selection{
+				background-color: white!important;
+				z-index: 1000;
+			}
+			.rz-bar-wrapper{
+				z-index: 10;
+			}
+			.rz-pointer{
+				background-color: white;
+				color: white;
+				border-radius: 50%;
+				height: 15px;
+				width: 15px;
+				z-index: 10;
+				top: -7px;
+			}
+			.rz-bar {
+				background: #bb431e;
+			}
+			.rz-tick{
+				font-size: 12px;
+				opacity: .6;
+				top: -5px;
+
+				span{
+					bottom: 20px;
+					color: white;
+				}
+			}
+			.rz-bubble{
+				bottom: -25px;
+				color: white;
+			}
+		}
+	}
+	@media (max-width: $screen-xs-max) {
+		&:after {
+			width: 100%;
+		}
+
+		h1 {
+			padding-top: 30px;
+			margin-bottom: 20px;
+		}
+
+		aside {
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: column;
+			align-items: center;
+
+			md-checkbox {
+				margin-top: 15px;
+			}
+		}
+	}
+}
+
+a {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: $color-title;
+	text-transform: capitalize;
+
+	&.title-font {
+		font-family: 'PT Serif', serif;
+	}
+}
+
+label {
+	font-size: 12px;
+	line-height: 1.67;
+	color: #444444;
+	font-weight: normal;
+}
+
+select,
+textarea {
+	background-color: white;
+	outline: 0;
+	box-shadow: none!important;
+	outline: 0!important;
+	border: 1px solid #d6d6d6;
+	border-radius: 3px;
+}
+
+textarea {
+	height: 60px;
+	resize: vertical;
+	padding: 10px 15px;
+	width: 100%;
+}
+
+#main-ui-view {
+	position: relative;
+	min-height: calc(100% - 205px);
+}
+
+html {
+	overflow-x: hidden;
+	background: white;
+}
+
+body {
+	//overflow-x: hidden;
+	width: 100%;
+}
+
+.popover {
+	max-width: 400px;
+}
+
+.btn {
+	outline: 0;
+	border: 0;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1.43;
+	text-align: center;
+	padding: 10px 25px;
+
+	img {
+		max-height: 13px;
+		vertical-align: baseline;
+		display: inline-block;
+		margin-right: 6px;
+	}
+
+	&[disabled="disabled"]{
+		background-color: #abc3c7!important;
+		border-color: #abc3c7!important;
+		color: white!important;
+	}
+
+	&-primary {
+		-webkit-box-shadow: 0 6px 20px -6px rgba(255,87,33,0.75);
+		box-shadow: 0 6px 20px -6px rgba(255,87,33,0.75);
+
+		&.md-focused,
+		&:hover{
+			background-color: $color-primary - #111111!important;
+		}
+	}
+
+	&-default {
+		font-weight: normal;
+		border: 1px solid $brand-primary;
+		font-size: 14px;
+		line-height: 1.43;
+		text-align: center;
+		color: #ff5722;
+		padding: 10px 15px;
+		text-transform: capitalize;
+
+		&:hover,
+		&.md-focused{
+			background-color: #ffede7!important;
+		}
+		&.disabled {
+			background-color: #afc4c8;
+			color: white;
+			border-color: #afc4c8;
+		}
+
+		&-white{
+			background-color: transparent!important;
+			color: white!important;
+			border-color: white;
+			font-weight: bold;
+
+			&:hover,
+			&.md-focused{
+				background-color: white!important;
+				color: $brand-primary!important;
+			}
+		}
+	}
+}
+md-checkbox.md-checked{
+	.md-icon:after{
+		left: 6px;
+		top: 1px;
+	}
+}
+md-switch{
+
+	display: block;
+
+	&.md-checked{
+		.md-bar{
+			background-color: $color-primary!important;
+		}
+		.md-thumb-container{
+			transform: translate3d(150%, 0, 0);
+		}
+	}
+	.md-thumb-container{
+		transform: translate3d(25%, 0, 0);
+	}
+	.md-bar{
+		width: 50px;
+		height: 30px;
+		border-radius: 100px;
+		background-color: #b1bfc2!important;
+		top: 0;
+	}
+	.md-thumb{
+		top: 1px;
+		width: 24px;
+		height: 24px;
+		background-color: #ffffff!important;
+		box-shadow: none;
+	}
+	.md-container{
+		width: 50px;
+		height: 30px;
+	}
+	.md-label{
+		line-height: 30px;
+		font-size: 12px;
+		color: #444444;
+	}
+}
+
+// Component styles are injected through gulp
+/* inject:scss */
+@import 'variables_bootstrap';
+@import 'account/my-zone/bookshelf/bookshelf';
+@import 'account/my-zone/dashboard-notifications/dashboard';
+@import 'account/my-zone/messages/messages';
+@import 'account/my-zone/my-zone';
+@import 'account/my-zone/order-history/completed/completed';
+@import 'account/my-zone/order-history/order-history';
+@import 'account/my-zone/order-history/requested/requested';
+@import 'account/my-zone/people/followers/followers';
+@import 'account/my-zone/people/following/following';
+@import 'account/my-zone/people/people';
+@import 'account/my-zone/sales-booth/active/active';
+@import 'account/my-zone/sales-booth/pending/pending';
+@import 'account/my-zone/sales-booth/sales-booth';
+@import 'account/my-zone/sales-booth/sales-history/sales-history';
+@import 'account/my-zone/sales-booth/waiting/waiting';
+@import 'account/my-zone/settings/delivery-details/delivery-details';
+@import 'account/my-zone/settings/my-account/my-account';
+@import 'account/my-zone/settings/password/password';
+@import 'account/my-zone/settings/payments/payment';
+@import 'account/my-zone/settings/settings';
+@import 'account/my-zone/wishlist/wishlist';
+@import 'account/reset/reset';
+@import 'account/verify/verify';
+@import 'home/advanced/advanced';
+@import 'home/all-books/all-books';
+@import 'home/all-books/book-details/book-details';
+@import 'home/all-books/book-details/sellers/sellers';
+@import 'home/all-books/popular/popular';
+@import 'home/community/community';
+@import 'home/kids/kids';
+@import 'home/near/near';
+@import 'home/proto/proto';
+@import 'home/static/static';
+@import 'home/student/student';
+@import 'home/top100/top100';
+@import 'main/main';
+@import '../components/book-hit.component/book-hit';
+@import '../components/book-panel.component/book-panel';
+@import '../components/book-sales.component/book-sale';
+@import '../components/bookis-author-profile/bookis-author-profile';
+@import '../components/bookis-birthday/bookis-birthday';
+@import '../components/bookis-card/card';
+@import '../components/bookis-chart/bookis-chart';
+@import '../components/bookis-filter-sidebar/bookis-filter-sidebar';
+@import '../components/bookis-rating/bookis-rating';
+@import '../components/bookis-select/bookis-select';
+@import '../components/bookis-slider.component/bookis-slider';
+@import '../components/bookis-user-profile/bookis-user-profile';
+@import '../components/core-scss/circle-percentage';
+@import '../components/core-scss/input';
+@import '../components/follow-panel.component/follow-panel';
+@import '../components/footer/footer';
+@import '../components/modal/modal';
+@import '../components/modal/templates/add-mandatory-stripe/mandatory.stripe';
+@import '../components/modal/templates/bulk-sell-books/sell.book';
+@import '../components/modal/templates/crop/crop';
+@import '../components/modal/templates/details/details';
+@import '../components/modal/templates/fast-buy/fast.buy';
+@import '../components/modal/templates/login/login';
+@import '../components/modal/templates/new-message/new.message';
+@import '../components/modal/templates/payment-method/payment.method';
+@import '../components/modal/templates/payout-method/payout.method';
+@import '../components/modal/templates/rate-book/rate.book';
+@import '../components/modal/templates/reject-with-reason/reject';
+@import '../components/modal/templates/request-book/request.book';
+@import '../components/modal/templates/sell-book/sell.book';
+@import '../components/modal/templates/signup.merchant/signup.merchant';
+@import '../components/modal/templates/signup/signup';
+@import '../components/navbar-sub/navbar-sub';
+@import '../components/navbar/navbar';
+@import '../components/oauth-buttons/oauth-buttons';
+@import '../components/translate/translate';
+@import '../components/user-map-card/user.map.card';
+/* endinject */

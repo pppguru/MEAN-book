@@ -1,0 +1,20 @@
+.payment-method {
+    select {
+        height: 34px !important;
+    }
+    .supported-cards {
+        margin-bottom: 30px;
+	   text-align: center;
+
+	   div{
+		   display: inline-block;
+		   margin: 0 8px;
+	   }
+	   img{
+		   width: 48px;
+	   }
+    }
+    label {
+        text-transform: capitalize !important;
+    }
+}

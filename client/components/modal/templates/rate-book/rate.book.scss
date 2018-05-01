@@ -1,0 +1,22 @@
+.rate-book-modal {
+    .book-image {
+        img {
+            height: 100px;
+            width: 70px;
+        }
+    }
+    h5, .md-button {
+        text-transform: capitalize !important;
+    }
+
+    .book-details {
+        margin-left: 10px;
+        .title {
+            font-weight: bold;
+        }
+        .author {
+            font-size: 12px;
+            color: grey;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+.bookis-slider-component {
+    .bookis-slider {
+        margin-bottom: 25px;
+        &.rzslider {
+            .rz-bar {
+                background: #ffe4d1;
+                height: 2px;
+            }
+            .rz-selection {
+                background: color(primary, base);
+            }
+            .rz-pointer {
+                width: 8px;
+                height: 16px;
+                top: auto; /* to remove the default positioning */
+                bottom: 0;
+                background-color: color(secondary, base);
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+            }
+            .rz-pointer:after {
+                display: none;
+            }
+            .rz-bubble {
+                bottom: 14px;
+                font-size: 12px;
+            }
+            .rz-limit {
+                font-weight: bold;
+                color: color(primary, base);
+            }
+            .rz-tick {
+                width: 1px;
+                height: 10px;
+                margin-left: 4px;
+                border-radius: 0;
+                background: #ffe4d1;
+                top: -1px;
+                .rz-tick-value {
+                    font-size: 10px
+                }
+                span {
+                    bottom: -18px;
+                }
+                &.rz-selected {
+                    background: color(primary, base);
+                }
+            }
+        }
+    }
+    .slider-inputs {
+        input {
+            width: 60px;
+            height: 28px;
+        }
+    }
+}

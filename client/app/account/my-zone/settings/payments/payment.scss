@@ -1,0 +1,80 @@
+#user-payments {
+	.payout-note {
+		font-size: 12px;
+		line-height: 1.67;
+		color: #444444;
+	}
+
+	.add-payout{
+		margin-top: 20px;
+
+		.btn{
+			margin: 0 20px 0 0;
+			float: left;
+
+		}
+		> div{
+			text-transform: capitalize;
+			font-size: 12px;
+			line-height: 40px;
+			color: #444444;
+		}
+	}
+
+	.payments-list {
+		margin-top: 20px;
+		margin-left: -40px;
+		margin-right: -40px;
+
+		 &-header{
+		 	display: flex;
+			height: 40px;
+			background-color: #b1bfc2;
+			padding: 0 40px;
+
+			> div{
+				text-transform: uppercase;
+				opacity: 0.6;
+				font-size: 14px;
+				font-weight: bold;
+				line-height: 1.57;
+				color: #ffffff;
+				display: inline-block;
+				height: 40px;
+				line-height: 40px;
+
+				&:hover,
+				.active{
+					opacity: 1;
+				}
+			}
+		 }
+
+		 &-content{
+			 .actions{
+				 margin-left: auto;
+				 .btn{
+					 margin-top: 0;
+					 margin-bottom: 0;
+					 text-transform: uppercase;
+				 }
+			 }
+			 > div{
+				 padding: 0 40px;
+				 font-size: 14px;
+				 display: flex;
+				 height: 60px;
+				 align-items: center;
+				 border-bottom: 1px solid rgba(177, 191, 194, 0.3);
+			 }
+			 .name{
+				font-weight: bold;
+				color: #1f4c56;
+			 }
+			 .details{
+				line-height: 1.43;
+				color: #444444;
+			 }
+		 }
+	}
+}

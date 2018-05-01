@@ -1,0 +1,10 @@
+<div class="new-message" layout="column">
+     <div layout="column">
+          <h5>{{'your.message.to' | translate}} {{::modal.data.user | userName}}</h5>
+          <textarea id="review" cols="20" rows="3" class="form-control" ng-model="modal.data.message" placeholder="{{'type.your' | translate: {a:'message'} }}"></textarea>
+     </div>
+     <a ui-sref="myzone.messages" ng-click="$dismiss($event)">{{'take.to.messages' | translate}}</a>
+     <div layout="row" layout-align="end end" flex="none">
+          <md-button class="md-raised md-small" ng-disabled="!modal.data.message" ng-click="modal.confirm()">{{'submit' | translate}}</md-button>
+     </div>
+</div>

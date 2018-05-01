@@ -1,0 +1,41 @@
+<h4 class="capitalize">{{si.ititle | translate}} <small class="small-text" ng-if="si.ititle === 'used'">very good</small></h4>
+<div id="{{si.ititle}}" class="carousel slide" data-ride="carousel" data-interval="false" ng-if="si.sales.length">
+     <div class="carousel-inner row" role="listbox">
+          <div class="book-variant item" ng-class="{'active': $index === si.index}" ng-repeat="sale in si.sales track by sale._id">
+               <span class="col-xs-4">{{sale.price}},-</span>
+               <div class="avatar col-xs-8" ui-sref=".seller({uid: sale.seller._id})">
+                    <a href="#">
+                         <img ng-src="{{::sale.seller.imageUrl || '/assets/images/avatar.png'}}" alt="Profile">
+                    </a>
+                    <a href="#"><span>{{::sale.seller | userName:true}}</span></a>
+                    <a href="#" class="location"><img src="assets/images/map.png" srcset="assets/images/map@2x.png 2x, assets/images/map@3x.png 3x" alt="Map">&nbsp;{{::sale.seller.address.city || 'Unknown'}}</a>
+               </div>
+               <div class="col-xs-12">
+                    <button class="btn btn-primary"
+                            ng-disabled="si.me()._id == sale.seller._id"
+                            ng-click="si.requestBook({sale: sale})">
+                         {{si.ititle === 'used' ? 'request.this.book' : 'add.to.cart' | translate}}
+                    </button>
+               </div>
+          </div>
+     </div>
+     <a class="left carousel-control" ng-href="{{'#'+si.ititle}}" role="button" data-slide="prev">
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+     </a>
+     <a class="right carousel-control" ng-href="{{'#'+si.ititle}}" role="button" data-slide="next">
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+     </a>
+</div>
+<div ng-if="!si.sales.length" class="no-books-sales">
+     <!--<img src="assets/images/literature.png" srcset="assets/images/literature@2x.png 2x, assets/images/literature@3x.png 3x" alt="literature">-->
+     <p translate="no.sales" translate-value-label="{{'used' | translate}}"></p>
+     <div layout="row" layout-align="space-between center" class="buttons-container">
+          <div flex="50"><button class="btn btn-primary" ng-click="si[si.me()._id ? 'sellBook' : 'login']()">{{'sell.yours' | translate}}</button></div>
+          <div flex="50">
+               <button class="btn btn-default"
+                       ng-click="si.notifyMe()"
+                       ng-disabled="si.notified.length"
+                       ng-class="{'disabled' : si.notified.length}">
+                    Notify me!</button></div>
+     </div>
+</div>

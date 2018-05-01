@@ -1,0 +1,108 @@
+.student {
+    aside {
+        .active {
+            opacity: 1 !important;
+        }
+    }
+
+    .md-button.md-raised {
+        text-transform: capitalize !important;
+    }
+
+    .student-image-wrapper {
+        height: 250px;
+        background-color: #e2e1e1;
+    }
+
+    .find-book-wrapper {
+        height: 150px;
+        box-shadow: 0 4px 20px -6px grey;
+
+        i {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+
+    .book-list-holder {
+        padding: 0;
+
+        .book-price {
+            span {
+                font-size: 36px;
+                font-weight: 300;
+                line-height: 1.11;
+            }
+
+            div {
+                font-size: 12px;
+                color: #444444;
+            }
+        }
+
+        .book-title {
+            padding-left: 0 !important;
+        }
+    }
+
+    .student-filters {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #cccccc;
+
+        > div {
+            padding-right: 15px;
+        }
+    }
+
+    .student-book {
+        img {
+            height: 100px;
+            width: 80px;
+            margin-right: 15px;
+        }
+
+        .book-meta {
+            .title {
+                font-weight: bold;
+
+                span {
+                    font-size: 12px;
+                    font-weight: normal;
+                }
+            }
+
+            .author,
+            .genre {
+                color: grey;
+                font-size: 12px;
+            }
+
+            .rating {
+                color: grey;
+            }
+        }
+    }
+
+    .right-sidebar {
+        .selected-book {
+            padding: 10px 5px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        .total {
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+            .amount {
+                color: color(primary, base);
+            }
+        }
+
+        button {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}

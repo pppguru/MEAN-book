@@ -1,0 +1,60 @@
+<div class="form-group" ng-class="{ 'has-success': form.businessName.$valid && form.$submitted, 'has-error': form.businessName.$invalid && form.$submitted }">
+     <label class="control-label col-sm-3" for="businessName">{{'business.name' | translate}}</label>
+     <div class="col-sm-9">
+          <input type="text" class="form-control" id="businessName" name="businessName" placeholder="{{'enter.your' | translate:{a: 'business.name'} }}" ng-model="vm.me.businessName" required>
+          <p class="help-block" ng-show="form.businessName.$error.required && form.$submitted">
+               {{'_is.required' | translate:{a: 'business.name'} }}
+          </p>
+     </div>
+</div>
+
+<div class="form-group" ng-class="{ 'has-success': form.email.$valid && form.$submitted, 'has-error': form.email.$invalid && form.$submitted }">
+     <label class="control-label col-sm-3" for="email">{{'contact.email' | translate}}</label>
+     <div class="col-sm-9">
+          <input type="email" class="form-control" id="email" name="email" placeholder="{{'enter.your' | translate:{a: 'contact.email'} }}" ng-model="vm.me.email" required>
+          <p class="help-block" ng-show="form.email.$error.required && form.$submitted">
+               {{'_is.required' | translate:{a: 'contact.email'} }}
+          </p>
+     </div>
+</div>
+
+<div class="form-group">
+     <label class="control-label col-sm-3" for="phone">{{'contact.phone' | translate}}</label>
+     <div class="col-sm-9">
+          <input type="text" class="form-control" id="phone" name="phone" placeholder="{{'enter.your' | translate:{a: 'contact.phone'} }}" ng-model="vm.me.phone">
+     </div>
+</div>
+
+<div layout="row" layout-align="space-between">
+     <div flex="55" layout="column">
+          <div class="form-group">
+               <label class="control-label col-sm-3" for="streetAddress">{{'address' | translate}}</label>
+               <div class="col-sm-9">
+                    <input type="text" class="form-control" id="streetAddress" name="streetAddress" ng-model="vm.me.address.streetAddress" ng-disabled="true">
+               </div>
+          </div>
+          <div class="form-group">
+               <div class="col-sm-6">
+                    <input type="text" class="form-control" id="streetAddress" name="streetAddress" ng-model="vm.me.address.city" ng-disabled="true">
+               </div>
+               <div class="col-sm-6">
+                    <input type="text" class="form-control" id="streetAddress" name="streetAddress" ng-model="vm.me.address.zip" ng-disabled="true">
+               </div>
+          </div>
+     </div>
+     <div flex="40">
+          <div class="map-wrapper">
+               <ui-gmap-google-map ng-if="vm.me.address.coordinates[0]" center="vm.me.address.coordinates" zoom="15" draggable="true" options="vm.mapOptions">
+                    <ui-gmap-marker coords="vm.me.address.coordinates" options="vm.marker.options" idkey="0">
+                    </ui-gmap-marker>
+               </ui-gmap-google-map>
+          </div>
+     </div>
+</div>
+
+<div class="form-group" ng-class="{ 'has-success': form.about.$valid && form.$submitted, 'has-error': form.about.$invalid && form.$submitted }">
+     <label class="control-label col-sm-12" for="about">{{'about.cc.shop.name' | translate}}</label>
+     <div class="col-sm-12">
+          <textarea name="about" id="about" cols="20" rows="5" class="form-control" ng-model="vm.me.about"></textarea>
+     </div>
+</div>

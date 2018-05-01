@@ -1,0 +1,17 @@
+.verify {
+    margin-top: 20px;
+    .status {
+        text-align: center;
+    }
+    .orange-btn {
+        background: #F55E05 !important;
+        color: white !important;
+        border: none !important;
+        transition: background-color 0.25s ease-in-out;
+        cursor: pointer;
+    }
+
+    .orange-btn:hover {
+        background: #DE5921 !important;
+    }
+}

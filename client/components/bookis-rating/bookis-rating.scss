@@ -1,0 +1,33 @@
+.bookis-rating {
+    &.orange {
+        i {
+            color: white;
+            &.empty {
+                color: #d52d00;
+            }
+            &.disabled {
+                color: #d52d00;
+            }
+        }
+    }
+    &.white {
+        i {
+            color: black;
+            &.empty {
+                color: grey;
+            }
+            &.disabled {
+                color: #d52d00;
+            }
+        }
+    }
+    margin-bottom: 35px;
+    i {
+        margin-right: 8px;
+        outline: none;
+        font-size: 20px;
+        &.disabled {
+            cursor: not-allowed;
+        }
+    }
+}

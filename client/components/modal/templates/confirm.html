@@ -1,0 +1,12 @@
+<p>Are you sure you want to {{::modal.action | lowercase}} <strong>{{::modal.name}}</strong> ?</p>
+<div ng-if="modal.note">
+     <p>NOTE: {{::modal.note}}</p>
+</div>
+<div layout="row" layout-align="end end" flex>
+     <md-button class="md-raised" ng-click="modal.cancel()">
+          Cancel
+     </md-button>
+     <md-button class="md-raised md-primary" ng-click="modal.confirm()">
+          {{::(modal.action !== 'Cancel' ? modal.action : 'Confirm')}}
+     </md-button>
+</div>

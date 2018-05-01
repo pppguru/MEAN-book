@@ -1,0 +1,19 @@
+<div class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="bookis-footer-left">
+				<a href="">
+					<img src="/assets/images/banner_white.png" alt="Logo White">&copy; 2017
+				</a>
+				<translate-component></translate-component>
+			</div>
+			<div class="bookis-footer-links">
+				<a ng-repeat="link in fo.links track by $index" ui-sref="{{link.state}}" ui-sref-active="active">{{link.title | translate}}</a>
+			</div>
+			<div class="bookis-footer-right">
+				<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+				<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+			</div>
+		</div>
+	</div>
+</div>

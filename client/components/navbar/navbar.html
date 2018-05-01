@@ -1,0 +1,346 @@
+<div class="navbar main-nav navbar-default navbar-static-top" ng-show="!('myzone' | includedByState)">
+	<div class="container">
+		<div layout-gt-xs="row" layout-xs="column" layout-align-gt-xs="space-between">
+			<div class="navbar-header">
+				<a ui-sref="main" ng-if="!vm.isMerchant()" class="navbar-brand"><img src="assets/images/bookis-logo.png" srcset="assets/images/bookis-logo@2x.png 2x, assets/images/bookis-logo@3x.png 3x" alt="bookis-logo"></a>
+				<p class="slogan hidden-sm hidden-xs" ng-if="!vm.isMerchant()">
+					{{'main.message' | translate}}
+					<!--Norway’s biggest, most eventful <br> and value-for-money online bookstore-->
+				</p>
+				<a ng-if="vm.isMerchant()" class="navbar-brand merchant"><img src="assets/images/bookis-logo.png" srcset="assets/images/bookis-logo@2x.png 2x, assets/images/bookis-logo@3x.png 3x" alt="bookis-logo"></a>
+				<ul class="list-unstyled pull-right navbar navbar-main navbar-level-1">
+						
+					<li class="hidden-xs hidden-sm" ui-sref-active="active">
+						<a ng-click="vm.sellBook()">
+							<img src="assets/images/sell.png" srcset="assets/images/sell@2x.png 2x, assets/images/sell@3x.png 3x" alt="Sell Books" class="image-inactive">
+							<img src="assets/images/sell-orange.png" srcset="assets/images/sell-orange@2x.png 2x, assets/images/sell-orange@3x.png 3x" alt="Sell Books" class="image-active">
+							{{'Sell Books' | translate}}
+						</a>
+					</li>
+					<li class="hidden-xs hidden-sm" ui-sref-active="active">
+						<a ui-sref="community">
+							<img src="assets/images/community.png" srcset="assets/images/community@2x.png 2x, assets/images/community@3x.png 3x" alt="Community" class="image-inactive">
+							<img src="assets/images/community-orange.png" srcset="assets/images/community-orange@2x.png 2x, assets/images/community-orange@3x.png 3x" alt="Community" class="image-active">
+							{{'Community' | translate}}
+						</a>
+					</li>
+					<li class="hidden-xs hidden-sm" ui-sref-active="active" ng-if="!vm.isMerchant() && vm.isLoggedIn()" uib-dropdown is-open="vm.isOpened && !vm.isSticked()[0]" on-toggle="vm.toggle(open)">
+						<a id="myzone-dropdown" uib-dropdown-toggle><img src="assets/images/my-zone.png" srcset="assets/images/my-zone@2x.png 2x, assets/images/my-zone@3x.png 3x" alt="My Zone">{{'My Zone' | translate}}</a>
+						<ul class="navbar-myzone-menu dropdown-menu arrow dropdown-menu-right" uib-dropdown-menu aria-labelledby="myzone-dropdown">
+							<li class="user-image" ui-sref="myzone.settings.account">
+								<a href="#" class="algolia-anchors">
+									<img ng-src="{{vm.getCurrentUser().imageUrl || 'assets/images/avatar.png'}}" alt="User image">
+									{{vm.getCurrentUser() | userName}}
+								</a>
+							</li>
+							<li style="display:block" class="sub-drop" ng-repeat="mz in vm.myZoneMenu" ui-sref-active="active" ui-sref="{{'myzone' + mz.state}}">
+								<a class="algolia-anchors">
+									<span class="icon-image"><b><img ng-src="{{mz.icon}}" ng-srcset="{{mz.srcset}}" alt="Icon"></b></span>
+									{{mz.title | translate}}
+								</a>
+							</li>
+							<li style="display:block" class="sub-drop" ng-click="vm.logout()">
+								<a class="algolia-anchors">
+									<span class="icon-image"><b><img src="assets/images/exit.png" srcset="assets/images/exit@2x.png 2x, assets/images/exit@3x.png 3x" alt="Log out"></b></span>
+									{{'Log out' | translate}}
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="hidden-xs hidden-sm" ng-if="!vm.isLoggedIn()">
+						<a ng-click="vm.openLogin()">
+							<img src="assets/images/my-zone.png" srcset="assets/images/my-zone@2x.png 2x, assets/images/my-zone@3x.png 3x" alt="My Zone" class="image-inactive">
+							<img src="assets/images/my-zone-orange.png" srcset="assets/images/my-zone-orange@2x.png 2x, assets/images/my-zone-orange@3x.png 3x" alt="My Zone" class="image-active">
+							{{'Login / Register' | translate}}
+						</a>
+					</li>
+					<li popover-enable="vm.notifications.length" popover-is-open="vm.notificationsOpen" popover-class="notifications-popover" popover-trigger="'outsideClick'" uib-popover-template="vm.notificationsTemplateUrl" popover-append-to-body="true" popover-placement="bottom-right">
+						<a href="#">
+							<img src="assets/images/notifications.png" srcset="assets/images/notifications@2x.png 2x, assets/images/notifications@3x.png 3x" alt="Notifications">
+						</a>
+					</li>
+					
+<!-- 		PROTOTYPE code starts here			 -->
+					
+					<li ui-sref-active="active" uib-dropdown>
+						<span class="notifications">3</span>
+						<a id="cart-dropdown" uib-dropdown-toggle><img src="assets/images/cart.png" srcset="assets/images/cart@2x.png 2x, assets/images/cart@3x.png 3x" alt="Cart"></a>
+						
+						<div class="dropdown-menu arrow dropdown-menu-right dropdown-menu-wide dropdown-menu-cart" uib-dropdown-menu aria-labelledby="cart-dropdown">
+							<h4 class="dropdown-cart-title">In your cart:</h4>
+							<div class="dropdown-cart-line row">
+								<div class="col-xs-3"><div class="book-cover">
+									<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82dc9039aea3e717d3e5f/full.png" alt="book image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82dc9039aea3e717d3e5f/full.png">
+									
+								</div>
+								</div>
+								<div class="dropdown-cart-product col-xs-9">
+									<a class="dropdown-cart-title">Atlas Shrugged - Updated and Extended Edition</a>
+									<div class="dropdown-cart-price">190,-</div>
+									<div class="dropdown-cart-format">Paperback</div>
+								</div>
+							</div>
+							<div class="dropdown-cart-line row">
+								<div class="col-xs-3"><div class="book-cover">
+									<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82dc9039aea3e717d3e5f/full.png" alt="book image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82dc9039aea3e717d3e5f/full.png">
+									
+								</div>
+								</div>
+								<div class="dropdown-cart-product col-xs-9">
+									<a class="dropdown-cart-title">Atlas Shrugged - Updated and Extended Edition</a>
+									<div class="dropdown-cart-price">190,-</div>
+									<div class="dropdown-cart-format">Hardcover</div>
+								</div>
+							</div>
+							<div class="dropdown-cart-line row">
+								<div class="col-xs-3"><div class="book-cover">
+									<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82dc9039aea3e717d3e5f/full.png" alt="book image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82dc9039aea3e717d3e5f/full.png">
+									
+								</div>
+								</div>
+								<div class="dropdown-cart-product col-xs-9">
+									<a class="dropdown-cart-title">Atlas Shrugged - Updated and Extended Edition</a>
+									<div class="dropdown-cart-price">190,-</div>
+									<div class="dropdown-cart-format">Deluxe</div>
+								</div>
+							</div>
+							<div class="dropdown-cart-line row">
+								<div class="col-xs-3"><div class="book-cover">
+									<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82dc9039aea3e717d3e5f/full.png" alt="book image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82dc9039aea3e717d3e5f/full.png">
+									
+								</div>
+								</div>
+								<div class="dropdown-cart-product col-xs-9">
+									<a class="dropdown-cart-title">Atlas Shrugged - Updated and Extended Edition</a>
+									<div class="dropdown-cart-price">190,-</div>
+									<div class="dropdown-cart-format">Paperback</div>
+								</div>
+							</div>
+							<div class="dropdown-cart-line row">
+								<div class="col-xs-3"><div class="book-cover">
+									<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82dc9039aea3e717d3e5f/full.png" alt="book image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82dc9039aea3e717d3e5f/full.png">
+									
+								</div>
+								</div>
+								<div class="dropdown-cart-product col-xs-9">
+									<a class="dropdown-cart-title">Atlas Shrugged - Updated and Extended Edition</a>
+									<div class="dropdown-cart-price">190,-</div>
+									<div class="dropdown-cart-format">Omnibus</div>
+								</div>
+							</div>
+							<div class="row dropdown-cart-totals">
+								<div class="dropdown-cart-total-label col-xs-8 text-right">
+									<h4 class="dropdown-cart-title">Total:</h4>
+								</div>
+								<div class="dropdown-cart-total col-xs-4">
+									349,-
+								</div>
+							</div>
+							<div class="row dropdown-cart-actions">
+								<div class="dropdown-cart-btns col-xs-6">
+									<a href="/cart" class="btn btn-block btn-default btn-lg">Cart</a>
+								</div>
+								<div class="dropdown-cart-btns col-xs-6">
+									<a href="/checkout" class="btn btn-block btn-primary btn-lg">Checkout</a>
+								</div>
+							</div>
+						</div>
+					</li>
+					
+<!-- 					END of prototype  -->
+					
+					<li class="hidden-md hidden-lg">
+						<span class="fa fa-bars mobile-nav-icon"></span>
+					</li>
+					<li class="toggle-menu mobile-nav-trigger visible-xs visible-sm">
+						<label for="toggle-menu-checker"></label>
+					</li>
+				</ul>
+				<input type="checkbox" name="toggle-menu" id="toggle-menu-checker" class="hide" ng-model="vm.mobilenav" ng-change="vm.toggleMenu($event)">
+
+
+
+<!-- DEMO ELEMENT -- REPLACE WITH ACTUAL CONTROL LATER -->
+
+
+<div class="mobile-menu-holder mobile-nav mobile-nav-allbooks visible-xs visible-sm">
+	<ul class="mobile-nav-wrap">
+		<li ng-click="vm.mobilenav = false;vm.sellBook()">
+		  <a>
+			  <img src="assets/images/sell.png" srcset="assets/images/sell@2x.png 2x, assets/images/sell@3x.png 3x" alt="Sell Books" class="image-inactive">
+			  <img src="assets/images/sell-orange.png" srcset="assets/images/sell@2x.png 2x, assets/images/sell@3x.png 3x" alt="Sell Books" class="image-active">
+			  {{'Sell Books' | translate}}
+			</a>
+		</li>
+		<li ui-sref-active="active" ui-sref="community" ng-click="vm.mobilenav = false;">
+		  <a>
+			  <img src="assets/images/community.png" srcset="assets/images/community@2x.png 2x, assets/images/community@3x.png 3x" alt="Community" class="image-inactive">
+			  <img src="assets/images/community-orange.png" srcset="assets/images/community@2x.png 2x, assets/images/community@3x.png 3x" alt="Community" class="image-active">
+			  {{'Community' | translate}}
+			 </a>
+		</li>
+		<li ui-sref-active="active" ui-sref="myzone" ng-if="vm.isLoggedIn()" ng-click="vm.mobilenav = false;">
+		  <a>
+			  <img src="assets/images/my-zone.png" srcset="assets/images/my-zone@2x.png 2x, assets/images/my-zone@3x.png 3x" alt="My Zone" class="image-inactive">
+			  <img src="assets/images/my-zone-orange.png" srcset="assets/images/my-zone@2x.png 2x, assets/images/my-zone@3x.png 3x" alt="My Zone" class="image-active">
+			  {{'My Zone' | translate}}
+			 </a>
+		</li>
+		<li ng-if="!vm.isLoggedIn()" ng-click="vm.mobilenav = false;vm.openLogin()">
+			<a>
+				<img src="assets/images/my-zone.png" srcset="assets/images/my-zone@2x.png 2x, assets/images/my-zone@3x.png 3x" alt="My Zone" class="image-inactive">
+				<img src="assets/images/my-zone-orange.png" srcset="assets/images/my-zone@2x.png 2x, assets/images/my-zone@3x.png 3x" alt="My Zone" class="image-active">
+				{{'Login / Register' | translate}}
+			</a>
+		</li>
+<!--
+		<li class="sub-mobile" ui-sref-active="active" ui-sref="student" ng-click="vm.mobilenav = false;">
+			<a>{{'Student' | translate}}</a>
+		</li>
+		<li class="sub-mobile sub-mobile-first" ui-sref-active="active" ui-sref="allbooks" ng-click="vm.subnavcol = false;">
+			<a>{{'All Books' | translate}}</a>
+		</li>
+		<li class="sub-mobile" ui-sref-active="active" ui-sref="kids" ng-click="vm.subnavcol = false;">
+			<a>{{'Kids' | translate}}</a>
+		</li>
+		<li class="sub-mobile" ui-sref-active="active" ui-sref="top100" ng-click="vm.subnavcol = false;">
+			<a>{{'Top 100' | translate}}</a>
+		</li>
+-->
+	</ul>
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingThree">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+	          We Recommend <b class="fa fa-angle-down"></b>
+	        </a>
+	    </div>
+	    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	      <div class="panel-body">
+					<ul class="mobile-nav-wrap">
+	        <li class="sub-mobile" ng-click="vm.mobilenav = false;"><a>Most Popular</a></li>
+	        <li class="sub-mobile" ng-click="vm.mobilenav = false;"><a>New Releases</a></li>
+	        <li class="sub-mobile" ng-click="vm.mobilenav = false;"><a>Super Cheap</a></li>
+	        <li class="sub-mobile" ng-click="vm.mobilenav = false;"><a>Top 100</a></li>
+					</ul>
+	      </div>
+	    </div>
+	  </div>		
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingOne">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+	          By Genre <b class="fa fa-angle-down"></b>
+	        </a>
+	    </div>
+	    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+	      <div class="panel-body">
+					<ul class="mobile-nav-wrap">
+						<li class="sub-mobile" ng-click="vm.mobilenav = false;">ALL BOOKS <b class="fa fa-chevron-down caret-down"></b></li>
+		        <li class="sub-mobile" ng-repeat="genre in vm.genres" ng-click="vm.mobilenav = false;">
+	             <a ng-click="vm.redirectTo({sref: 'advanced', params: {genres:[genre._id]}})" class="genre" flex="none">{{genre.no}}</a>
+		        </li>
+					</ul>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+	        <a class="collapsed" role="button" href="/student">
+	          {{'Student' | translate}}
+	        </a>
+	    </div>
+	  </div>
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingTwo">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+	          {{'Kids' | translate}} <b class="fa fa-angle-down"></b>
+	        </a>
+	    </div>
+	    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+	      <div class="panel-body">
+					<ul class="mobile-nav-wrap">
+	        <li class="sub-mobile" ng-click="vm.mobilenav = false;"><a>0-3</a></li>
+	        <li class="sub-mobile" ng-click="vm.mobilenav = false;"><a>3-6</a></li>
+	        <li class="sub-mobile" ng-click="vm.mobilenav = false;"><a>6-9</a></li>
+	        <li class="sub-mobile" ng-click="vm.mobilenav = false;"><a>9-12</a></li>
+	        <li class="sub-mobile" ng-click="vm.mobilenav = false;"><a>Parents</a></li>
+					</ul>
+	      </div>
+	    </div>
+	  </div>
+
+	</div>
+</div>
+
+<!-- END OF DEMO -->	
+
+			</div>
+
+			<!-- <div flex-gt-xs="40" flex-xs ng-if="!vm.isMerchant() && !('main'|isState)">
+        <div uib-dropdown is-open="!!vm.query" auto-close="disabled" keyboard-nav="true" layout="column" flex="none" class="hits-wrapper search-nav-inside">
+
+          <div class="input-container" flex layout="row">
+            <input class="algolia-input form-control" type="text" placeholder="{{'main.searchPlaceholder' | translate}}"
+                   ng-model="vm.query" ng-change="vm.search(vm.query)"
+                   ng-keydown="($event.keyCode === 40 && vm.tab())||($event.keyCode === 13 && vm.redirect('advanced', {query: vm.query}))">
+            <md-icon class="input-icon" ng-if="!vm.query" md-svg-src="assets/svg/search.svg" aria-label="search"></md-icon>
+            <md-icon class="input-icon" ng-if="vm.query" ng-click="vm.clear()" md-svg-src="assets/svg/close.svg" aria-label="search"></md-icon>
+          </div>
+
+          <ul class="dropdown-menu algolia-simple" uib-dropdown-menu>
+            <li ng-repeat="hit in vm.hits track by $index">
+              <a id="{{$index}}" ui-sref="allbooks.details({id: hit.objectID})" ng-click="vm.clear()">
+                <div layout="row" flex="none" class="hit">
+                  <div flex="none" class="hit-image">
+                    <img ng-src="{{hit.image}}" alt="image">
+                  </div>
+                  <div layout="column" flex class="hit-info">
+                    <div class="title" md-truncate>{{hit.title}}<span>({{hit.year}})</span></div>
+                    <div class="author">{{hit.author[0].displayName}}</div>
+                    <div class="genre">{{hit.genre.join(', ')}}</div>
+                  </div>
+                  <div flex="none" layout="column" layout-align="start end">
+                    <div class="availability">{{hit.available ? hit.available + ' books available' : 'not available'}}</div>
+                    <div>
+                      <span>{{hit.rate}}&nbsp;</span><i class="fa" ng-class="hit.rate ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a ui-sref="advanced({query: vm.query})">
+                <div flex="none" layout="row" layout-align="space-between" class="hit-status">
+                  <div class="fake-anchor" flex="none">See all results for "{{vm.query}}" »</div>
+                  <div flex="none" layout="row">
+                    <div>{{vm.stats.nbHits}} books</div>
+                    <div>&nbsp;found in {{vm.stats.processingTimeMS}} ms</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div> -->
+		</div>
+		<!-- <div uib-collapse="vm.isCollapsed" class="navbar-collapse collapse stroke" id="navbar-main">
+      <ul class="nav navbar-nav" ng-if="('main'|isState)">
+        <li ng-repeat="item in vm.menu" ui-sref-active="{{vm.isLoggedIn() ? 'active': 'active-logged-out'}}" class="pointable">
+          <a ng-if="item.state" ui-sref="{{item.state}}"><i class="{{item.icon}}" aria-hidden="true" ng-show="item.icon">&nbsp;&nbsp;</i>{{item.title | translate}}</a>
+          <a ng-if="!item.state"><i class="{{item.icon}}" aria-hidden="true" ng-show="item.icon">&nbsp;&nbsp;</i>{{item.title | translate}}</a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-if="!vm.isMerchant() && (('main'|isState) || ('myzone' | includedByState))" ui-sref-active="active"><a ui-sref="sellbooks">{{'Sell Books' | translate}}</a></li>
+        <li ng-if="!vm.isMerchant() && (('main'|isState) || ('myzone' | includedByState))" ui-sref-active="active"><a ui-sref="community"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;{{'Community' | translate}}</a></li>
+        <li ng-if="('main'|isState)"><a class="loginlink" ng-if="!vm.isLoggedIn()" ng-click="vm.openLogin()"><span>{{'Login / Register' | translate}}</span></a></li>
+        <li ng-if="!vm.isMerchant() && ((('main'|isState) || ('myzone' | includedByState)) && vm.isLoggedIn())" ui-sref-active="active"><a ui-sref="myzone"><i class="fa fa-user-o" aria-hidden="true"></i>&nbsp;&nbsp;{{'My Zone' | translate}}</a></li>
+        <li ng-if="!vm.isMerchant() && (('myzone' | includedByState))" ui-sref-active="active"><a><i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
+        <li ng-if="!vm.isMerchant() && (('main'|isState) || ('myzone' | includedByState))" ui-sref-active="active"><a><i class="fa fa-shopping-cart" aria-hidden="true"></i><span ng-if="!('main'|isState) && !('myzone' | includedByState)"> {{'Shopping cart' | translate}}</span></a></li>
+        <li ng-show="vm.isLoggedIn()"><p class="navbar-text">Hello {{ vm.getCurrentUser().name }}</p> </li>
+      </ul>
+    </div> -->
+
+	</div>
+</div>

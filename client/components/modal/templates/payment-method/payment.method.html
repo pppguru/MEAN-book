@@ -1,0 +1,68 @@
+<div class="payment-method">
+
+     <form class="form" name="form" ng-submit="form.$valid && modal.submit()" novalidate>
+
+          <!--<pre style="font-size:8px;">{{ modal.data | json }}</pre>-->
+          <!--<pre style="font-size:8px;">{{ modal.cards | json }}</pre>-->
+
+          <div class="supported-cards">
+               <div ng-repeat="card in modal.cards track by $index">
+                    <img ng-src="{{modal.images[card]}}" alt="card image">
+               </div>
+          </div>
+
+          <!--<div layout="row">-->
+               <!--<a style="margin-right: 10px;" ng-click="modal.populate(true)">valid</a>-->
+               <!--<a ng-click="modal.populate(false)">invalid</a>-->
+          <!--</div>-->
+
+          <div>
+               <div class="form-group" ng-class="{'has-success': form.number.$valid && form.$submitted, 'has-error': form.number.$invalid && form.$submitted}">
+                    <label for="number" class="control-label">{{'card.number' | translate}}:</label>
+                    <input type="text" id="number" placeholder="xxxx xxxx xxxx 3456" name="number" class="form-control" ng-model="modal.data.number" allowed-chars="[^0-9]" required>
+               </div>
+          </div>
+
+          <div class="modal-row row">
+               <div class="col-xs-3">
+                    <div class="form-group" ng-class="{'has-success': form.month.$valid && form.$submitted, 'has-error': form.month.$invalid && form.$submitted}">
+                         <label for="month" class="control-label">{{'expires.on' | translate}}:</label>
+                         <bookis-select id="month" name="month" options="modal.months" model="modal.data.exp_month" placeholder="MM" required></bookis-select>
+                    </div>
+               </div>
+			<div class="col-xs-5">
+				<div class="form-group" ng-class="{'has-success': form.year.$valid && form.$submitted, 'has-error': form.year.$invalid && form.$submitted}">
+                         <label for="year" class="control-label">&nbsp;</label>
+                         <bookis-select id="year" name="year" options="modal.years" model="modal.data.exp_year" placeholder="YYYY" required></bookis-select>
+                    </div>
+			</div>
+               <div class="col-xs-4">
+                    <div class="form-group" ng-class="{'has-success': form.cvc.$valid && form.$submitted, 'has-error': form.cvc.$invalid && form.$submitted}">
+                         <label for="cvc" class="control-label">{{'security.code' | translate}}:</label>
+                         <input type="text" id="cvc" name="cvc" class="form-control" placeholder="xxx" ng-model="modal.data.cvc" allowed-chars="[^0-9]" required>
+                    </div>
+               </div>
+          </div>
+
+          <div class="modal-row row">
+               <div class="col-xs-6">
+                    <div class="form-group" ng-class="{'has-success': form.firstName.$valid && form.$submitted, 'has-error': form.firstName.$invalid && form.$submitted}">
+                         <label for="firstName" class="control-label">{{'first.name' | translate}}:</label>
+                         <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Alexander" ng-model="modal.data.firstName" required>
+                    </div>
+               </div>
+               <div class="col-xs-6">
+                    <div class="form-group" ng-class="{'has-success': form.lastName.$valid && form.$submitted, 'has-error': form.lastName.$invalid && form.$submitted}">
+                         <label for="lastName" class="control-label">{{'last.name' | translate}}:</label>
+                         <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Willis" ng-model="modal.data.lastName" required>
+                    </div>
+               </div>
+          </div>
+
+          <div class="clearfix actions">
+               <md-button class="btn btn-primary col-xs-12" type="submit">
+                    {{'add' | translate}}
+               </md-button>
+          </div>
+     </form>
+</div>

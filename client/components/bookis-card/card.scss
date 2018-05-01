@@ -1,0 +1,84 @@
+bookis-card{
+	width: 260px;
+	height: 160px;
+	display: block;
+	float: left;
+
+	+ bookis-card{
+		margin-left: 50px;
+	}
+}
+.bookis-card {
+	width: 260px;
+	height: 160px;
+	display: block;
+	border-radius: 10px;
+	background-color: #b1bfc2;
+	padding-top: 0!important;
+	outline: 0;
+	overflow: hidden;
+
+	&.default-payment{
+		background-color: $brand-primary;
+	}
+
+	&.add-new-payment,
+	&.add-new-address{
+		background-color: transparent;
+		border: 2px dashed #b1bfc2;
+		text-align: center;
+
+		md-icon{
+			fill: #b1bfc2;
+			height: 55px;
+			width: 55px;
+			margin-top: 20px;
+		}
+		.new-method{
+			font-size: 14px;
+			color: #b1bfc2;
+		}
+	}
+
+	>div{
+		background-color: transparent!important;
+		box-shadow: none!important;
+		padding: 15px 20px;
+	}
+
+	.card-exp,
+	.card-number,
+	.card-name {
+		font-size: 14px;
+		font-weight: bold;
+		color: #ffffff;
+		margin-bottom: 10px;
+	}
+
+	.actions {
+		display: flex;
+		align-items: center;
+		margin-top: 20px;
+		margin-right: -10px;
+
+		a{
+			font-size: 12px;
+			color: #ffffff;
+			border-bottom: 1px solid rgba(255, 255, 255, .3);
+			text-transform: capitalize;
+
+			&:hover{
+				border-bottom: 1px solid rgba(255, 255, 255, 1);
+			}
+			+ a{
+				margin-left: 15px;
+			}
+		}
+
+		img {
+			margin-left: auto;
+			width: 48px;
+			filter: brightness(0) invert(1);
+		}
+	}
+}

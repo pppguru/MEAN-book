@@ -1,0 +1,95 @@
+<div id="sales-history">
+	<md-whiteframe class="col-xs-9">
+		<div>
+			<header>
+				books sold graph
+				<div class="chart-year">
+					<md-icon md-svg-src="assets/svg/chevron-left.svg" aria-label="previous" ng-click="vm.refreshChart('-')"></md-icon>
+		               <div class="year">{{vm.currentYear}}</div>
+		               <md-icon md-svg-src="assets/svg/chevron-right.svg" aria-label="next" ng-click="vm.refreshChart('+')"></md-icon>
+				</div>
+			</header>
+			<div class="content chart-holder">
+				<bookis-chart data="vm.data"></bookis-chart>
+			</div>
+		</div>
+	</md-whiteframe>
+
+
+	<md-whiteframe class="col-xs-3">
+		<div>
+			<header>
+				Books sold
+			</header>
+			<div class="content image-tile">
+				<img src="assets/images/book.png" srcset="assets/images/book@2x.png 2x, assets/images/book@3x.png 3x" alt="Book">
+				{{vm.requests.length}}
+			</div>
+		</div>
+     </md-whiteframe>
+     <md-whiteframe class="col-xs-3">
+		<div>
+			<header>
+				Books sold
+			</header>
+			<div class="content image-tile">
+				<img src="assets/images/coins.png" srcset="assets/images/coins@2x.png 2x, assets/images/coins@3x.png 3x" alt="Coins">
+				{{vm.totalAmount() | currency}}
+			</div>
+		</div>
+     </md-whiteframe>
+
+	<md-whiteframe class="col-xs-12 whishlist-table">
+		<div>
+			<div class="content">
+				<div class="book-list-holder">
+					<div class="book-list">
+						<ul class="book-list-head list-inline list-unstyled hidden-xs">
+							<li class="fl-b-5"></li>
+							<li class="fl-b-25">{{'title' | translate}}</li>
+							<li class="fl-b-15">{{'price' | translate}}</li>
+							<li class="fl-b-15">Sold to</li>
+							<li class="fl-b-15">{{'date.added' | translate}}</li>
+							<li class="fl-b-25">order number</li>
+						</ul>
+						<div class="form-group visible-xs">
+							<label class="control-label">{{'sort.by' | translate}}:</label>
+							<bookis-select model="bs.format" options="bs.appConfig.books.formats" change="bs.formatChanged()" placeholder="Select format"></bookis-select>
+						</div>
+						<div class="book-list-body">
+							<div class="book-list-item" ng-repeat="request in vm.requests track by request._id | filter: vm.searchText">
+								<div class="fl-b-5 book-title" ui-sref="allbooks.details({id: hit.objectID})">
+									<div class="book-cover">
+										<img class="pointable"
+					                              ng-src="{{::request.sale.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image"
+					                              ui-sref="allbooks.details({id: sale.book._id})">
+									</div>
+								</div>
+								<div class="fl-b-25 book-name">
+									<a href="#">{{::request.sale.book.title}}</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: request.sale.book.author[0]._id})">{{::request.sale.book.author | authors}}</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price">
+									{{request.sale.price | salePrice}},-
+								</div>
+								<div class="fl-b-15 book-profile">
+									<img ng-src="{{::request.user.imageUrl || '/assets/images/avatar.png'}}" alt="Profile">
+									{{request.user | userName}}
+								</div>
+								<div class="fl-b-15 book-added">
+									{{::request.createdAt | date:'MM/dd/yyyy'}}
+								</div>
+								<div class="fl-b-25">
+									{{::request._id}}
+			                         </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</md-whiteframe>
+
+</div>

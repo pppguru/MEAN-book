@@ -1,0 +1,38 @@
+bookis-select {
+    &.small {
+        .bookis-select {
+            height: 34px;
+            select {
+                height: 34px;
+                line-height: 17px;
+            }
+        }
+    }
+    .bookis-select {
+        position: relative;
+        select {
+            width: 100%;
+            outline: none;
+            background: transparent;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border-radius: 4px;
+            border: 1px solid color(border, base);
+            height: 40px;
+            padding-left: 10px;
+            text-transform: capitalize;
+        }
+        md-icon {
+            position: absolute;
+            right: 6px;
+            height: 18px !important;
+            width: 18px !important;
+            min-width: 18px !important;
+            min-height: 18px !important;
+            top: calc(50% - 9px);//height is 24
+            pointer-events: none;
+        }
+    }
+
+
+}

@@ -1,0 +1,109 @@
+<div id="discussions" class="">
+
+	<header class="clearfix">
+		<h1 class="pull-left">Discussions
+			<span>
+				<img src="assets/images/comments.png" srcset="assets/images/comments@2x.png 2x, assets/images/comments@3x.png 3x" alt="Comment icon"> 2
+			 </span>
+		</h1>
+		<md-button class="pull-right btn btn-primary">New Discussion</md-button>
+	</header>
+	<div class="discussion-list">
+		<div class="discussion clearfix">
+			<div class="avatar">
+				<img src="assets/images/avatar.png" alt="Profile picture">
+				<div class="star">
+					<i class="fa fa-star-o"></i>4
+				</div>
+			</div>
+			<div class="discussion-body">
+				<a href="#">Eula Higgis</a>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<div class="actions">
+				<div class="time pull-left ng-binding">
+					<img src="assets/images/calendar-icon.png" srcset="assets/images/calendar-icon@2x.png 2x, assets/images/calendar-icon@3x.png 3x" alt="Calendar"> 10 May 2017 @ 17:05
+				</div>
+				<a href="#" ng-if="!review.showReply" ng-click="vm.showReplyPartial(review._id, $index)" ng-disabled="!vm.me()._id" class="ng-binding ng-scope">Reply</a>
+				<a href="#" ng-if="review.noReplies" ng-click="review.collapsed=!review.collapsed;" class="ng-binding ng-scope">
+					hide 1 replies
+					<i class="fa fa-rotate-90 fa-angle-left" ng-class="review.collapsed ? 'fa-angle-right' : 'fa-angle-left'" aria-hidden="true"></i>
+				</a>
+				<div class="pull-right">
+					<a href="#" ng-click="vm.toggleReviewFlag(review)" class="ng-binding" aria-label="" md-labeled-by-tooltip="md-tooltip-3">
+
+						<i class="fa fa-flag-o" ng-class="vm.includes(review.flags, vm.me()._id) ? 'fa-flag' : 'fa-flag-o'" aria-hidden="true"></i> 0
+					</a>
+					<a href="#" ng-click="vm.toggleReviewLike(review)" class="ng-binding" aria-label="" md-labeled-by-tooltip="md-tooltip-4">
+
+						<i class="fa fa-heart-o" ng-class="vm.includes(review.likes, vm.me()._id) ? 'fa-heart' : 'fa-heart-o'" aria-hidden="true"></i> 0
+					</a>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="discussion clearfix">
+			<div class="avatar">
+				<img src="assets/images/avatar.png" alt="Profile picture">
+				<div class="star">
+					<i class="fa fa-star-o"></i>4
+				</div>
+			</div>
+			<div class="discussion-body">
+				<a href="#">Eula Higgis</a>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<div class="actions">
+				<div class="time pull-left ng-binding">
+					<img src="assets/images/calendar-icon.png" srcset="assets/images/calendar-icon@2x.png 2x, assets/images/calendar-icon@3x.png 3x" alt="Calendar"> 10 May 2017 @ 17:05
+				</div>
+				<a href="#" ng-if="!review.showReply" ng-click="vm.showReplyPartial(review._id, $index)" ng-disabled="!vm.me()._id" class="ng-binding ng-scope">Reply</a>
+				<a href="#" ng-if="review.noReplies" ng-click="review.collapsed=!review.collapsed;" class="ng-binding ng-scope">
+					hide 1 replies
+					<i class="fa fa-rotate-90 fa-angle-left" ng-class="review.collapsed ? 'fa-angle-right' : 'fa-angle-left'" aria-hidden="true"></i>
+				</a>
+				<div class="pull-right">
+					<a href="#" ng-click="vm.toggleReviewFlag(review)" class="ng-binding" aria-label="" md-labeled-by-tooltip="md-tooltip-3">
+
+						<i class="fa fa-flag-o" ng-class="vm.includes(review.flags, vm.me()._id) ? 'fa-flag' : 'fa-flag-o'" aria-hidden="true"></i> 0
+					</a>
+					<a href="#" ng-click="vm.toggleReviewLike(review)" class="ng-binding" aria-label="" md-labeled-by-tooltip="md-tooltip-4">
+
+						<i class="fa fa-heart-o" ng-class="vm.includes(review.likes, vm.me()._id) ? 'fa-heart' : 'fa-heart-o'" aria-hidden="true"></i> 0
+					</a>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="discussion clearfix">
+			<div class="avatar">
+				<img src="assets/images/avatar.png" alt="Profile picture">
+				<div class="star">
+					<i class="fa fa-star-o"></i>4
+				</div>
+			</div>
+			<div class="discussion-body">
+				<a href="#">Eula Higgis</a>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<div class="actions">
+				<div class="time pull-left ng-binding">
+					<img src="assets/images/calendar-icon.png" srcset="assets/images/calendar-icon@2x.png 2x, assets/images/calendar-icon@3x.png 3x" alt="Calendar"> 10 May 2017 @ 17:05
+				</div>
+				<a href="#" ng-if="!review.showReply" ng-click="vm.showReplyPartial(review._id, $index)" ng-disabled="!vm.me()._id" class="ng-binding ng-scope">Reply</a>
+				<a href="#" ng-if="review.noReplies" ng-click="review.collapsed=!review.collapsed;" class="ng-binding ng-scope">
+					hide 1 replies
+					<i class="fa fa-rotate-90 fa-angle-left" ng-class="review.collapsed ? 'fa-angle-right' : 'fa-angle-left'" aria-hidden="true"></i>
+				</a>
+				<div class="pull-right">
+					<a href="#" ng-click="vm.toggleReviewFlag(review)" class="ng-binding" aria-label="" md-labeled-by-tooltip="md-tooltip-3">
+
+						<i class="fa fa-flag-o" ng-class="vm.includes(review.flags, vm.me()._id) ? 'fa-flag' : 'fa-flag-o'" aria-hidden="true"></i> 0
+					</a>
+					<a href="#" ng-click="vm.toggleReviewLike(review)" class="ng-binding" aria-label="" md-labeled-by-tooltip="md-tooltip-4">
+
+						<i class="fa fa-heart-o" ng-class="vm.includes(review.likes, vm.me()._id) ? 'fa-heart' : 'fa-heart-o'" aria-hidden="true"></i> 0
+					</a>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

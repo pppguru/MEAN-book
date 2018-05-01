@@ -1,0 +1,15 @@
+<div layout="row" flex="none" class="birth-picker">
+     <div flex="40">
+          <bookis-select id="month" name="month" model="vm.date[1]" options="vm.ml" placeholder="Month" required="true" change="vm.change(type, value)"></bookis-select>
+     </div>
+     <div flex="30">
+          <bookis-select id="date" name="date" model="vm.date[2]" options="vm.dates" placeholder="Day" required="true" change="vm.change(type, value)"></bookis-select>
+     </div>
+     <div flex="30">
+          <bookis-select id="year" name="year" model="vm.date[0]" options="vm.years" placeholder="Year" required="true" change="vm.change(type, value)"></bookis-select>
+     </div>
+     <input type="text" name="{{vm.name}}" class="form-control" ng-model="vm.bind" required style="display:none;">
+</div>
+<p class="help-block" ng-show="vm.form && vm.form.birthday.$error.required && vm.form.$submitted">
+     Date of birth is required.
+</p>

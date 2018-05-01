@@ -1,0 +1,557 @@
+<div class="section-fluid section-bg static-content">
+	<div class="container">
+		<h1 class="heading-large">
+			Shopping Cart
+		</h1>
+		<div class="row">
+			
+			<md-whiteframe class="col-md-8">
+			<div>
+				<div class="book-list-holder cart-list">
+					<div class="book-list">
+						<ul class="book-list-head list-unstyled hidden-xs">
+							<li class="fl-b-10"></li>
+							<li class="fl-b-30 ng-binding">Title</li>
+							<li class="fl-b-15 ng-binding">Price</li>
+							<li class="fl-b-20 ng-binding">Quantity</li>
+							<li class="fl-b-15 ng-binding">Subtotal</li>
+							<li class="fl-b-10"></li>
+						</ul>
+
+						<div class="book-list-body">
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82f0e039aea3e717d5ba6/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c82f0e039aea3e717d5ba6/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82f0e039aea3e717d5ba6/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c82f0e039aea3e717d5ba6/details">Nærmere kommer vi ikke</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c82b9b039aea3e717d0c51/author">Monika Steinholm</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c83316039aea3e717db6ed/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c83316039aea3e717db6ed/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c83316039aea3e717db6ed/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c83316039aea3e717db6ed/details">Harry Potter og Føniksordenen</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c82bc0039aea3e717d12a5/author">Robert Galbraith</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c81398039aea3e7179e5dc/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c81398039aea3e7179e5dc/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c81398039aea3e7179e5dc/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c81398039aea3e7179e5dc/details">Verdens øye</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c81398039aea3e7179e5da/author">Robert Jordan</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c813c2039aea3e7179ebed/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c813c2039aea3e7179ebed/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c813c2039aea3e7179ebed/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c813c2039aea3e7179ebed/details">Slaget på Vigrid</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c813c2039aea3e7179ebec/author">Kristine Tofte</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8141f039aea3e7179f884/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c8141f039aea3e7179f884/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8141f039aea3e7179f884/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c8141f039aea3e7179f884/details">Åndejegerne</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c81288039aea3e7179af14/author">Magne Hovden</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82f0e039aea3e717d5ba6/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c82f0e039aea3e717d5ba6/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82f0e039aea3e717d5ba6/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c82f0e039aea3e717d5ba6/details">Nærmere kommer vi ikke</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c82b9b039aea3e717d0c51/author">Monika Steinholm</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c83316039aea3e717db6ed/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c83316039aea3e717db6ed/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c83316039aea3e717db6ed/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c83316039aea3e717db6ed/details">Harry Potter og Føniksordenen</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c82bc0039aea3e717d12a5/author">Robert Galbraith</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c81398039aea3e7179e5dc/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c81398039aea3e7179e5dc/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c81398039aea3e7179e5dc/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c81398039aea3e7179e5dc/details">Verdens øye</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c81398039aea3e7179e5da/author">Robert Jordan</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c813c2039aea3e7179ebed/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c813c2039aea3e7179ebed/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c813c2039aea3e7179ebed/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c813c2039aea3e7179ebed/details">Slaget på Vigrid</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c813c2039aea3e7179ebec/author">Kristine Tofte</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8141f039aea3e7179f884/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c8141f039aea3e7179f884/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8141f039aea3e7179f884/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c8141f039aea3e7179f884/details">Åndejegerne</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c81288039aea3e7179af14/author">Magne Hovden</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82f0e039aea3e717d5ba6/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c82f0e039aea3e717d5ba6/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c82f0e039aea3e717d5ba6/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c82f0e039aea3e717d5ba6/details">Nærmere kommer vi ikke</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c82b9b039aea3e717d0c51/author">Monika Steinholm</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c83316039aea3e717db6ed/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c83316039aea3e717db6ed/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c83316039aea3e717db6ed/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c83316039aea3e717db6ed/details">Harry Potter og Føniksordenen</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c82bc0039aea3e717d12a5/author">Robert Galbraith</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c81398039aea3e7179e5dc/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c81398039aea3e7179e5dc/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c81398039aea3e7179e5dc/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c81398039aea3e7179e5dc/details">Verdens øye</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c81398039aea3e7179e5da/author">Robert Jordan</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c813c2039aea3e7179ebed/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c813c2039aea3e7179ebed/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c813c2039aea3e7179ebed/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c813c2039aea3e7179ebed/details">Slaget på Vigrid</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c813c2039aea3e7179ebec/author">Kristine Tofte</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8141f039aea3e7179f884/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c8141f039aea3e7179f884/details" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8141f039aea3e7179f884/full.png">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c8141f039aea3e7179f884/details">Åndejegerne</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c81288039aea3e7179af14/author">Magne Hovden</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price ng-binding">
+									141,-
+								</div>
+								<div class="fl-b-20 book-added ng-binding">
+									<div class="input-group control-quantity">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">-</button>
+					          </span>
+				            <input type="text" class="form-control" value="1">
+										<span class="input-group-btn">
+					            <button type="button" class="btn btn-default">+</button>
+					          </span>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price book-subtotal ng-binding">141,- <span class="book-price-subtitle">Shipping 30,-</span></div>
+								<div class="fl-b-10 book-actions text-right">
+                	<button class="btn btn-default md-ink-ripple" type="button"><span class="fa fa-trash"></span></button>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+
+			</div>
+			</md-whiteframe>
+
+			<md-whiteframe class="col-md-4" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+				<div>
+<!--
+					<header>
+						Review Order
+					</header>
+-->
+					<div class="content">
+							<table class="table-checkout">
+								<thead>
+									<tr>
+										<th><h4>Summary</h4></th>
+										<th class="text-right"></th>
+									</tr>
+								</thead>
+								<tbody>									
+									<tr>
+										<td>Books</td>
+										<td class="checkout-value">3,272,-</td>
+									</tr>
+									<tr>
+										<td>Shipping & Handling</td>
+										<td class="checkout-value">120,-</td>
+									</tr>
+									<tr>
+										<td>VAT</td>
+										<td class="checkout-value">0,-</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td class="checkout-total-label">Total</td>
+										<td class="checkout-total">3392,-</td>
+									</tr>
+								</tfoot>
+							</table>
+					</div>
+					<div class="box-footer">
+						<div class="content">
+							<a href="" class="btn btn-lg btn-block btn-primary">Checkout</a>
+						</div>
+					</div>
+				</div>
+			</md-whiteframe>
+
+		</div>
+	</div>
+</div>

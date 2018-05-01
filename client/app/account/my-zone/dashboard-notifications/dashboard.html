@@ -1,0 +1,84 @@
+<div id="dashboard">
+	<md-whiteframe class="col-md-8">
+		<div>
+			<header>
+				notifications
+			</header>
+			<div class="content">
+				<div class="timeline">
+					<div class="timeline-row row" ng-repeat="no in vm.notifications track by no._id">
+						<div ng-include="no.type"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</md-whiteframe>
+	<div class="row col-md-4 right-bar">
+		<md-whiteframe class="col-md-12">
+			<div>
+				<header>
+					recently reading
+				</header>
+				<div class="read-content">
+					<div class="row read-item" ng-repeat="read in vm.reads | limitTo: 3 track by read._id">
+						<div class="col-md-4 book-cover-holder">
+							<div class="book-cover">
+								<img ng-src="{{read.book.image.full}}" alt="">
+							</div>
+						</div>
+						<div class="col-xs-8">
+							<div class="title">{{read.book.title}}</div>
+							<div class="rating">
+								<i class="fa fa-star-o"></i>{{read.book.rating.avg}}/5
+							</div>
+							<div class="author">
+<!-- 								NEEDS DATA FROM #BACKEND ! -->
+								By <a href="#">AUTHOR HERE</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</md-whiteframe>
+		<md-whiteframe class="col-md-12">
+			<div>
+				<header>
+					statistics
+				</header>
+				<div class="grid-content">
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="value">{{vm.me().followers.length}}</div>
+							<div class="text">Followers</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="value">{{vm.me().following.length}}</div>
+							<div class="text">Following</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="value">{{vm.available.length}}</div>
+							<div class="text">Books for Sale</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="value">{{vm.sold.length}}</div>
+							<div class="text">Books Sold</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="value">{{vm.reads.length}}</div>
+							<div class="text">Books Read</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="value">{{vm.wishlist.length}}</div>
+							<div class="text">Books in Wishlist</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</md-whiteframe>
+	</div>
+
+</div>

@@ -1,0 +1,11 @@
+<div id="about-us" class="container static-page">
+     <div class="row">
+          <div class="static-sidebar hidden-xs col-md-2 col-md-offset-1 col-sm-4">
+               <ul class="list-unstyled">
+                    <li ng-repeat="item in vm.links" ui-sref-active="active" ui-sref="{{::item.state}}">{{::item.title}}</li>
+               </ul>
+          </div>
+          <ui-view></ui-view>
+     </div>
+</div>
+ 

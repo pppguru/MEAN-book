@@ -1,0 +1,64 @@
+<div id="messages">
+
+	<div class="messages-holder col-xs-9">
+		<div class="top-row">
+			<div class="title">{{'messages' | translate}}</div>
+			<div class="action">
+				<a class="mr0" ng-if="vm.me._id === vm.currentConversation.seller._id && ['pending', 'waiting'].indexOf(vm.currentConversation.status) >= 0" ng-click="vm[vm.currentConversation.status === 'pending' ? 'accept' : 'deliver']()">{{vm.currentConversation.status === 'pending' ? 'approve.book.request' : 'mark.as.delivered' | translate}}</a>
+				<a class="mr0"><span class="icon">+</span>{{'send.message' | translate}}</a>
+			</div>
+		</div>
+		<md-content class="messages" scroll-glue>
+			<div layout="row" ng-repeat="con in vm.conversation" class="conversation-item" flex="none">
+				<message-item layout flex user="con.user" type="con.type" stamp="con.createdAt" message="con.message"></message-item>
+			</div>
+		</md-content>
+		<div class="input-wrapper">
+			<form name="form" novalidate>
+				<textarea rows="1" msd-elastic class="form-control" ng-model="vm.message" ng-keyup="$event.keyCode == 13 && !$event.shiftKey && vm.message && vm.sendMessage({e: $event})" placeholder="{{'write.message' | translate}}">
+               	</textarea>
+				<button class="btn btn-primary" type="button" name="button" ng-click="vm.message && vm.sendMessage()">
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					send
+				</button>
+			</form>
+		</div>
+	</div>
+	<div class="sidebar col-xs-3">
+		<div class="search">
+			<md-icon ng-if="!vm.searchText" md-svg-src="assets/svg/search.svg" aria-label="search" class="ng-scope" role="img"><svg enable-background="new 0 0 100 100" id="Layer_1" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false"><path clip-rule="evenodd" d="M64.5,44.6c0-11.6-9.4-20.9-20.9-20.9c-11.6,0-20.9,9.4-20.9,20.9  c0,11.6,9.4,20.9,20.9,20.9C55.1,65.6,64.5,56.2,64.5,44.6z M80,79.3l-1.8,1.8l-19-19c-4.2,3.7-9.6,6-15.7,6  c-13,0-23.5-10.5-23.5-23.5c0-13,10.5-23.5,23.5-23.5c13,0,23.5,10.5,23.5,23.5c0,6-2.3,11.5-6,15.7L80,79.3z" fill-rule="evenodd"></path></svg></md-icon>
+			<input type="text" class="form-control search-input" placeholder="{{'search' | translate}}" ng-model="vm.search">
+		</div>
+		<md-content>
+			<div ng-repeat="con in vm.conversations | filter: vm.search | orderBy:'updatedAt':true track by con._id" class="sidebar-item" ng-click="vm.getConversation(con)" ng-class="{'activeRight': con._id === vm.currentConversation._id}">
+				<div class="firends-list">
+					<div class="book-image" ng-if="con.seller">
+						<img ng-if="vm.me._id === con.seller._id" ng-src="{{::con.user.imageUrl || '/assets/images/avatar.png'}}" alt="">
+						<img ng-if="vm.me._id !== con.seller._id" ng-src="{{::con.seller.imageUrl || '/assets/images/avatar.png'}}" alt="">
+						<img class="book-conversation" ng-if="con.seller" ng-src="{{::con.sale.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="">
+					</div>
+					<div class="book-image" ng-if="con.participants">
+						<img ng-if="vm.me._id === con.participants[0]._id" ng-src="{{::con.participants[1].imageUrl || '/assets/images/avatar.png'}}" alt="">
+						<img ng-if="vm.me._id !== con.participants[0]._id" ng-src="{{::con.participants[0].imageUrl || '/assets/images/avatar.png'}}" alt="">
+						<img class="book-conversation" ng-if="con.seller" ng-src="{{::con.sale.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="">
+					</div>
+					<div class="chat-info">
+						<md-truncate class="item-title" ng-if="con.participants">
+							<div ng-if="vm.me._id === con.participants[0]._id">{{::con.participants[1] | userName}}</div>
+							<div ng-if="vm.me._id !== con.participants[0]._id">{{::con.participants[0] | userName}}</div>
+						</md-truncate>
+						<md-truncate class="item-title" ng-if="con.seller">
+							<div ng-if="vm.me._id === con.seller._id">{{::con.user | userName}}</div>
+							<div ng-if="vm.me._id !== con.seller._id">{{::con.seller | userName}}</div>
+						</md-truncate>
+						<!--<div md-truncate class="item-sub-title" ng-if="con.seller">{{::con.sale.book.title}}</div>-->
+						<div>
+							<md-truncate class="message-text">{{con.message}}</md-truncate>
+							<span class="time" am-time-ago="con.updatedAt"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</md-content>
+	</div>
+</div>

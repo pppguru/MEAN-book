@@ -1,0 +1,21 @@
+<svg width="139px" height="114px" viewBox="650 174 139 114" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="envelope-(6)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(650.000000, 174.000000)">
+        <g id="Capa_1">
+            <g id="Group">
+                <g id="Shape">
+                    <polygon fill="#DCD6CD" points="0 0 0 92.625 66.6206897 92.625 133.241379 92.625 133.241379 0"></polygon>
+                    <path d="M73.6753448,52.504125 C69.7804138,55.976375 63.4633448,55.976375 59.5660345,52.504125 L54.6004138,48.127 C39.0658966,61.966125 0,92.625 0,92.625 L51.4097586,92.625 L81.834,92.625 L133.241379,92.625 C133.241379,92.625 94.1754828,61.966125 78.6409655,48.127 L73.6753448,52.504125 L73.6753448,52.504125 Z" fill="#E8E3D9"></path>
+                    <path d="M0,0 L59.5660345,52.504125 C63.4609655,55.976375 69.7780345,55.976375 73.6753448,52.504125 L133.241379,0 L0,0 L0,0 Z" fill="#EFEBDE"></path>
+                </g>
+                <g transform="translate(80.896552, 57.000000)">
+                    <ellipse id="Oval" fill="#D0011B" cx="28.5517241" cy="28.5" rx="28.5517241" ry="28.5"></ellipse>
+                    <path d="M25,16.008788 C25,14.3470803 26.3496704,13 28.0092545,13 L28.9907455,13 C30.6527109,13 32,14.3455902 32,16.008788 L32,30.991212 C32,32.6529197 30.6503296,34 28.9907455,34 L28.0092545,34 C26.3472891,34 25,32.6544098 25,30.991212 L25,16.008788 Z" id="Rectangle" fill="#FFFFFF"></path>
+                    <rect id="Rectangle-Copy" fill="#FFFFFF" x="25" y="38" width="7" height="7" rx="3.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

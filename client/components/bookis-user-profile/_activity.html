@@ -1,0 +1,5 @@
+<div class="timeline topOffset">
+	<div class="timeline-row row" ng-repeat="no in vm.notifications track by no._id">
+		<div ng-include="no.type"></div>
+	</div>
+</div>

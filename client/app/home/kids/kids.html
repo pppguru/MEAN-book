@@ -1,0 +1,114 @@
+<div class="kids with-sidebar">
+	<div class="container">
+		<div class="row">
+			<aside class=" col-sm-3">
+				<ol class="breadcrumb text-uppercase">
+					<li><a ui-sref="main">{{'home' | translate}}</a></li>
+					<li><a class="active">{{'Kids' | translate}}</a></li>
+				</ol>
+				<bookis-filter-sidebar selected="vm.selected"></bookis-filter-sidebar>
+			</aside>
+			<div class="kids-section col-sm-9">
+				<h1>{{'kids.header' | translate}}</h1>
+				<div class="age-container row">
+					<div class="square-romb col-xs-3 pointable" ui-sref="advanced({age: '0-3'})">
+						<div class="square-romb-wrap">
+							<img src="assets/images/age1.png" alt="Age 1">
+						</div>
+						<div class="romb">
+							<span>0 - 3</span>
+						</div>
+					</div>
+					<div class="square-romb col-xs-3 pointable">
+						<div class="square-romb-wrap">
+							<img src="assets/images/age2.png" ui-sref="advanced({age: '3-6'})">
+						</div>
+						<div class="romb">
+							<span>3 - 6</span>
+						</div>
+					</div>
+					<div class="square-romb col-xs-3 pointable">
+						<div class="square-romb-wrap">
+							<img src="assets/images/age3.png" ui-sref="advanced({age: '6-9'})">
+						</div>
+						<div class="romb">
+							<span>6 - 9</span>
+						</div>
+					</div>
+					<div class="square-romb col-xs-3 pointable">
+						<div class="square-romb-wrap">
+							<img src="assets/images/age4.png" ui-sref="advanced({age: '9-12'})">
+						</div>
+						<div class="romb">
+							<span>9 - 12</span>
+						</div>
+					</div>
+				</div>
+				<div flex="25" ng-repeat="age in vm.ages track by $index" layout="row" layout-margin layout-align="center center">
+					<!-- <div class="age-container" layout="column" ui-sref="advanced({age: age})">
+                              <div flex class="icon" layout="column" layout-align="center center">
+                                   <div>icon</div>
+                              </div>
+                              <div class="age" flex="none" layout="column" layout-align="center start">
+                                   <div>{{age}}</div>
+                              </div>
+                         </div> -->
+				</div>
+				<h2>{{'recommended.books' | translate}}</h2>
+				<div class="row">
+					<div class="book-small col-md-3 col-sm-4 col-xs-6" ng-repeat="rec in vm.recommended track by rec._id">
+						<div class="book-cover">
+							<a ui-sref="allbooks.details({id: rec._id})">
+								<img ng-src="{{::rec.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+							</a>
+						</div>
+						<div class="book-description">
+							<div class="rating">
+								<i class="fa fa-star-o"></i>{{::rec.rating.avg}}/5
+							</div>
+						</div>
+						<div class="book-name">
+							<a ui-sref="allbooks.details({id: rec._id})">{{::rec.title}}</a>
+						</div>
+					</div>
+				</div>
+				<h2>{{'popular.books' | translate}}</h2>
+				<div class="row">
+					<div class="book-small col-md-3 col-sm-4 col-xs-6" ng-repeat="pop in vm.popular track by pop._id">
+						<div class="book-cover">
+							<a ui-sref="allbooks.details({id: pop._id})">
+								<img ng-src="{{::pop.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+							</a>
+						</div>
+						<div class="book-description">
+							<div class="rating">
+								<i class="fa fa-star-o"></i>{{::pop.rating.avg}}/5
+							</div>
+						</div>
+						<div class="book-name">
+							<a ui-sref="allbooks.details({id: pop._id})">{{::pop.title}}</a>
+						</div>
+					</div>
+				</div>
+				<h2>New this month</h2>
+				<div class="row">
+					<div class="book-small col-md-3 col-sm-4 col-xs-6" ng-repeat="pop in vm.popular track by pop._id">
+						<div class="book-cover">
+							<a ui-sref="allbooks.details({id: pop._id})">
+								<img ng-src="{{::pop.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+							</a>
+						</div>
+						<div class="book-description">
+							<div class="rating">
+								<i class="fa fa-star-o"></i>{{::pop.rating.avg}}/5
+							</div>
+						</div>
+						<div class="book-name">
+							<a ui-sref="allbooks.details({id: pop._id})">{{::pop.title}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

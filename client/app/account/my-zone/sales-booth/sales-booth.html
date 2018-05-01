@@ -1,0 +1,8 @@
+<md-tabs class="sales-booth-nav tabs-small" md-selected="vm.currentNavItem">
+     <md-tab ng-repeat="item in vm.navigationItems" ui-sref="{{ item.state }}">
+          {{ item.title | translate }}
+          <span class="badge" ng-if="item.number.length">{{ item.number.length }}</span>
+          <span ng-if="vm.getLength(item.unseen)" class="unseen-number">+{{ vm.getLength(item.unseen) }}</span>
+     </md-tab>
+</md-tabs>
+<div ui-view="" id="sales-booth-views"></div>

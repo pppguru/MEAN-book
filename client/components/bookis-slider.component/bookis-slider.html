@@ -1,0 +1,13 @@
+<div layout="column" flex="none" class="bookis-slider-component" ng-if="vm.values">
+     <rzslider flex="none" class="bookis-slider" rz-slider-model="vm.values.min" rz-slider-high="vm.values.max" rz-slider-options="vm.options"></rzslider>
+     <div flex="none" layout="row" layout-align="space-around" class="slider-inputs" ng-if="vm.inputs">
+          <div layout="row" layout-align="start center" flex="none">
+               <input flex="none" class="form-control" ng-model="vm.values.min" ng-model-options="{updateOn: 'blur'}" type="text" allowed-chars="[^0-9]">
+               <div>&nbsp;{{vm.inputs}}</div>
+          </div>
+          <div layout="row" layout-align="start center" flex="none">
+               <input flex="none" class="form-control" ng-model="vm.values.max" ng-model-options="{updateOn: 'blur'}" type="text" allowed-chars="[^0-9]">
+               <div>&nbsp;{{vm.inputs}}</div>
+          </div>
+     </div>
+</div>

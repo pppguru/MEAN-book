@@ -1,0 +1,80 @@
+<div class="top100 with-sidebar">
+	<div class="container">
+		<div class="row">
+			<aside class=" col-sm-3">
+				<ol class="breadcrumb text-uppercase">
+				  <li><a ui-sref="main">{{'home' | translate}}</a></li>
+				  <li><a ui-sref="allbooks.popular">{{'Top 100' | translate}}</a></li>
+				</ol>
+				<h3>{{'you.have.read' | translate | uppercase}}</h3>
+				<div flex="none">
+					<div class="{{'c100 p' + vm.readCount}}">
+						<span>{{vm.readCount}}<span>/100</span></span>
+						<div class="slice">
+							<div class="bar"></div>
+							<div class="fill"></div>
+						</div>
+					</div>
+				</div>
+				<div class="bookis-filters">					
+					<md-checkbox ng-model="vm.hideRead" ng-disabled="!vm.me()._id">
+						<span>{{'hide.books' | translate}}</span>
+					</md-checkbox>
+				</div>
+
+				<h3 data-toggle="collapse" aria-expanded="true" data-target="#genres-list">{{'check.by.x' | translate: {x: 'category'} }} <i class="fa fa-angle-left fa-rotate-270" aria-hidden="true"></i></h3>
+				<div id="genres-list" class="genre-filters collapse in">
+					<div class="genre" ng-class="{'active-filter' : vm.filterGenre === genre._id}"
+					ng-click="vm.addFilter({genre: genre._id})"
+					ng-repeat="genre in vm.genres track by $index">
+						{{::genre.no}}</div>
+				</div>
+
+				<bookis-filter-sidebar selected="ses.selected"></bookis-filter-sidebar>
+			</aside>
+			<div class="book-list-holder col-sm-9">
+				<h1 class="title-font">{{'top.100.rated' | translate}}</h1>
+
+				<div class="book-list">
+					<ul class="book-list-head list-inline list-unstyled hidden-xs">
+						<li class="fl-b-5 fl-b-20-sm">{{'rank' | translate}}</li>
+						<li class="fl-b-40">{{'title' | translate}}</li>
+						<li class="fl-b-20 text-center">{{'rate' | translate}}</li>
+						<li class="fl-b-35 fl-b-20-sm"></li>
+					</ul>
+					<div class="form-group visible-xs">
+				          <label class="control-label">{{'sort.by' | translate}}:</label>
+				          <bookis-select model="bs.format" options="bs.appConfig.books.formats" change="bs.formatChanged()" placeholder="Select format"></bookis-select>
+				     </div>
+					<div class="book-list-body">
+						<div class="book-list-item" ng-repeat="hit in vm.hits | limitTo: 100 | filter: {read: vm.hideRead ? false : undefined} track by hit.objectID">
+							<div class="fl-b-5 fl-b-20-sm book-title" ui-sref="allbooks.details({id: hit.objectID})">
+								<div class="index">
+									<span>{{$index + 1}}</span>
+								</div>
+								<div class="book-cover">
+									<img ng-src="{{::hit.image || '/assets/images/book_avatar.jpg'}}" alt="book image">
+								</div>
+							</div>
+							<div class="fl-b-40 book-name">
+								<a ui-sref="allbooks.details({id: hit.objectID})">{{::hit.title}}</a>
+								<div class="book-author">
+									by <a href="#">{{::hit.author[0].displayName || 'Unknown author'}}</a>
+								</div>
+							</div>
+							<div class="fl-b-20 book-rating">
+								<i class="fa pointable" ng-class="hit.rate ? 'fa-star' : 'fa-star-o'" aria-hidden="true" ng-click="vm.rateBook({hit})"></i>
+								<span>{{hit.rate | number: hit.rate ? 1 : 0}}/5</span>
+							</div>
+							<div class="fl-b-35 fl-b-20-sm book-actions">
+								<md-button class="btn btn-default" ng-class="{'disabled' : hit.wish}" ng-disabled="hit.wish" ng-click="vm[vm.me()._id ? 'addToWishList' : 'login']({hit, reload: true})">{{hit.wish ? 'in.wishlist' : 'Wishlist' | translate}}</md-button>
+								<!--<md-button class="btn btn-primary" ng-if="hit.shelf" ng-click="vm[vm.me()._id ? 'sellBook' : 'login']({hit, reload: true})">{{'sell' | translate}}</md-button>-->
+								<md-button class="btn btn-primary" ui-sref="allbooks.details({id: hit.objectID})" target="_blank">{{'buy' | translate}}</md-button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

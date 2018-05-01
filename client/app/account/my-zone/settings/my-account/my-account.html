@@ -1,0 +1,143 @@
+<div id="about-me">
+	<md-whiteframe class="col-lg-9 col-xs-12">
+		<div>
+			<header>
+				Main information
+			</header>
+			<div class="content">
+				<form class="row" name="form" ng-submit="form.$valid && vm.update(form)" novalidate>
+					<div class="col-md-3 col-sm-6 col-xs-8 image-section">
+						<div class="profile-image" ng-if="vm.image.uploading">
+							<md-progress-circular class="uploading" md-diameter="50" md-mode="indeterminate"></md-progress-circular>
+						</div>
+						<img class="profile-image" ng-if="vm.me.imageUrl && !vm.image.uploading" ng-src="{{vm.image.base64 || vm.me.imageUrl}}" alt="profile image">
+						<img class="profile-image" ng-if="!vm.me.imageUrl  && !vm.image.uploading" ng-src="{{vm.image.base64 || '/assets/images/avatar.png'}}" alt="">
+						<div class="actions-btn">
+							<div class="btn-group" uib-dropdown is-open="status.isopen">
+								<md-button id="single-button" type="button" class="btn btn-default btn-block" uib-dropdown-toggle>
+									Change picture<span class="caret"></span>
+								</md-button>
+								<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+									<li role="menuitem"><a accept="image/*" ng-disabled="vm.image.uploading" ngf-select="$file && vm.openCropModal($file)" ng-model="image" name="file" ngf-model-invalid="vm.errorFile" ngf-validate="vm.imageValidationData">Upload Image</a></li>
+									<li role="menuitem"><a ng-disabled="vm.image.uploading" ng-click="vm.openTakeImageModal()">Take photo</a></li>
+								</ul>
+							</div>
+						</div>
+						<canvas style="display:none;" id="snapshot" class="well pull-right" width="240" height="240"></canvas>
+					</div>
+
+					<ng-include class="col-md-9 col-xs-12" src="'_'+vm.me.role+'.html'">
+					</ng-include>
+
+					<div class="col-md-9 col-xs-12 col-md-offset-3">
+					<div layout="row" layout-align="end end" flex>
+						<md-button ng-disabled="vm.isEqual(vm.origin, vm.me)" type="submit" class="btn btn-primary update">
+							{{'update' | translate}}
+						</md-button>
+					</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</md-whiteframe>
+	<md-whiteframe class="col-lg-9 col-xs-12">
+		<div>
+			<header>
+				{{'address' | translate}}
+			</header>
+			<div class="content">
+				<div class="row">
+					<div class="map col-md-7">
+						<div class="map-wrapper">
+							<ui-gmap-google-map ng-if="vm.me.address.coordinates[0]" center="vm.me.address.coordinates" zoom="15" draggable="true" options="vm.mapOptions">
+								<ui-gmap-marker coords="vm.me.address.coordinates" options="vm.marker.options" idkey="0">
+								</ui-gmap-marker>
+							</ui-gmap-google-map>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<form name="form" ng-submit="vm.update(form, 'address')" novalidate>
+
+							<div class="form-group">
+								<label class="control-label" for="streetAddress">{{'street.name' | translate}}</label>
+								<input id="streetAddress" type="text" name="streetAddress" class="form-control" ng-model="vm.me.address.streetAddress" googleplace address="vm.me.address" required/>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="streetNumeric">{{'house.number' | translate}}</label>
+								<input id="streetNumeric" type="text" name="streetNumeric" class="form-control" ng-model="vm.me.address.streetNumeric" required/>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="zipCode">{{'zip.code' | translate}}</label>
+								<input id="zipCode" type="text" name="zipCode" class="form-control" ng-model="vm.me.address.zip" required/>
+							</div>
+
+							<div layout="row" layout-align="end end" flex>
+								<md-button type="submit" ng-disabled="form.$invalid || vm.isEqual(vm.me.address, vm.origin.address)" class="btn btn-primary update">
+									{{'update' | translate}}
+								</md-button>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</md-whiteframe>
+	<md-whiteframe class="col-lg-9 col-xs-12">
+		<div>
+			<header>
+				contact information
+			</header>
+			<div class="content">
+				<form class="row" name="form" ng-submit="form.$valid && vm.update(form)" novalidate>
+						<div class="col-md-4">
+							<div class="form-group" ng-class="{ 'has-success': form.email.$valid && form.$submitted, 'has-error': form.email.$invalid && form.$submitted }">
+								<label class="control-label " for="email">{{'email' | translate}}</label>
+								<div>
+									<input type="email" class="form-control" id="email" name="email" placeholder="{{'enter.your' | translate:{a: 'email'} }}" ng-model="vm.me.email" required>
+									<p class="help-block" ng-show="form.email.$error.required && form.$submitted">
+										{{'_is.required' | translate:{a: 'email'} }}
+									</p>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label " for="phone">{{'phone' | translate}}</label>
+								<div>
+									<input type="text" class="form-control" id="phone" name="phone" placeholder="{{'enter.your' | translate:{a: 'phone'} }}" ng-model="vm.me.phone">
+									<span class="account-note">{{'phone.note' | translate}}</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<div class="form-group" ng-class="{ 'has-success': form.about.$valid && form.$submitted, 'has-error': form.about.$invalid && form.$submitted }">
+							     <label class="control-label " for="about">{{'about.you' | translate}}</label>
+							     <div>
+							          <textarea name="about" id="about" cols="20" rows="5" class="form-control" ng-model="vm.me.about"></textarea>
+							     </div>
+							</div>
+							<div layout="row" layout-align="end end" flex>
+								<md-button type="submit" class="btn btn-primary update">
+									{{'update' | translate}}
+								</md-button>
+							</div>
+						</div>
+				</form>
+			</div>
+		</div>
+	</md-whiteframe>
+	<md-whiteframe class="col-lg-9 col-xs-12">
+		<div>
+			<header>
+				advanced
+			</header>
+			<div class="content">
+				<div class="deactivate">
+					<a class="btn btn-default" ng-click="vm.deactivate()">
+						{{'deactivate' | translate}}
+					</a>
+				</div>
+			</div>
+		</div>
+	</md-whiteframe>
+</div>

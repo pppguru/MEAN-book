@@ -1,0 +1,19 @@
+<div class="container verify">
+     <div layout="row" layout-align="center center" flex="none">
+          <md-whiteframe class="md-whiteframe-1dp status" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout="column" layout-align="center center" layout-padding>
+               <div ng-if="vm.status">
+                    <div ng-include="'/assets/images/envelop-image.svg'"></div>
+                    <h3>Thank You!</h3>
+                    <p>Successfully verified your email</p>
+               </div>
+               <div ng-if="!vm.status">
+                    <div ng-include="'/assets/images/envelop-error.svg'"></div>
+                    <h3>Sorry!</h3>
+                    <p>Unable to Confirm Email</p>
+               </div>
+               {{ vm.message }}
+               <button class="btn orange-btn" ui-sref="allbooks">Back to all books</button>
+          </md-whiteframe>
+
+     </div>
+</div>

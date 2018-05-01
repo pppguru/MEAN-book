@@ -1,0 +1,98 @@
+<div class="payout-method">
+
+     <form name="form" ng-submit="form.$valid && modal.submit()" novalidate>
+
+          <!--<pre style="font-size:8px;">{{ modal.data | json }}</pre>-->
+
+          <!--<md-radio-group ng-model="modal.data.type" class="supported-methods" ng-change="modal.clean(form)">-->
+               <!--<md-radio-button ng-value="card" class="md-primary" ng-repeat="card in modal.methods track by $index">{{card | translate}}</md-radio-button>-->
+          <!--</md-radio-group>-->
+
+		<!--<div class="clearfix buttons-toggle inverse" layout="row" layout-align="start">-->
+			<!--<div>-->
+				<!--<md-checkbox class="formats">-->
+					<!--<span class="for">PayPal</span>-->
+				<!--</md-checkbox>-->
+			<!--</div>-->
+			<!--<div>-->
+				<!--<md-checkbox class="formats">-->
+					<!--<span class="for">Bank Account</span>-->
+				<!--</md-checkbox>-->
+			<!--</div>-->
+		<!--</div>-->
+
+          <!--<div layout="row">-->
+               <!--<a style="margin-right: 10px;" ng-click="modal.populate(true)">valid</a>-->
+               <!--<a ng-click="modal.populate(false)">invalid</a>-->
+          <!--</div>-->
+
+          <div ng-if="modal.data.type === 'Bank account'">
+               Please insert below Bank account details: <br>
+               <div>
+                    <div class="form-group" ng-class="{'has-success': form.name.$valid && form.$submitted, 'has-error': form.name.$invalid && form.$submitted}">
+                         <label for="name" class="control-label">{{'full.name' | translate}}</label>
+                         <input type="text" id="name" name="name" class="form-control" ng-model="modal.data.account_holder_name" required>
+                    </div>
+                    <div class="form-group" ng-class="{'has-success': form.number.$valid && form.$submitted, 'has-error': form.number.$invalid && form.$submitted}">
+                         <label for="number" class="control-label">{{'account.number' | translate}}</label>
+                         <input type="text" id="number" name="number" class="form-control" ng-model="modal.data.account_number" required>
+                    </div>
+                    <!--<div class="form-group" ng-class="{'has-success': form.type.$valid && form.$submitted, 'has-error': form.type.$invalid && form.$submitted}">-->
+                         <!--<label for="type" class="control-label">{{'account.type' | translate}}</label>-->
+                         <!--<md-radio-group id="type" name="type" required ng-model="modal.data.account_holder_type" layout="row" layout-align="start center">-->
+                              <!--<md-radio-button ng-value="type" class="md-primary" ng-repeat="type in modal.types track by $index">{{type | translate}}</md-radio-button>-->
+                         <!--</md-radio-group>-->
+                    <!--</div>-->
+               </div>
+          </div>
+
+          <!--<div ng-if="modal.data.type === 'Debit card'">-->
+               <!--<div>-->
+                    <!--<div class="form-group" ng-class="{'has-success': form.number.$valid && form.$submitted, 'has-error': form.number.$invalid && form.$submitted}">-->
+                         <!--<label for="number" class="control-label">{{'card.number' | translate}}</label>-->
+                         <!--<input type="text" id="number" name="number" class="form-control" ng-model="modal.data.number" allowed-chars="[^0-9]" required>-->
+                    <!--</div>-->
+               <!--</div>-->
+
+               <!--<div>-->
+                    <!--<div>-->
+                         <!--<div class="form-group" ng-class="{'has-success': form.month.$valid && form.$submitted, 'has-error': form.month.$invalid && form.$submitted}">-->
+                              <!--<label for="month" class="control-label">{{'expires.on' | translate}}</label>-->
+                              <!--<bookis-select id="month" name="month" options="modal.months" model="modal.data.exp_month" placeholder="MM" required></bookis-select>-->
+                         <!--</div>-->
+                         <!--<div class="form-group" ng-class="{'has-success': form.year.$valid && form.$submitted, 'has-error': form.year.$invalid && form.$submitted}">-->
+                              <!--<label for="year" class="control-label">&nbsp;</label>-->
+                              <!--<bookis-select id="year" name="year" options="modal.years" model="modal.data.exp_year" placeholder="YYYY" required></bookis-select>-->
+                         <!--</div>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                         <!--<div class="form-group" ng-class="{'has-success': form.cvc.$valid && form.$submitted, 'has-error': form.cvc.$invalid && form.$submitted}">-->
+                              <!--<label for="cvc" class="control-label">{{'security.code' | translate}}</label>-->
+                              <!--<input type="text" id="cvc" name="cvc" class="form-control" ng-model="modal.data.cvc" allowed-chars="[^0-9]" required>-->
+                         <!--</div>-->
+                    <!--</div>-->
+               <!--</div>-->
+
+               <!--<div>-->
+                    <!--<div>-->
+                         <!--<div class="form-group" ng-class="{'has-success': form.firstName.$valid && form.$submitted, 'has-error': form.firstName.$invalid && form.$submitted}">-->
+                              <!--<label for="firstName" class="control-label">{{'first.name' | translate}}</label>-->
+                              <!--<input type="text" id="firstName" name="firstName" class="form-control" ng-model="modal.data.firstName" required>-->
+                         <!--</div>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                         <!--<div class="form-group" ng-class="{'has-success': form.lastName.$valid && form.$submitted, 'has-error': form.lastName.$invalid && form.$submitted}">-->
+                              <!--<label for="lastName" class="control-label">{{'last.name' | translate}}</label>-->
+                              <!--<input type="text" id="lastName" name="lastName" class="form-control" ng-model="modal.data.lastName" required>-->
+                         <!--</div>-->
+                    <!--</div>-->
+               <!--</div>-->
+          <!--</div>-->
+
+          <div class="clearfix actions">
+               <md-button class="btn btn-primary col-xs-12" type="submit">
+                    {{'add' | translate}}
+               </md-button>
+          </div>
+     </form>
+</div>

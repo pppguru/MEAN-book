@@ -1,0 +1,85 @@
+<div id="delivery-details">
+	<md-whiteframe class="col-xs-12">
+		<div>
+			<header>
+				{{'address' | translate}}
+			</header>
+			<div class="content">
+				<div class="row">
+					<div class="map col-md-7">
+						<div class="map-wrapper">
+							<ui-gmap-google-map ng-if="vm.me.address.coordinates[0]" center="vm.me.address.coordinates" zoom="15" draggable="true" options="vm.mapOptions">
+								<ui-gmap-marker coords="vm.me.address.coordinates" options="vm.marker.options" idkey="0">
+								</ui-gmap-marker>
+							</ui-gmap-google-map>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<form name="form" ng-submit="vm.update(form, 'address')" novalidate>
+
+							<div class="form-group">
+								<label class="control-label" for="streetAddress">{{'street.name' | translate}}</label>
+								<input id="streetAddress" type="text" name="streetAddress" class="form-control" ng-model="vm.me.address.streetAddress" googleplace address="vm.me.address" required/>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="streetNumeric">{{'house.number' | translate}}</label>
+								<input id="streetNumeric" type="text" name="streetNumeric" class="form-control" ng-model="vm.me.address.streetNumeric" required/>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="zipCode">{{'zip.code' | translate}}</label>
+								<input id="zipCode" type="text" name="zipCode" class="form-control" ng-model="vm.me.address.zip" required/>
+							</div>
+
+							<div layout="row" layout-align="end end" flex>
+								<md-button type="submit" ng-disabled="form.$invalid || vm.isEqual(vm.me.address, vm.origin.address)" class="btn btn-primary">
+									{{'update' | translate}}
+								</md-button>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</md-whiteframe>
+	<md-whiteframe class="col-xs-6">
+		<div class="delivery-types">
+			<header>
+				{{'delivery.types' | translate}}
+			</header>
+			<div class="content">
+				<div>
+					<md-switch flex="none" ng-model="vm.me.delivery[key].enabled" aria-label="delivery" ng-repeat="(key, value) in vm.me.delivery">
+						{{key | translate}}
+					</md-switch>
+				</div>
+				<div>
+					<bookis-select id="duration" disabled="!vm.me.delivery.shipping.enabled" options="vm.shippingDurations" placeholder="{{'select' | translate}}" model="vm.me.delivery.shipping.duration"></bookis-select>
+					<div>{{'days' | translate}}</div>
+					<md-button ng-disabled="vm.isEqual(vm.omit(vm.me.delivery, ['shipping.info', 'shipping.policy']), vm.omit(vm.origin.delivery, ['shipping.info', 'shipping.policy']))" ng-click="vm.update(null, 'delivery details')" class="btn btn-primary">{{'update' | translate}}</md-button>
+				</div>
+			</div>
+		</div>
+	</md-whiteframe>
+	<md-whiteframe class="col-xs-12">
+		<div class="shipping-info">
+			<header>
+				{{'shipping.info' | translate}}
+			</header>
+			<div class="content">
+				<div class="row">
+					<div class="form-group col-xs-6">
+						<label for="info">{{'shipping.info' | translate}}</label>
+						<textarea ng-disabled="!vm.me.delivery.shipping.enabled" id="info" cols="20" rows="5" class="form-control" ng-model="vm.me.delivery.shipping.info"></textarea>
+						<md-button ng-disabled="!vm.me.delivery.shipping.info || vm.isEqual(vm.me.delivery.shipping.info, vm.origin.delivery.shipping.info)" ng-click="vm.update(null, 'shipping info')" class="btn btn-primary">{{'update' | translate}}</md-button>
+					</div>
+					<div class="form-group col-xs-6">
+						<label for="policy">{{'return.policy' | translate}}</label>
+						<textarea ng-disabled="!vm.me.delivery.shipping.enabled" id="policy" cols="20" rows="5" class="form-control" ng-model="vm.me.delivery.shipping.policy"></textarea>
+						<md-button ng-disabled="!vm.me.delivery.shipping.policy || vm.isEqual(vm.me.delivery.shipping.policy, vm.origin.delivery.shipping.policy)" ng-click="vm.update(null, 'return policy')" class="btn btn-primary">{{'update' | translate}}</md-button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</md-whiteframe>
+</div>

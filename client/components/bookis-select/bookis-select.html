@@ -1,0 +1,9 @@
+<div class="bookis-select" flex="none">
+     <md-icon md-svg-src="assets/svg/chevron-down.svg" aria-label="select-down"></md-icon>
+     <select flex="none" name="{{vm.name}}" class="form-control" id="{{vm.id}}" ng-required="{{vm.required}}" ng-disabled="vm.disabled"
+             ng-options="{{vm.selectOption}}"
+             ng-change="vm.change && vm.mychange(vm.name, vm.model)"
+             ng-model="vm.model">
+          <option ng-if="!vm.model" value="">{{vm.placeholder}}</option>
+     </select>
+</div>

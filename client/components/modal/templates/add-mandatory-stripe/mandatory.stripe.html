@@ -1,0 +1,32 @@
+Some of mandatory details are missing, please fill them
+
+<form class="row mandatory-form" name="form" ng-submit="form.$valid && modal.submit(form)" novalidate>
+
+     <div ng-if="modal.data.missing.birthday" class="form-group" ng-class="{ 'has-success': form.birthday.$valid && form.$submitted, 'has-error': form.birthday.$invalid && form.$submitted }">
+          <label class="control-label " for="birthday">{{'DOB' | translate}}</label>
+          <bookis-birthday layout="column" flex="none" bind="modal.data.birthday" name="birthday" id="birthday"></bookis-birthday>
+     </div>
+
+     <div ng-if="modal.data.missing.address">
+          <div class="form-group">
+               <label class="control-label" for="streetAddress">{{'street.name' | translate}}</label>
+               <input id="streetAddress" type="text" name="streetAddress" class="form-control" ng-model="modal.data.address.streetAddress" googleplace address="modal.data.address" required/>
+          </div>
+          <div class="form-group">
+               <label class="control-label" for="streetNumeric">{{'house.number' | translate}}</label>
+               <input id="streetNumeric" type="text" name="streetNumeric" class="form-control" ng-model="modal.data.address.streetNumeric" required/>
+          </div>
+          <div class="form-group">
+               <label class="control-label" for="zipCode">{{'zip.code' | translate}}</label>
+               <input id="zipCode" type="text" name="zipCode" class="form-control" ng-model="modal.data.address.zip" required/>
+          </div>
+     
+     </div>
+
+     <div layout="row" layout-align="end end" flex>
+          <md-button class="md-raised md-primary update" type="submit" ng-disabled="form.$invalid">
+               Proceed
+          </md-button>
+     </div>
+
+</form>

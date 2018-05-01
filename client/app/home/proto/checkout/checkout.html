@@ -1,0 +1,382 @@
+<div class="section-fluid section-bg static-content">
+	<div class="container">
+		<h1 class="heading-large">
+			Express Checkout
+		</h1>
+		<div class="row">
+			
+			<md-whiteframe class="col-md-4 checkout-address-box">
+				<div>
+					<header>
+						<b class="fa fa-check fa-3x text-success pull-right checkout-box-done"></b>
+						Shipping &amp; Billing Address
+					</header>
+					<div class="content">
+						<md-radio-group ng-model="data.group1">
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default panel-cards panel-address">
+    <div class="panel-heading" role="tab" id="address-head-1">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#address-card-1" aria-expanded="true" aria-controls="address-card-1">
+          <b class="fa fa-angle-down"></b> 4A Vazrojdenski square 
+        </a>
+          <md-radio-button value="addressOption1" class="pull-right address-choice md-primary md-checked"></md-radio-button>
+      </h4>
+    </div>
+    <div id="address-card-1" class="panel-collapse collapse in" role="tabpanel">
+      <div class="panel-body">
+				<h4 class="address-name">Ivelin Belchev</h4>
+				<div class="address-street"><span class="fa fa-fw fa-map-marker"></span> 4A Vazrojdenski square</div>
+				<div class="address-street-more"><span class="fa fa-fw"></span> fl. 2, ap.2</div>
+				<div class="address-local">
+					<span class="fa fa-fw"></span> 
+					<span class="address-code">7002</span>
+					<span class="address-city">Rousse, </span>
+					<span class="address-country">Bulgaria</span>						
+				</div>
+				<div class="address-email"><span class="fa fa-fw fa-envelope"></span> i.belchev@gmail.com</div>
+				<div class="address-tel"><span class="fa fa-fw fa-phone"></span> (359) 87984-9582</div>      
+			</div>
+    </div>
+  </div>
+  <div class="panel panel-default panel-cards panel-address">
+    <div class="panel-heading" role="tab" id="address-head-2">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#address-card-2" aria-expanded="false" aria-controls="address-card-2">
+          <b class="fa fa-angle-down"></b> 6A Carkovna Nezavisimost Str. 
+        </a>
+          <md-radio-button value="addressOption2" class="pull-right address-choice md-primary"></md-radio-button>
+      </h4>
+    </div>
+    <div id="address-card-2" class="panel-collapse collapse" role="tabpanel">
+      <div class="panel-body">
+				<h4 class="address-name">Ivelin Belchev</h4>
+				<div class="address-street"><span class="fa fa-fw fa-map-marker"></span> 4A Vazrojdenski square</div>
+				<div class="address-street-more"><span class="fa fa-fw"></span> fl. 2, ap.2</div>
+				<div class="address-local">
+					<span class="fa fa-fw"></span> 
+					<span class="address-code">7002</span>
+					<span class="address-city">Rousse, </span>
+					<span class="address-country">Bulgaria</span>						
+				</div>
+				<div class="address-email"><span class="fa fa-fw fa-envelope"></span> i.belchev@gmail.com</div>
+				<div class="address-tel"><span class="fa fa-fw fa-phone"></span> (359) 87984-9582</div>      
+			</div>
+    </div>
+  </div>
+  <div class="panel panel-default panel-cards panel-address">
+    <div class="panel-heading" role="tab" id="address-head-3">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#address-card-3" aria-expanded="false" aria-controls="address-card-3">
+          <b class="fa fa-angle-down"></b> Lozenets Beach, 16 Cherno More Str.  
+        </a>
+          <md-radio-button value="addressOption3" class="pull-right address-choice md-primary"></md-radio-button>
+      </h4>
+    </div>
+    <div id="address-card-3" class="panel-collapse collapse" role="tabpanel">
+      <div class="panel-body">
+				<h4 class="address-name">Ivelin Belchev</h4>
+				<div class="address-street"><span class="fa fa-fw fa-map-marker"></span> 4A Vazrojdenski square</div>
+				<div class="address-street-more"><span class="fa fa-fw"></span> fl. 2, ap.2</div>
+				<div class="address-local">
+					<span class="fa fa-fw"></span> 
+					<span class="address-code">7002</span>
+					<span class="address-city">Rousse, </span>
+					<span class="address-country">Bulgaria</span>						
+				</div>
+				<div class="address-email"><span class="fa fa-fw fa-envelope"></span> i.belchev@gmail.com</div>
+				<div class="address-tel"><span class="fa fa-fw fa-phone"></span> (359) 87984-9582</div>      
+			</div>
+    </div>
+  </div>
+  <div class="panel panel-default panel-cards panel-address-new">
+    <div class="panel-heading" role="tab" id="address-head-new">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#address-card-new" aria-expanded="false" aria-controls="address-card-new">
+          <b class="fa fa-angle-down"></b> Add New Address
+        </a>
+      </h4>
+    </div>
+    <div id="address-card-new" class="panel-collapse collapse" role="tabpanel">
+      <div class="panel-body">
+				<div class="form-group">
+					<label for="" class="control-label">Full Name</label>
+					<div><input type="text" class="form-control"></div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label">Street Address</label>
+					<div><input type="text" class="form-control"></div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label">Address (more)</label>
+					<div><input type="text" class="form-control"></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4">
+						<div class="form-group">
+							<label for="" class="control-label">Postal Code</label>
+							<div><input type="text" class="form-control"></div>
+						</div>
+					</div>
+					<div class="col-xs-8">
+						<div class="form-group">
+							<label for="" class="control-label">City</label>
+							<div><input type="text" class="form-control"></div>
+						</div>								
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label">Country</label>
+					<div><input type="text" class="form-control"></div>
+				</div>
+				<div class="checkbox">
+					<label for="" class="control-label">
+						<input type="checkbox" checked data-toggle="collapse" data-target="#billing-address-new">	
+						Use the same address for billing
+					</label>
+				</div>
+				
+				<div id="billing-address-new" class="collapse">		
+					<h4>Billing Address</h4>			
+					<div class="form-group">
+						<label for="" class="control-label">Full Name</label>
+						<div><input type="text" class="form-control"></div>
+					</div>
+					<div class="form-group">
+						<label for="" class="control-label">Street Address</label>
+						<div><input type="text" class="form-control"></div>
+					</div>
+					<div class="form-group">
+						<label for="" class="control-label">Address (more)</label>
+						<div><input type="text" class="form-control"></div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4">
+							<div class="form-group">
+								<label for="" class="control-label">Postal Code</label>
+								<div><input type="text" class="form-control"></div>
+							</div>
+						</div>
+						<div class="col-xs-8">
+							<div class="form-group">
+								<label for="" class="control-label">City</label>
+								<div><input type="text" class="form-control"></div>
+							</div>								
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="control-label">Country</label>
+						<div><input type="text" class="form-control"></div>
+					</div>
+				</div>
+
+				<button type="button" class="btn btn-primary btn-block btn-block">Add</button>
+
+			</div>
+    </div>
+  </div>
+</div>				
+						</md-radio-group>		
+						
+<!--
+						<div class="bookis-card saved-address"><div>
+							<div class="address-street"><span class="fa fa-fw fa-map-marker"></span> 4A Vazrojdenski square</div>
+							<div class="address-street-more"><span class="fa fa-fw"></span> fl. 2, ap.2</div>
+							<div class="address-local">
+								<span class="fa fa-fw"></span> 
+								<span class="address-code">7002</span>
+								<span class="address-city">Rousse, </span>
+								<span class="address-country">Bulgaria</span>						
+							</div>
+							<div class="address-name"><span class="fa fa-fw fa-user"></span> Ivelin Belchev</div>
+							<div class="address-email"><span class="fa fa-fw fa-envelope"></span> i.belchev@gmail.com</div>
+							<div class="address-tel"><span class="fa fa-fw fa-phone"></span> (359) 87984-9582</div>
+						</div></div>
+						
+						
+						<div class="bookis-card add-new-address">
+						     <div><a href="#demo-add-new-address" data-toggle="modal" style="display: block;">
+						          <md-icon md-svg-src="assets/svg/plus.svg" aria-label="link" role="img"><svg enable-background="new 0 0 100 100" id="Layer_1" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false"><polygon points="80.2,51.6 51.4,51.6 51.4,22.6 48.9,22.6 48.9,51.6 19.9,51.6 19.9,54.1 48.9,54.1 48.9,83.1   51.4,83.1 51.4,54.1 80.4,54.1 80.4,51.6 "></polygon></svg></md-icon>
+						          <div class="new-method">
+						               Add new shipping address
+						          </div>
+						     </a>
+						     </div>
+						</div>
+-->
+						
+<div id="demo-add-new-address" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <img src="assets/images/bookis-logo-orange.png" srcset="assets/images/bookis-logo-orange@2x.png 2x, assets/images/bookis-logo-orange@3x.png 3x" alt="logo orange">
+        <h4 class="modal-title">Add new shipping address</h4>
+      </div>
+      <div class="modal-body">
+						<div class="form-group">
+							<label for="" class="control-label">Full Name</label>
+							<div><input type="text" class="form-control"></div>
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label">Street Address</label>
+							<div><input type="text" class="form-control"></div>
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label">Address (more)</label>
+							<div><input type="text" class="form-control"></div>
+						</div>
+						<div class="row">
+							<div class="col-xs-4">
+								<div class="form-group">
+									<label for="" class="control-label">Postal Code</label>
+									<div><input type="text" class="form-control"></div>
+								</div>
+							</div>
+							<div class="col-xs-8">
+								<div class="form-group">
+									<label for="" class="control-label">City</label>
+									<div><input type="text" class="form-control"></div>
+								</div>								
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label">Country</label>
+							<div><input type="text" class="form-control"></div>
+						</div>
+						<div class="checkbox">
+							<label for="" class="control-label ">
+								<input type="checkbox" checked>	
+								Use the same address for billing
+							</label>
+						</div>
+						
+						<button type="button" class="btn btn-primary btn-block btn-block">Add</button>
+
+
+      </div>
+<!--
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+-->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--
+						<div class="form-add-address">
+							
+							<div class="form-group">
+								<label for="" class="control-label">Full Name</label>
+								<div><input type="text" class="form-control"></div>
+							</div>
+							<div class="form-group">
+								<label for="" class="control-label">Street Address</label>
+								<div><input type="text" class="form-control"></div>
+							</div>
+							<div class="form-group">
+								<label for="" class="control-label">Address (more)</label>
+								<div><input type="text" class="form-control"></div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									<div class="form-group">
+										<label for="" class="control-label">Postal Code</label>
+										<div><input type="text" class="form-control"></div>
+									</div>
+								</div>
+								<div class="col-xs-8">
+									<div class="form-group">
+										<label for="" class="control-label">City</label>
+										<div><input type="text" class="form-control"></div>
+									</div>								
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="" class="control-label">Country</label>
+								<div><input type="text" class="form-control"></div>
+							</div>
+							<div class="checkbox">
+								<label for="" class="control-label ">
+									<input type="checkbox" checked>	
+									Use the same address for billing
+								</label>
+							</div>
+						</div>						
+-->
+					</div>
+				</div>
+			</md-whiteframe>
+			<md-whiteframe class="col-md-4 checkout-payment-box">
+				<div>
+					<header>
+						Payment Method
+					</header>
+					<div class="content">
+						
+						<div class="supported-cards">
+              <img class="supported-card-icon" alt="card image" src="/assets/images/visa-orange@2x.png">
+              <img class="supported-card-icon" alt="card image" src="/assets/images/master-orange@2x.png">
+              <img class="supported-card-icon" alt="card image" src="/assets/images/discover-orange@2x.png">
+              <img class="supported-card-icon" alt="card image" src="/assets/images/american-express-orange@2x.png">
+						</div>
+<!--
+						<div class="btn-group btn-group-justified btn-switch checkout-payment-method" data-toggle="buttons">
+						  <label class="btn btn-default active">
+						    <input type="radio" name="options" id="option1" autocomplete="off" checked> Card
+						  </label>
+						  <label class="btn btn-default">
+						    <input type="radio" name="options" id="option2" autocomplete="off"> PayPal
+						  </label>
+						</div>
+-->
+						<bookis-card card="card" remove="vm.removePaymentMethod({account})" set-default="vm.setAsDefault({account})"
+								   ng-repeat="card in vm.me.accounts.payment | orderBy: '-isDefault' track by $index"></bookis-card>
+						<bookis-card new-payment="vm.newPaymentMethod()"></bookis-card>
+
+					</div>
+				</div>
+			</md-whiteframe>
+			<md-whiteframe class="col-md-4">
+				<div>
+					<header>
+						Review Order
+					</header>
+					<div class="content">
+							<table class="table-checkout">
+								<thead>
+									<tr>
+										<th><h4>Summary</h4></th>
+										<th class="text-right"></th>
+									</tr>
+								</thead>
+								<tbody>									
+									<tr>
+										<td>Books</td>
+										<td class="checkout-value">3,272,-</td>
+									</tr>
+									<tr>
+										<td>Shipping & Handling</td>
+										<td class="checkout-value">120,-</td>
+									</tr>
+									<tr>
+										<td>VAT</td>
+										<td class="checkout-value">0,-</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td class="checkout-total-label">Total</td>
+										<td class="checkout-total">3392,-</td>
+									</tr>
+								</tfoot>
+							</table>
+					</div>
+					<div class="box-footer"><a href="" class="btn btn-lg btn-block btn-primary">Approve Order</a></div>
+				</div>
+			</md-whiteframe>
+		
+		</div>
+	</div>
+</div>

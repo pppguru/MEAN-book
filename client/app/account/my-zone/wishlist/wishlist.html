@@ -1,0 +1,54 @@
+<div id="wishlist" class="whishlist-table">
+	<md-whiteframe class="col-xs-12">
+		<div>
+			<div class="content">
+				<div class="book-list-holder">
+					<div class="book-list">
+						<ul class="book-list-head list-inline list-unstyled hidden-xs">
+							<li class="fl-b-5"></li>
+							<li class="fl-b-30">{{'title' | translate}}</li>
+							<li class="fl-b-10">{{'price' | translate}}</li>
+							<li class="fl-b-10">{{'rate' | translate}}</li>
+							<li class="fl-b-5">{{'public' | translate}}</li>
+							<li class="fl-b-40"></li>
+						</ul>
+						<div class="form-group visible-xs">
+							<label class="control-label">{{'sort.by' | translate}}:</label>
+							<bookis-select model="bs.format" options="bs.appConfig.books.formats" change="bs.formatChanged()" placeholder="Select format"></bookis-select>
+						</div>
+						<div class="book-list-body">
+							<div class="book-list-item" ng-repeat="wl in vm.wishlist track by wl._id">
+								<div class="fl-b-5 book-title" ui-sref="allbooks.details({id: hit.objectID})">
+									<div class="book-cover">
+										<img ng-src="{{::wl.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image" ng-click="vm.bookDetails(wl.book)" alt="book image">
+									</div>
+								</div>
+								<div class="fl-b-30 book-name">
+									<a ui-sref="allbooks.details({id: hit.objectID})">{{::wl.book.title}}</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: wl.book.author[0]._id})">{{::wl.book.author | authors}}</a>
+									</div>
+								</div>
+								<div class="fl-b-10 book-price">
+									{{::wl.book.price.amount | number}},-
+								</div>
+								<div class="fl-b-10 book-rating">
+									<i class="fa pointable" ng-class="hit.rate ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
+									<span>{{::wl.book.rating.avg | number: 1}}/5</span>
+								</div>
+								<div class="fl-b-5 book-privacy">
+									<md-switch ng-model="wl.public" aria-label="public" class="md-primary" ng-change="vm.updateWishList(wl)"></md-switch>
+								</div>
+								<div class="fl-b-40 book-actions">
+									<md-button class="btn btn-default">Reading</md-button>
+									<md-button class="btn btn-default" ng-click="vm.moveToBookshelf(wl)">Mark as read</md-button>
+									<md-button class="btn btn-primary" ng-disabled="vm.alreadyRequested(wl.book._id) || !wl.book.sales.length" ng-click="vm.fastBuy(wl.book)">Buy</md-button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</md-whiteframe>
+</div>

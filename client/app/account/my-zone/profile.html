@@ -1,0 +1,14 @@
+<div ng-controller="MyZoneController as se" layout="column">
+     <div>Hi <b>{{se.me.businessName || se.me.firstName}}!</b></div>
+     <md-divider></md-divider>
+     <div>Your profile is <span class="label label-success">{{se.profilePercentage()}}%</span> completed.</div>
+     <div ng-show="se.size(se.profilePercentage(true))">You are missing following:</div>
+     <div ng-repeat="(key, value) in se.profilePercentage(true) track by $index">
+          <div>
+               {{::$index+1}}. {{key}}.
+               <a ui-sref="myzone.settings.deliverydetails" ng-if="key==='Your delivery method is not set' || key==='Your address missing'"> Set it here</a>
+               <a ui-sref="myzone.settings.password" ng-if="key==='Important: Set you password'"> Set password</a>
+               <a ng-if="key==='Your email is not verified'" ng-click="se.resendVerificationEmail()"> Resend verification email</a>
+          </div>
+     </div>
+</div>

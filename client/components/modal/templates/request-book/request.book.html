@@ -1,0 +1,125 @@
+<div class="request-book-modal">
+	<div class="row" ng-if="modal.request.showUserPartial">
+		<div class="book-parital col-sm-6">
+			<div class="clearfix">
+				<div class="book-image book-cover col-xs-5">
+					<img ng-src="{{::modal.request.sale.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="user image">
+				</div>
+				<div class="book-details col-xs-7">
+					<div>
+						<div class="title">{{::modal.request.sale.book.title}} &nbsp;({{::modal.request.sale.book.year}})</div>
+					</div>
+					<div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({aid: modal.request.sale.book.author[0]._id})">{{::modal.request.sale.book.author | authors}}</a></div>
+					<div class="condition">
+						<span>{{::modal.request.sale.condition}}</span>
+						<span>{{::modal.request.sale.format}}</span>
+					</div>
+					<div class="price">{{modal.request.price | salePrice}},-</div>
+				</div>
+				<!-- <div class="comment-wrapper col-xs-7">
+					<h5>{{'comment' | translate}}</h5>
+					<div class="text">{{::modal.request.sale.comment}}</div>
+				</div> -->
+			</div>
+		</div>
+		<div class="user-info col-sm-6">
+			<div class="user-image pull-left">
+				<img ng-src="{{::modal.request.sale.seller.imageUrl || '/assets/images/avatar.png'}}" alt="user image">
+			</div>
+			<div>
+				<h4>
+					{{::modal.request.sale.seller | userName:true}}
+					<div>
+						<i class="fa fa-star-o"></i>
+						<span class="number">4.3</span>/5
+					</div>
+				</h4>
+				<div class="info">
+					<a href="#" ng-if="!modal.request.sale.seller.address.coordinates.length">{{'no.location' | translate}}</a>
+					<a href="#" ng-if="modal.request.sale.seller.address.coordinates.length">{{::(modal.request.sale.seller.address.city + ', ' + modal.request.sale.seller.address.country)}}</a>
+				</div>
+				<div class="info">{{'member.since' | translate}} <b>{{::modal.request.sale.seller.createdAt | date: 'dd MMM, yyyy'}}</b></div>
+				<div class="info"><b>24 hours</b> response time</div>
+				<div class="about">{{::modal.request.sale.seller.about}}</div>
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<div>
+				<div>
+					<uib-progressbar max="100" value="modal.request.stats.availability">
+						<span style="color:white; white-space:nowrap;">{{modal.request.stats.availability | number: 0}}% Accept ratio</span>
+					</uib-progressbar>
+				</div>
+				<div class="map-wrapper">
+					<div ng-if="!modal.request.sale.seller.address.coordinates[0]">
+						{{'no.location' | translate}}
+					</div>
+					<ui-gmap-google-map ng-if="modal.request.sale.seller.address.coordinates[0]" center="modal.request.sale.seller.address.coordinates" zoom="13" options="modal.options.mapOptions">
+						<ui-gmap-marker coords="modal.request.sale.seller.address.coordinates" options="modal.options.markerOptions" idkey="0">
+						</ui-gmap-marker>
+					</ui-gmap-google-map>
+				</div>
+			</div>
+			<div class="other-info">
+
+				<div>
+					<p>{{'expected.response.time' | translate}}</p>
+					<div>{{modal.request.stats.getResponseString()}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h5>{{'req.delivery' | translate}}</h5>
+	<md-radio-group ng-model="modal.request.delivery" ng-change="modal.getMethods()">
+		<md-radio-button ng-disabled="modal.request.requested" value="shipping" class="md-primary capitalize">{{'shipping' | translate}}</md-radio-button>
+		<md-radio-button ng-disabled="modal.request.requested" value="delivery" class="md-primary capitalize">{{'meetup' | translate}}</md-radio-button>
+	</md-radio-group>
+
+	<div layout="column" class="shipping-methods" ng-hide="!(modal.request.delivery === 'shipping' && modal.request.sale.book.measure.width && modal.request.methods.length)">
+		<h5>{{'preferred.method' | translate}} (selected: {{modal.request.sale.book.measure.title}} size). <a ng-click="modal.undo()">{{'undo' | translate}}</a></h5>
+		<div layout="row" layout-align="space-between center">
+			<md-radio-group flex="none" ng-model="modal.request.selectedMethod" ng-change="modal.updateDetails()" layout="column">
+				<md-radio-button value="{{::method.ProductId}}" class="md-primary" ng-repeat="method in ::modal.request.methods | orderBy: 'ProductId' track by $index">{{::method.ProductId}}</md-radio-button>
+			</md-radio-group>
+			<div flex ng-if="modal.request.selectedMethod" layout="column" class="info">
+				<div>
+					<span class="capitalize">{{'price' | translate}}:</span> {{modal.request.details.Price.PackagePriceWithoutAdditionalServices.AmountWithVAT}} NOK
+				</div>
+				<div>
+					<span class="capitalize">{{'expected.delivery' | translate}}:</span>
+					<span ng-if="modal.request.details.ExpectedDelivery.WorkingDays" translate="within.days" translate-value-x="{{modal.request.details.ExpectedDelivery.WorkingDays}}"></span>
+					<span ng-if="!modal.request.details.ExpectedDelivery.WorkingDays">{{'within.day' | translate}}</span>
+				</div>
+				<div><span class="capitalize">{{'info' | translate}}:</span> {{modal.request.details.GuiInformation.HelpText}}</div>
+			</div>
+		</div>
+	</div>
+
+	<div ng-hide="(!modal.request.delivery || modal.request.delivery !== 'shipping') || (modal.request.delivery === 'shipping' && modal.request.sale.book.measure.width)">
+		<h5>{{'help.measures' | translate}}</h5>
+		<div layout="row" layout-align="space-between center">
+			<div flex="20" ng-click="modal.setMeasures($index)" ng-repeat="template in modal.request.measureTemplates track by $index" class="book-template" layout="column" layout-align="start center">
+				<img ng-src="{{::template.image || '/assets/images/book_avatar.jpg'}}" alt="book template">
+				<div class="meta" layout="column">
+					<b>{{::template.title | translate}}</b>
+					<div class="measure"><span class="capitalize">{{'weight' | translate}}:</span> {{::template.weight}} gr</div>
+					<div class="measure"><span class="capitalize">{{'width' | translate}}:</span> {{::template.width}} mm</div>
+					<div class="measure"><span class="capitalize">{{'height' | translate}}:</span> {{::template.height}} mm</div>
+					<div class="measure"><span class="capitalize">{{'length' | translate}}:</span> {{::template.thickness}} mm</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<textarea id="message" cols="20" rows="4" class="form-control" ng-disabled="!modal.request.delivery || modal.request.requested" ng-model="modal.request.message" placeholder="{{'type.your' | translate: {a:'message'} }}"></textarea>
+	<div class="actions clearfix">
+		<md-button class="btn btn-primary mr0" ng-disabled="!modal.request.delivery || modal.request.requested || (modal.request.delivery === 'shipping' && !modal.request.selectedMethod)" ng-click="modal.confirm()">
+			{{modal.request.requested ? 'book.requested' : 'request' | translate}}
+		</md-button>
+		<md-button class="btn btn-default" ng-click="$dismiss($event)" aria-label="modal-close" role="button" tabindex="0">
+			Cancel
+		</md-button>
+	</div>
+
+</div>

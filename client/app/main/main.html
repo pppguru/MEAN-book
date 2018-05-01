@@ -1,0 +1,776 @@
+<div class="sections-wrap-home">
+
+<div class="section-fluid landing-banner">
+	<div class="container">		
+		<div class="row">
+			<div class="col-md-8 col-lg-6">
+				<h1>Norway’s biggest <br>online bookstore<!-- {{'main.message' | translate}} --></h1>
+				
+				<div class="algolia-container hidden-xs">
+	<!-- 					<img src="assets/images/bookis-logo.png" srcset="assets/images/bookis-logo@2x.png 2x, assets/images/bookis-logo@3x.png 3x" alt="bookis-logo-white"> -->
+		
+					<div uib-dropdown is-open="!!vm.query" auto-close="disabled" keyboard-nav="true" layout="column" flex="none" class="hits-wrapper">
+						<!--INPUT CONTAINER-->
+						<div class="input-container" flex layout="row">
+							<md-icon class="input-icon" ng-if="!vm.query" md-svg-src="assets/svg/search.svg" aria-label="search"></md-icon>
+							<md-icon class="input-icon" ng-if="vm.query" ng-click="vm.clear()" md-svg-src="assets/svg/close.svg" aria-label="search"></md-icon>
+							<input class="algolia-input" type="text" placeholder="{{'main.placeholder' | translate}}" ng-model="vm.query" ng-change="vm.search(vm.query)" ng-keydown="($event.keyCode === 40 && vm.tab())||($event.keyCode === 13 && vm.redirect('advanced', {query: vm.query}))">
+						</div>
+						<!--HITS CONTAINER-->
+						<ul class="dropdown-menu algolia-simple" uib-dropdown-menu>
+							<li class="dropdown-title">BOOKS</li>
+							<li ng-repeat="hit in vm.hits.books track by $index">
+								<a id="{{'book'+$index}}" ui-sref="allbooks.details({id: hit.objectID})">
+									<div class="hit">
+										<div class="hit-image book-cover">
+											<img ng-src="{{hit.image || '/assets/images/book_avatar.jpg'}}" alt="image">
+										</div>
+										<div layout="column" flex class="hit-info">
+											<div class="title" md-truncate>{{hit.title}} <span>({{hit.year}})</span></div>
+											<div class="author">{{hit.author[0].displayName}}</div>
+										</div>
+										<div class="rating">
+											<div class="availability" ng-if="hit.available" translate="books.available" translate-value-books="{{hit.available}}"></div>
+											<div class="availability" ng-if="!hit.available" translate="not.available"></div>
+											<div class="rate">
+												<i class="fa" ng-class="hit.rate ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i><span>&nbsp;{{hit.rate}}/5</span>
+											</div>
+										</div>
+									</div>
+								</a>
+							</li>
+							<li class="dropdown-title no-border">USERS</li>
+							<li class="dropdown-users" ng-repeat="hit in vm.hits.users track by $index">
+								<a id="{{'user'+$index}}" ui-sref="community.user({id: hit.objectID})">
+									<div class="hit">
+										<div class="hit-image book-cover">
+											<img ng-src="{{hit.image || '/assets/images/avatar.png'}}" alt="image">
+										</div>
+										<div layout="column" flex class="hit-info">
+											<div class="title" md-truncate>{{hit.name}}</div>
+											<div class="user-address">
+												<img src="assets/images/map.png" srcset="assets/images/map@2x.png 2x, assets/images/map@3x.png 3x" alt="Map">
+												address
+											</div>
+										</div>
+										<div class="rating">
+											<div class="rate">
+												<i class="fa" ng-class="hit.rate ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i><span>&nbsp;{{hit.rate || 0}}/5</span>
+											</div>
+										</div>
+									</div>
+								</a>
+							</li>
+							<li class="dropdown-additional">
+								<a ui-sref="advanced({query: vm.query})">
+									<div flex="none" layout="row" layout-align="space-between" class="hit-status">
+										<div class="fake-anchor" flex="none" translate="all.results" translate-value-text="{{vm.query}}"></div>
+										<div flex="none" translate="result" translate-value-hits="{{vm.stats.nbHits}}" translate-value-time=" {{vm.stats.processingTimeMS}}"></div>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+<!-- 					<div class="partners"> -->
+						<!--<img src="/assets/images/company1.png" alt="Company 1">-->
+						<!--<img src="/assets/images/company2.png" alt="Company 2">-->
+						<!--<img src="/assets/images/company3.png" alt="Company 3">-->
+						<!--<img src="/assets/images/company4.png" alt="Company 4">-->
+						<!--<img src="/assets/images/company5.png" alt="Company 5">-->
+<!-- 					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section-fluid section-intro">
+	<div class="container">
+		<h2 class="section-intro-heading visible-xs visible-sm">Join our community</h2>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="section-intro-box">
+					<img src="assets/images/icon-books.png" srcset="assets/images/icon-books@2x.png 2x, assets/images/icon-books@3x.png 3x" alt="books">
+					<h2 class="section-intro-heading">Buy new and used books</h2>
+					<p>Search the largest collection of new and used books with fantastic prices. Buy the books from other users, used book merchants or new from the publishers.</p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="section-intro-box">
+					<img src="assets/images/icon-rating.png" srcset="assets/images/icon-rating@2x.png 2x, assets/images/icon-rating@3x.png 3x" alt="books">
+					<h2 class="section-intro-heading">Read, rate, review and discuss</h2>
+					<p>Take part in a large community of book lovers like yourself. Discuss books and authors and find new friends with similar interests.</p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="section-intro-box">
+					<img src="assets/images/icon-sell.png" srcset="assets/images/icon-sell@2x.png 2x, assets/images/icon-sell@3x.png 3x" alt="books">
+					<h2 class="section-intro-heading">Sell your books</h2>
+					<p>We strongly believe that books should be read and not stored...</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section-fluid section-genres">
+	<div class="container">
+		<h2 class="section-genres-heading">Books by Genre</h2>
+	</div>
+
+	<div class="carousel-holder">
+		<bookis-slick settings="vm.slickConfigGenre" responsive="vm.breakpointsGenre" slides-to-show='6' prev-arrow=".slick-prev-genre" next-arrow=".slick-next-genre">
+			
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-thriller.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Thriller</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-horror.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Horror</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-fantasy.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Fantasy</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-action.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Action</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-thriller.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Thriller</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-horror.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Horror</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-fantasy.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Fantasy</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-action.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Action</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-thriller.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Thriller</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-horror.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Horror</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-fantasy.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Fantasy</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-action.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Action</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-thriller.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Thriller</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-horror.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Horror</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-fantasy.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Fantasy</span>
+			</div>
+		</div>
+		<div class="genre-item square-romb col-xs-6 col-sm-4 col-md-3 col-lg-2 pointable">
+			<img src="assets/images/sample-action.jpg" ui-sref="advanced({age: '3-6'})" href="/advanced">
+			<div class="romb romb-lg">
+				<span>Action</span>
+			</div>
+		</div>
+	
+		</bookis-slick>
+		<div class="slick-prev-genre slick-prev  hidden-xs  hidden-sm">
+			<i class="fa fa-angle-left" aria-hidden="true"></i>
+		</div>
+		<div class="slick-next-genre slick-next  hidden-xs  hidden-sm">
+			<i class="fa fa-angle-right" aria-hidden="true"></i>
+		</div>
+	</div>
+			
+			
+</div>
+
+<div class="section-fluid section-popular">
+	<div class="container" ui-sref="top100">
+		<h2 class="section-popular-heading">{{'popular.books' | translate}} <a href="" class="heading-link">{{'top.100.popular' | translate}}</a></h2>
+	</div>
+
+	<div class="carousel-holder" ng-if="vm.recommended.length">
+		<div class="container">
+			<bookis-slick settings="vm.slickConfigPop" responsive="vm.breakpointsPop" prev-arrow=".slick-prev-pop" next-arrow=".slick-next-pop">		
+				<div class="col-md-4 col-xs-12" ng-repeat="rec in vm.recommended | limitTo: 18 track by rec._id">
+					<div class="book-block book-block-medium clearfix">
+						<a class="book-cover" ui-sref="allbooks.details({id: rec._id})">
+							<img ng-src="{{::rec.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+						</a>
+						<div class="book-description">
+							<h3><a ui-sref="allbooks.details({id: rec._id})">{{::rec.title}}</a></h3>
+							<div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({id: rec._id, aid: rec.author[0]._id})">{{::rec.author[0] | authorName}}</a></div>
+							<div class="rating" ng-if="rec.ratings.avg">
+								<i class="fa fa-star-o"></i> {{::rec.ratings.avg | number: 1}}/5
+							</div>
+							<div class="rating" ng-if="!rec.ratings.avg">
+								<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+							</div>
+							<div class="buying-options">
+								<div ng-repeat="(condition, label) in {new: 'new', sales: 'used'} track by $index" ui-sref="allbooks.details.sellers({id: rec._id})" ng-class="'btn btn-default btn-mline ' + ((!rec[condition].length) ? 'btn-disabled' : '' )">
+									<div ng-if="rec[condition].length">
+										<a ui-sref="allbooks.details.sellers({id: rec._id})"
+										   translate="has.sales"
+										   translate-value-label="{{label | translate}}"
+										   translate-value-len="{{rec[condition].length}}">
+										</a><br>
+										<b translate="from.price"
+											translate-value-price="{{rec[condition][0].price | salePrice}}"></b>
+									</div>
+									<div ng-if="!rec[condition].length" translate="no.sales" translate-value-label="{{label | translate}}"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</bookis-slick>
+		</div>			
+		<div class="slick-prev-pop slick-prev  hidden-xs  hidden-sm">
+			<i class="fa fa-angle-left" aria-hidden="true"></i>
+		</div>
+		<div class="slick-next-pop slick-next  hidden-xs  hidden-sm">
+			<i class="fa fa-angle-right" aria-hidden="true"></i>
+		</div>
+	</div>
+</div>
+
+<div class="section-fluid section-sell">
+	<img src="assets/images/deco-books-white.png" alt="" class="section-sell-deco">
+	<h2 class="section-sell-heading">Start Selling with Bookis</h2>
+	<p>Our community can’t wait to see what books you have.</p>
+	<a href="/" class="btn btn-primary">Sell your books</a>
+</div>
+
+<div class="section-fluid section-new">
+<!-- 	<md-whiteframe class="carousel-holder"> -->
+		<div class="container">
+<!-- 			<bookis-slick settings="vm.slickConfigNew" slides-to-show='1' prev-arrow=".slick-prev-new" next-arrow=".slick-next-new">		 -->
+<!-- 				<div class="col-xs-12"> -->
+					<div class="item-new row" ng-if="vm.newBook[0]">
+						<div class="cover-holder col-md-5 col-xs-6">
+							<div class="book-cover pointable" ui-sref="allbooks.details({id: vm.newBook[0]._id})">
+								<img ng-src="{{::vm.newBook[0].image.full || '/assets/images/cover.png'}}" alt="rec image">
+							</div>
+							<span>{{'new' | translate}}<br>{{'this.week' | translate}}</span>
+						</div>
+						<div class="description-holder col-md-7 col-sm-6 col-xs-6">
+							<div class="book-description">
+								<h1 class="pointable" ui-sref="allbooks.details({id: vm.newBook[0]._id})">{{::vm.newBook[0].title}}</h1>
+								<div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({id: vm.newBook[0]._id, aid: vm.newBook[0].author[0]._id})">{{::vm.newBook[0].author[0] | authorName}}</a></div>
+								
+								<ul class="genres list-unstyled list-inline">
+									<li><a href="#">{{::vm.newBook[0] | genres}}</a></li>
+								</ul>
+								
+								<div class="rating" ng-if="vm.ratings.avg">
+									<i class="fa fa-star-o"></i> {{::vm.ratings.avg | number: 1}}/5
+								</div>
+								
+								<div class="rating" ng-if="!vm.ratings.avg">
+									<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+								</div>
+							</div>
+						</div>
+	
+						<div class="description-holder col-md-7 col-sm-6 col-xs-12">
+							<div class="row">								
+								<div class="book-description col-md-7">
+										<div class="summary">
+											<input type="checkbox" name="more" id="more" ng-model="more">
+											<p>{{::vm.newBook[0].description}}</p>
+											<label ng-if="!more" for="more" class="more">{{'read.more' | translate}}&nbsp; &darr;</label>
+											<label ng-if="more" for="more" class="more">{{'read.less' | translate}}&nbsp; &uarr;</label>
+										</div>
+								</div>
+								<book-sales book="vm.newBook[0]"></book-sales>
+							</div>
+						</div>
+					</div>
+<!-- 				</div> -->
+<!-- 			</bookis-slick> -->
+		</div>
+<!--
+		<div class="slick-prev-new slick-prev  hidden-xs  hidden-sm">
+			<i class="fa fa-angle-left" aria-hidden="true"></i>
+		</div>
+		<div class="slick-next-new slick-next  hidden-xs  hidden-sm">
+			<i class="fa fa-angle-right" aria-hidden="true"></i>
+		</div>
+-->
+<!-- 	</md-whiteframe> -->
+</div>
+
+<div class="section-fluid section-howto">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5 section-howto-left">
+				<h2 class="section-howto-heading">How to buy a book through Bookis</h2>
+			</div>
+			<div class="col-md-7 section-howto-right">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="section-intro-box section-step-1">
+							<img src="assets/images/icon-ask.png" srcset="assets/images/icon-ask@2x.png 2x, assets/images/icon-ask@3x.png 3x" alt="books">
+							<h2 class="section-intro-heading">Request</h2>
+							<p>You send a book request to the seller</p>
+							<img src="/assets/images/step-down-arrow.png" alt="" class="howto-down-arrow">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="section-intro-box section-step-2">
+							<img src="assets/images/icon-accept.png" srcset="assets/images/icon-accept@2x.png 2x, assets/images/icon-accept@3x.png 3x" alt="books">
+							<h2 class="section-intro-heading">Acception</h2>
+							<p>Seller accepts the request if the book is available</p>
+							<img src="/assets/images/step-down-arrow.png" alt="" class="howto-down-arrow">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="section-intro-box section-step-3">
+							<img src="assets/images/icon-shipping.png" srcset="assets/images/icon-shipping@2x.png 2x, assets/images/icon-shipping@3x.png 3x" alt="books">
+							<h2 class="section-intro-heading">Shipping</h2>
+							<p>You meet up or the seller will ship the books to you</p>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section-fluid books-carousel section-recommended">
+	<div class="container">
+		<h2 class="section-recommended-heading">{{'recommended.books' | translate}}</h2>
+	</div>
+	
+		<div class="carousel-holder" ng-if="vm.recommended.length">
+			<bookis-slick settings="vm.slickConfigRecommended" responsive="vm.breakpointsRecommended" slides-to-show='10' prev-arrow=".slick-prev-books" next-arrow=".slick-next-books">
+				<div class="book-small" ng-repeat="rec in vm.recommended track by rec._id">
+					<div class="book-cover">
+						<a ui-sref="allbooks.details({id: rec._id})">
+							<img ng-src="{{::rec.image.full || '/assets/images/cover.png'}}" alt="book image">
+							<div class="romb romb-up">
+								<span class="rating" ng-if="rec.ratings.avg">
+									<i class="fa fa-star-o"></i> {{::rec.ratings.avg | number: 1}}/5
+								</span>
+								<span class="rating" ng-if="!rec.ratings.avg">
+									<i class="fa fa-star-o"></i> &mdash; 
+								</span>
+							</div>
+						</a>
+					</div>
+					<div class="book-description">
+					</div>
+					<div class="buying-options">
+						<div ng-repeat="(condition, label) in {new: 'new', sales: 'used'} track by $index" ui-sref="allbooks.details.sellers({id: rec._id})" ng-class="'btn btn-default btn-mline ' + ((!rec[condition].length) ? 'btn-disabled' : '' )">
+							<div ng-if="rec[condition].length">
+								<a ui-sref="allbooks.details.sellers({id: rec._id})"
+								   translate="has.sales"
+								   translate-value-label="{{label | translate}}"
+								   translate-value-len="{{rec[condition].length}}">
+								</a><br>
+								<b translate="from.price"
+									translate-value-price="{{rec[condition][0].price | salePrice}}"></b>
+							</div>
+							<div ng-if="!rec[condition].length" translate="no.sales" translate-value-label="{{label | translate}}" class="small-text"></div>
+						</div>
+					</div>
+					<a ui-sref="allbooks.details({id: rec._id})">{{::rec.title}}</a>
+					<div class="author ">by <a>Marcus Aurelius</a></div>
+				</div>
+			</bookis-slick>
+			<div class="slick-prev-books slick-prev  hidden-xs  hidden-sm">
+				<i class="fa fa-angle-left" aria-hidden="true"></i>
+			</div>
+			<div class="slick-next-books slick-next  hidden-xs  hidden-sm">
+				<i class="fa fa-angle-right" aria-hidden="true"></i>
+			</div>
+		</div>
+</div>
+
+<div class="section-fluid section-reviews">
+	<div class="container">
+		<h2 class="section-reviews-heading">Recent Book Reviews</h2>
+	</div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="carousel-holder">
+			<bookis-slick settings="vm.slickConfigReviews" responsive="vm.breakpointsReviews" slides-to-show='3' prev-arrow=".slick-prev-reviews" next-arrow=".slick-next-reviews">
+			
+			<div class="col-md-4">
+				<div class="review-item">
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="https://placehold.it/90x90" class="img-circle img-responsive review-image" alt="">
+						</div>
+						<div class="col-xs-9 review-content">
+							<h3 class="review-name">Dagny Taggart</h3>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<div class="book-block book-block-small ng-scope">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})" href="/all-books/58c8291e039aea3e717ccd88/details">
+											<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" alt="book cover image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" class="img-responsive">
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="book-description">
+											<h4 class="book-title">Atlas Shrugged</h4>
+											<div class="author ng-binding">by <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})" class="ng-binding" href="/all-books/58c8291e039aea3e717ccd82/details/58c8291e039aea3e717ccd87/author">Ayn Rand</a></div>
+										</div>
+									</div>
+								</div>				
+							</div>			
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="review-item">
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="https://placehold.it/90x90" class="img-circle img-responsive review-image" alt="">
+							<br>
+							<div class="rating text-center">
+								<i class="fa fa-star-o"></i> 4/5
+							</div>
+						</div>
+						<div class="col-xs-9 review-content">
+							<h3 class="review-name">John Galt</h3>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							<a href="" class="review-more">Read full review &darr;</a>
+							
+							<div class="book-block book-block-small ng-scope">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})" href="/all-books/58c8291e039aea3e717ccd88/details">
+											<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" alt="book cover image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" class="img-responsive">
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="book-description">
+											<h4 class="book-title">Meditations</h4>
+											<div class="author ng-binding">by <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})" class="ng-binding" href="/all-books/58c8291e039aea3e717ccd82/details/58c8291e039aea3e717ccd87/author">Marcus Aurelius</a></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="review-item">
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="https://placehold.it/90x90" class="img-circle img-responsive review-image" alt="">
+							<br>
+							<div class="rating text-center">
+								<i class="fa fa-star-o"></i> 4/5
+							</div>
+						</div>
+						<div class="col-xs-9 review-content">
+							<h3 class="review-name">Henry Rearden</h3>
+							<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<a href="" class="review-more">Read full review &darr;</a>
+							<div class="book-block book-block-small ng-scope">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})" href="/all-books/58c8291e039aea3e717ccd88/details">
+											<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" alt="book cover image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" class="img-responsive">
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="book-description">
+											<h4 class="book-title">Pandora's Star</h4>
+											<div class="author ng-binding">by <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})" class="ng-binding" href="/all-books/58c8291e039aea3e717ccd82/details/58c8291e039aea3e717ccd87/author">Peter F. Hamilton</a></div>
+										</div>
+									</div>
+								</div>	
+							</div>						
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="review-item">
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="https://placehold.it/90x90" class="img-circle img-responsive review-image" alt="">
+						</div>
+						<div class="col-xs-9 review-content">
+							<h3 class="review-name">Dagny Taggart</h3>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<div class="book-block book-block-small ng-scope">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})" href="/all-books/58c8291e039aea3e717ccd88/details">
+											<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" alt="book cover image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" class="img-responsive">
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="book-description">
+											<h4 class="book-title">Atlas Shrugged</h4>
+											<div class="author ng-binding">by <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})" class="ng-binding" href="/all-books/58c8291e039aea3e717ccd82/details/58c8291e039aea3e717ccd87/author">Ayn Rand</a></div>
+										</div>
+									</div>
+								</div>				
+							</div>			
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="review-item">
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="https://placehold.it/90x90" class="img-circle img-responsive review-image" alt="">
+							<br>
+							<div class="rating text-center">
+								<i class="fa fa-star-o"></i> 4/5
+							</div>
+						</div>
+						<div class="col-xs-9 review-content">
+							<h3 class="review-name">Henry Rearden</h3>
+							<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<a href="" class="review-more">Read full review &darr;</a>
+							<div class="book-block book-block-small ng-scope">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})" href="/all-books/58c8291e039aea3e717ccd88/details">
+											<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" alt="book cover image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" class="img-responsive">
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="book-description">
+											<h4 class="book-title">Pandora's Star</h4>
+											<div class="author ng-binding">by <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})" class="ng-binding" href="/all-books/58c8291e039aea3e717ccd82/details/58c8291e039aea3e717ccd87/author">Peter F. Hamilton</a></div>
+										</div>
+									</div>
+								</div>	
+							</div>						
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="review-item">
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="https://placehold.it/90x90" class="img-circle img-responsive review-image" alt="">
+						</div>
+						<div class="col-xs-9 review-content">
+							<h3 class="review-name">Dagny Taggart</h3>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<div class="book-block book-block-small ng-scope">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})" href="/all-books/58c8291e039aea3e717ccd88/details">
+											<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" alt="book cover image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" class="img-responsive">
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="book-description">
+											<h4 class="book-title">Atlas Shrugged</h4>
+											<div class="author ng-binding">by <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})" class="ng-binding" href="/all-books/58c8291e039aea3e717ccd82/details/58c8291e039aea3e717ccd87/author">Ayn Rand</a></div>
+										</div>
+									</div>
+								</div>				
+							</div>			
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="review-item">
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="https://placehold.it/90x90" class="img-circle img-responsive review-image" alt="">
+							<br>
+							<div class="rating text-center">
+								<i class="fa fa-star-o"></i> 4/5
+							</div>
+						</div>
+						<div class="col-xs-9 review-content">
+							<h3 class="review-name">Henry Rearden</h3>
+							<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<a href="" class="review-more">Read full review &darr;</a>
+							<div class="book-block book-block-small ng-scope">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})" href="/all-books/58c8291e039aea3e717ccd88/details">
+											<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" alt="book cover image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" class="img-responsive">
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="book-description">
+											<h4 class="book-title">Pandora's Star</h4>
+											<div class="author ng-binding">by <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})" class="ng-binding" href="/all-books/58c8291e039aea3e717ccd82/details/58c8291e039aea3e717ccd87/author">Peter F. Hamilton</a></div>
+										</div>
+									</div>
+								</div>	
+							</div>						
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="review-item">
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="https://placehold.it/90x90" class="img-circle img-responsive review-image" alt="">
+						</div>
+						<div class="col-xs-9 review-content">
+							<h3 class="review-name">Dagny Taggart</h3>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<div class="book-block book-block-small ng-scope">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})" href="/all-books/58c8291e039aea3e717ccd88/details">
+											<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" alt="book cover image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" class="img-responsive">
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="book-description">
+											<h4 class="book-title">Atlas Shrugged</h4>
+											<div class="author ng-binding">by <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})" class="ng-binding" href="/all-books/58c8291e039aea3e717ccd82/details/58c8291e039aea3e717ccd87/author">Ayn Rand</a></div>
+										</div>
+									</div>
+								</div>				
+							</div>			
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="review-item">
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="https://placehold.it/90x90" class="img-circle img-responsive review-image" alt="">
+							<br>
+							<div class="rating text-center">
+								<i class="fa fa-star-o"></i> 4/5
+							</div>
+						</div>
+						<div class="col-xs-9 review-content">
+							<h3 class="review-name">John Galt</h3>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							<a href="" class="review-more">Read full review &darr;</a>
+							
+							<div class="book-block book-block-small ng-scope">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})" href="/all-books/58c8291e039aea3e717ccd88/details">
+											<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" alt="book cover image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" class="img-responsive">
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="book-description">
+											<h4 class="book-title">Meditations</h4>
+											<div class="author ng-binding">by <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})" class="ng-binding" href="/all-books/58c8291e039aea3e717ccd82/details/58c8291e039aea3e717ccd87/author">Marcus Aurelius</a></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="review-item">
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="https://placehold.it/90x90" class="img-circle img-responsive review-image" alt="">
+							<br>
+							<div class="rating text-center">
+								<i class="fa fa-star-o"></i> 4/5
+							</div>
+						</div>
+						<div class="col-xs-9 review-content">
+							<h3 class="review-name">Henry Rearden</h3>
+							<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<a href="" class="review-more">Read full review &darr;</a>
+							<div class="book-block book-block-small ng-scope">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})" href="/all-books/58c8291e039aea3e717ccd88/details">
+											<img ng-src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" alt="book cover image" src="//s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c8291e039aea3e717ccd88/full.png" class="img-responsive">
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="book-description">
+											<h4 class="book-title">Pandora's Star</h4>
+											<div class="author ng-binding">by <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})" class="ng-binding" href="/all-books/58c8291e039aea3e717ccd82/details/58c8291e039aea3e717ccd87/author">Peter F. Hamilton</a></div>
+										</div>
+									</div>
+								</div>	
+							</div>						
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			</bookis-slick>
+			</div>
+			
+			</div>
+		</div>
+			
+	</div>
+
+<div class="section-fluid section-mail">
+	<img src="assets/images/deco-mail-white.png" alt="" class="section-sell-deco">
+	<h2 class="section-sell-heading">Join our Mail List <br>to be in Touch</h2>
+	<a href="/" class="btn btn-primary">Sing Up for Updates</a>
+</div>
+
+</div>

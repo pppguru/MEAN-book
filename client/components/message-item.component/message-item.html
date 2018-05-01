@@ -1,0 +1,15 @@
+<div ng-if="mi.type !== 'notification'" class="user-avatar" flex="none" layout="row" flex-order="{{mi.me()._id === mi.user._id ? 1 : 0}}">
+     <img ng-src="{{::mi.user.imageUrl || '/assets/images/avatar.png'}}" alt="profileImage"/>
+</div>
+
+<div layout="row" flex class="conversation-content" ng-class="mi.type === 'notification' ? 'notification' : mi.me()._id === mi.user._id ? 'sent' : 'received'"
+     layout-align="{{mi.type === 'notification' ? 'center center' : mi.me()._id === mi.user._id ? 'end center' : 'start center'}}">
+     <div layout="column">
+          <md-whiteframe class="md-whiteframe-4dp conversation-text dont-break-out" layout-padding>
+               {{::mi.message}}
+          </md-whiteframe>
+          <div layout="row" flex="none" layout-align="{{mi.type === 'notification' ? 'start' : mi.me()._id === mi.user._id ? 'end' : 'start'}}">
+               <span class="time" am-time-ago="mi.stamp"></span>
+          </div>
+     </div>
+</div>

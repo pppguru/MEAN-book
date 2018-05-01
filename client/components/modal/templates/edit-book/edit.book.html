@@ -1,0 +1,86 @@
+<form name="form" ng-submit="form.$valid && modal.confirm()" class="sell-book-modal" novalidate>
+
+     <!--<pre style="font-size:8px;">{{ modal.sale | json }}</pre>-->
+     
+     <div class="row">
+          <div class="col-sm-6">
+               <div class="form-group" ng-class="{ 'has-success': form.isbn.$valid && form.$submitted, 'has-error': form.isbn.$invalid && form.$submitted }">
+                    <label class="control-label" for="isbn">ISBN</label>
+                    <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" ng-model="modal.sale.book.isbn.full" required>
+               </div>
+          </div>
+          <div class="col-sm-6">
+               <label>&nbsp;</label>
+               <div class="note">
+                    {{'type.isbn' | translate}}
+               </div>
+          </div>
+     </div>
+
+     <div class="form-group" ng-class="{ 'has-success': form.name.$valid && form.$submitted, 'has-error': form.name.$invalid && form.$submitted }">
+          <label class="control-label" for="name">{{'title' | translate}}</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="{{'title' | translate}}" ng-model="modal.sale.book.title" required>
+     </div>
+
+     <div class="form-group" ng-repeat="author in modal.sale.book.author track by author._id">
+          <label class="control-label" for="author">{{'author' | translate}} #{{$index + 1}}</label>
+          <div ng-if="author.corporateName">
+               <input type="text" class="form-control" id="author" name="author" placeholder="Author" ng-model="author.corporateName">
+          </div>
+          <div ng-if="!author.corporateName" class="row">
+               <div class="col-sm-6">
+                    <input type="text" class="form-control" id="authorFirst" name="author" placeholder="Author" ng-model="author.firstName">
+               </div>
+               <div class="col-sm-6">
+                    <input type="text" class="form-control" id="authorLast" name="author" placeholder="Author" ng-model="author.lastName">
+               </div>
+          </div>
+     </div>
+
+     <div class="row">
+          <div class="col-sm-6">
+               <div class="form-group" ng-class="{ 'has-success': form.year.$valid && form.$submitted, 'has-error': form.year.$invalid && form.$submitted }">
+                    <label class="control-label" for="year">{{'year' | translate}}</label>
+                    <bookis-select class="small" flex="none" id="year" name="year" options="modal.years"
+                                   placeholder="{{'select.x' | translate: {x:'year'} }}" model="modal.sale.book.year" required="true"></bookis-select>
+               </div>
+          </div>
+          <div class="col-sm-6">
+               <div class="form-group" ng-class="{ 'has-success': form.format.$valid && form.$submitted, 'has-error': form.format.$invalid && form.$submitted }">
+                    <label class="control-label" for="format">{{'format' | translate}}</label>
+                    <bookis-select class="small" flex="none" id="format" name="format" options="modal.formats"
+                                   placeholder="{{'select.x' | translate: {x:'format'} }}"model="modal.sale.book.format" required="true"></bookis-select>
+               </div>
+          </div>
+     </div>
+
+     <div class="row">
+          <div class="col-sm-6">
+               <div class="form-group" ng-class="{ 'has-success': form.condition.$valid && form.$submitted, 'has-error': form.condition.$invalid && form.$submitted }">
+                    <label class="control-label" for="condition">{{'condition' | translate}}</label>
+                    <bookis-select class="small" flex="none" id="condition" name="condition" options="modal.conditions"
+                                   placeholder="{{'select.x' | translate: {x:'condition'} }}" model="modal.sale.condition" required="true"></bookis-select>
+               </div>
+          </div>
+          <div class="col-sm-6">
+               <div class="form-group" ng-class="{ 'has-success': form.price.$valid && form.$submitted, 'has-error': form.price.$invalid && form.$submitted }">
+                    <label class="control-label" for="price">{{'price' | translate}}</label>
+                    <input type="text" id="price" name="price" class="form-control" placeholder="Price" ng-model="modal.sale.price" allowed-chars="[^0-9]" required>
+               </div>
+          </div>
+     </div>
+
+     <a ui-sref="myzone.salesbooth.condition" target="_blank">{{'set.condition' | translate}}</a>
+
+     <div class="form-group" ng-class="{ 'has-success': form.comment.$valid && form.$submitted, 'has-error': form.comment.$invalid && form.$submitted }">
+          <label class="control-label" for="comment">{{'comment' | translate}}</label>
+          <textarea id="comment" cols="20" rows="4" class="form-control" ng-model="modal.sale.comment"
+                    placeholder="{{'type.your' | translate: {a:'comment'} }}"></textarea>
+     </div>
+
+     <div layout="row" layout-align="end end" flex="none">
+          <md-button class="md-raised" ng-click="modal.cancel()">{{'cancel' | translate}}</md-button>
+          <md-button type="submit" class="md-raised md-primary">{{'save' | translate}}</md-button>
+     </div>
+
+</form>

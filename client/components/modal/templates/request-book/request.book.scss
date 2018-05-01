@@ -1,0 +1,210 @@
+.request-book-modal {
+	margin: 10px 0 5px;
+
+	.user-image {
+		img {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			margin-right: 10px;
+		}
+	}
+
+	.comment-wrapper {
+		margin-left: 20px;
+
+		h5 {
+			margin-top: 0;
+			text-transform: capitalize;
+		}
+	}
+
+	.map-wrapper {
+		height: 200px;
+		background-color: #e9e9e9;
+
+		.angular-google-map,
+		.angular-google-map-container {
+			border-radius: 10px;
+			height: 100%;
+			max-height: 200px;
+			width: 100%;
+		}
+	}
+	.progress{
+		margin-bottom: 0;
+		height: 20px;
+		border-radius: 3px;
+		background-color: #1f4c56;
+		margin-top: 20px;
+
+		.progress-bar{
+			height: 20px;
+			background-color: $brand-primary;
+			color: white;
+			font-weight: bold;
+			font-size: 14px;
+			line-height: 20px;
+
+		}
+	}
+
+	h4 {
+		margin-top: 0;
+
+		div{
+			float: right;
+			font-size: 14px;
+			font-weight: 300;
+			line-height: 1.43;
+			color: #000000;
+		}
+	}
+
+	.info {
+		color: grey;
+		font-size: 11px;
+	}
+
+	.about {
+		margin-top: 10px;
+		font-size: 12px;
+	}
+
+	.other-info {
+		margin-top: 15px;
+		font-weight: 700;
+		color: grey;
+		font-size: 12px;
+
+		.number {
+			font-size: 17px;
+		}
+	}
+	.user-info{
+		display: flex;
+		border-left: 1px solid #d6d6d6;
+
+		h4{
+			font-size: 14px;
+			color: #1f4c56;
+			margin-bottom: 5px;
+		}
+		a{
+			margin-bottom: 5px;
+		}
+
+		@media (max-width: $screen-xs-max){
+			margin-top: 20px;
+			padding-top: 10px;
+			border-top:  1px solid #d6d6d6;
+			border-left: 0;
+		}
+	}
+
+	.book-parital {
+
+		.book-image {
+			padding: 0;
+
+			&:after{
+				left: 5px;
+			}
+			img {
+				width: 100%;
+			}
+		}
+
+		.book-details {
+
+			.title {
+				color: #1e8197;
+				font-size: 14px;
+				margin-bottom: 15px;
+			}
+
+			.author,
+			.condition,
+			.year {
+				font-size: 12px;
+				color: #444444;
+
+				a{
+					margin-bottom: 0;
+				}
+			}
+
+			.price {
+				font-size: 36px;
+				font-weight: 300;
+				line-height: 1.11;
+				color: #000000;
+				margin-top: 15px;
+			}
+		}
+	}
+
+	h5 {
+		margin-top: 15px;
+		font-size: 14px;
+		font-weight: bold;
+		line-height: 1.43;
+		color: #1f4c56;
+	}
+
+	.actions{
+		margin-top: 15px;
+		.btn{
+			float: right;
+			margin-top: 0;
+			text-transform: uppercase;
+		}
+	}
+	md-radio-button{
+		font-size: 12px;
+		line-height: 1.67;
+		color: #444444;
+		margin-bottom: 10px!important;
+	}
+
+	.book-template {
+		border: 1px solid white;
+		padding: 5px;
+		transition: box-shadow 0.3s ease-in;
+		outline: none;
+
+		&:hover {
+			border: 1px solid rgba(0, 0, 0, 0.12);
+			-webkit-box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.25);
+			-moz-box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.25);
+			box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.25);
+		}
+
+		img {
+			height: 120px;
+			width: 100px;
+		}
+
+		.measure {
+			font-size: 12px;
+			color: grey;
+		}
+	}
+
+	.shipping-methods {
+		h5 {
+			margin-top: 10px;
+		}
+
+		md-radio-button {
+			margin-bottom: 5px;
+			font-size: 12px;
+		}
+
+		.info {
+			margin-left: 15px;
+			font-size: 12px;
+  			color: #444444;
+		}
+	}
+}

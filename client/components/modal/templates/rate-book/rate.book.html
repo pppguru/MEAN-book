@@ -1,0 +1,21 @@
+<div class="rate-book-modal" layout="column">
+     <div layout="row">
+          <div class="book-image" flex="none">
+               <img ng-src="{{::modal.data.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="">
+          </div>
+          <div class="book-details" flex layout="column" layout-align="center start">
+               <div class="title">{{::modal.data.book.title}}</div>
+               <div class="author" ui-sref="allbooks.details.author({aid: modal.data.book.author[0]._id})">{{::modal.data.book.author | authors}}</div>
+          </div>
+     </div>
+     <h5>{{'your.rating' | translate}}</h5>
+     <bookis-rating background="white" rating="modal.data.rate" click="modal.updateRating({rating})"></bookis-rating>
+     <div layout="column" ng-if="modal.data.resolved && !modal.data.alreadyReviewed.length">
+          <h5>{{'your.review' | translate}}</h5>
+          <textarea id="review" cols="20" rows="3" class="form-control" ng-model="modal.data.review" placeholder="Type your review here..."></textarea>
+     </div>
+     <div layout="row" layout-align="end center" flex="none">
+          <md-button class="md-raised md-small" ng-disabled="!modal.data.rate" ng-click="modal.confirm()">{{'submit' | translate}}</md-button>
+          <md-button class="md-raised md-primary md-small" ng-disabled="!modal.data.rate" ng-click="modal.confirm()">{{'submit.share' | translate}}</md-button>
+     </div>
+</div>

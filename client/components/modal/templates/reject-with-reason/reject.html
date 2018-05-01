@@ -1,0 +1,8 @@
+<div layout="column" class="reject-with-reason-modal">
+     <textarea id="message" cols="20" rows="4" class="form-control" ng-model="modal.data.reason" placeholder="{{'reject.note' | translate}}"></textarea>
+     <div layout="row" layout-align="end end" flex="none">
+          <md-button class="md-primary md-raised mr0" ng-click="modal.cancel()">{{'cancel' | translate}}</md-button>
+          <md-button class="md-primary md-raised mr0" ng-disabled="!modal.data.reason" ng-click="modal.confirm()">{{'confirm' | translate}}</md-button>
+     </div>
+
+</div>

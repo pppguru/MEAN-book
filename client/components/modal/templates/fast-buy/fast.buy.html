@@ -1,0 +1,69 @@
+<div layout="row" class="fast-buy-modal">
+     <div flex="none" class="img-section">
+          <img ng-src="{{::modal.request.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+     </div>
+     <div flex layout="column">
+          <div layout="row" layout-align="start center">
+               <div class="title">{{::modal.request.book.title}}</div>
+               <span class="year">({{::modal.request.book.year}})</span>
+          </div>
+          <div class="author" ui-sref="allbooks.details.author({aid: modal.request.book.author[0]._id})">{{::modal.request.book.author | authors}}</div>
+          <div class="genre">{{::modal.request.book | genres}}</div>
+          <div layout="row" class="rating-reviews">
+               <div flex="60" layout layout-align="space-between center">
+                    <div layout="row" flex="none" layout-align="start center">
+                         <div layout="row" layout-align="start end">
+                              <div class="avg">{{::modal.request.book.rating.avg | number: 1}}</div>
+                              <div>/5</div>
+                         </div>
+                         <i class="fa fa-star"></i>
+                    </div>
+                    <div class="meta" flex="none">{{::modal.request.book.rating.votes}} ratings & {{::modal.request.book.reviews}} reviews</div>
+                    <div class="format" flex="none">{{::modal.request.book.format}}</div>
+               </div>
+          </div>
+          <md-divider></md-divider>
+          <div layout="row" class="buttons">
+               <div flex="50" layout="column">
+                    <div class="condition">{{modal.request.sale.condition | currency}}</div>
+                    <div layout="row" layout-align="start center">
+                         <div class="price">{{modal.request.sale.price | salePrice}} NOK</div>
+                         <md-button class="md-raised md-primary md-small" ng-click="modal.request.collapsed = !modal.request.collapsed">Request</md-button>
+                         <div layout="column">
+                              <div class="meta-other">{{::modal.request.book.sales.length}} used</div>
+                              <div class="from">from {{modal.request.sale.price | salePrice}} NOK</div>
+                         </div>
+                    </div>
+               </div>
+               <div flex layout="column">
+                    <div class="condition">Seller</div>
+                    <a layout="row" layout-align="start center" target="_blank" ui-sref="community.user({id: modal.request.sale.seller._id})">
+                         <div class="seller-image">
+                              <img ng-src="{{modal.request.sale.seller.imageUrl || '/assets/images/avatar.png'}}" alt="seller image">
+                         </div>
+                         <div class="seller-info">
+                              <div>{{modal.request.sale.seller | userName}}</div>
+                         </div>
+                    </a>
+
+               </div>
+          </div>
+          <md-divider></md-divider>
+          <div class="comment">{{::modal.request.book.comment || 'N/A'}}</div>
+          <div class="horizontal-collapse" uib-collapse="modal.request.collapsed">
+               <md-divider></md-divider>
+               <h5>How would you like it to be delivered?</h5>
+               <md-radio-group ng-model="modal.request.delivery" layout="row">
+                    <md-radio-button value="shipping" class="md-primary">Shipping</md-radio-button>
+                    <md-radio-button value="delivery" class="md-primary">Delivery</md-radio-button>
+               </md-radio-group>
+               <h5>Message</h5>
+               <textarea id="message" cols="20" rows="4" class="form-control" ng-disabled="!modal.request.delivery" ng-model="modal.request.message" placeholder="Type your message here..."></textarea>
+               <div layout="row" layout-align="end end" flex="none">
+                    <md-button class="md-primary md-raised mr0" ng-disabled="!modal.request.delivery" ng-click="modal.confirm()">Confirm request</md-button>
+               </div>
+          </div>
+
+
+     </div>
+</div>

@@ -1,0 +1,124 @@
+.near {
+    .near-section {
+//         padding: 0 !important;
+				padding-top: 30px;
+				padding-left: 30px !important;
+        .search-wrapper {
+            padding: 20px;
+            position: absolute;
+            z-index: 9;
+//             width: 100%;
+        }
+    }
+    .angular-google-map-container {
+        height: calc(100vh - 140px);
+        img[src^='//s3']:not(.exclude), img[src^='/assets/images/avatar.png']:not(.exclude) {
+            border-radius: 25px;
+            border: 5px solid #1f4c56 !important;
+        }
+    }
+    .user-map-card {
+        margin: 50px 0;
+    }
+}
+
+.gm-style-iw {
+    overflow: visible !important;
+    & > div {
+        overflow: visible !important;
+    }
+    & + div {
+        display: none;
+    }
+}
+
+.user-map-item {
+    width: 250px;
+    height: 300px;
+    .image-wrapper {
+        border-radius: 50%;
+        position: absolute;
+        left: -26px;
+        top: -21px;
+        img {
+            border: 5px solid #1f4c56 !important;
+            border-radius: 50%;
+            height: 40px !important;
+            width: 40px !important;
+        }
+    }
+    .user-name {
+        text-transform: capitalize;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+    .numeric-data {
+        margin-top: 15px;
+        .value {
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .desc {
+            font-size: 12px;
+        }
+    }
+    .book-wrapper {
+        margin-left: 20px;
+        height: 80px;
+        .book-title {
+            cursor: pointer;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-weight: normal;
+            position: relative;
+            width: 60px;
+
+            img {
+                height: 80px;
+                width: 50px;
+            }
+
+            .index {
+                position: absolute;
+                z-index: 10;
+                left: -13px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                line-height: 32px;
+                text-align: center;
+                width: 30px;
+                height: 30px;
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+                border-radius: 7px;
+                background-color: #1f4c56;
+
+                span {
+                    letter-spacing: 2px;
+                    font-size: 15px;
+                    font-weight: bold;
+                    color: #ffffff;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    -webkit-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+
+    md-divider {
+        width: 302px;
+        margin: 10px 0;
+        position: relative;
+        left: -14px;
+    }
+    a {
+    }
+
+}

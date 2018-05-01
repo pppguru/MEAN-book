@@ -1,0 +1,235 @@
+<div class="section-fluid section-bg static-content">
+	<div class="container">
+	
+		<div class="row">
+			
+			<div class="col-md-10 col-md-offset-1">
+				<div class="">
+					
+				</div>
+			</div>
+	
+			<md-whiteframe class="col-md-6 col-md-offset-1">
+				<div class="">
+					<header>
+						Find the book
+					</header>
+					<header>
+					<input type="text" class="form-control input-" placeholder="Search by ISBN, title or author" data-toggle="collapse" data-target="#static-results-sample">
+					</header> 
+					<div class="content collapse" id="static-results-sample">
+												<div class="book-list-holder book-list-results">
+												<div class="book-list">
+												<div class="book-list-body">
+
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-15 book-actions">
+                	<button class="btn btn-default md-ink-ripple" type="button" data-toggle="collapse" data-target="#static-book-sample"><span class="fa fa-plus"></span></button>
+								</div>
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="http://s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c823e2039aea3e717c4239/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c823e2039aea3e717c4239/details" src="http://s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c823e2039aea3e717c4239/full.png">
+									</div>
+								</div>
+								<div class="fl-b-70 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c82f0e039aea3e717d5ba6/details">Meditations</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c82b9b039aea3e717d0c51/author">Marcus Aurelius</a>
+									</div>
+									<div class="book-format">Pocket</div>
+								</div>
+							</div>
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-15 book-actions">
+                	<button class="btn btn-default md-ink-ripple" type="button" data-toggle="collapse" data-target="#static-book-sample"><span class="fa fa-plus"></span></button>
+								</div>
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="http://s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c823e2039aea3e717c4239/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c823e2039aea3e717c4239/details" src="http://s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c823e2039aea3e717c4239/full.png">
+									</div>
+								</div>
+								<div class="fl-b-70 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c82f0e039aea3e717d5ba6/details">Meditations</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c82b9b039aea3e717d0c51/author">Marcus Aurelius</a>
+									</div>
+									<div class="book-format">Hardcover</div>
+								</div>
+							</div>
+							<div class="book-list-item ng-scope">
+								<div class="fl-b-15 book-actions">
+                	<button class="btn btn-default md-ink-ripple" type="button" data-toggle="collapse" data-target="#static-book-sample"><span class="fa fa-plus"></span></button>
+								</div>
+								<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: hit.objectID})" href="/all-books//details">
+									<div class="book-cover">
+										<img class="pointable" ng-src="http://s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c823e2039aea3e717c4239/full.png" alt="book image" ui-sref="allbooks.details({id: sale.book._id})" href="/all-books/58c823e2039aea3e717c4239/details" src="http://s3-eu-west-1.amazonaws.com/bookis.web.development/books/58c823e2039aea3e717c4239/full.png">
+									</div>
+								</div>
+								<div class="fl-b-70 book-name">
+									<a ui-sref="allbooks.details({id: sale.book._id})" class="ng-binding" href="/all-books/58c82f0e039aea3e717d5ba6/details">Meditations</a>
+									<div class="book-author">
+										by <a ui-sref="allbooks.details.author({aid: sale.book.author[0]._id})" class="ng-binding" href="/all-books//details/58c82b9b039aea3e717d0c51/author">Marcus Aurelius</a>
+									</div>
+									<div class="book-format">Paperback</div>
+								</div>
+							</div>
+
+												</div>
+												</div>
+												</div>
+					</div>
+					<div class="content collapse" id="static-book-sample">
+						<div class="row">
+							<div class="col-sm-5">
+							    <label for="">Cover</label>
+								<img src="http://placehold.it/240x360" alt="" class="img-responsive">
+							</div>
+							<div class="col-sm-7">
+								<div class="form-group">
+							    <label for="">ISBN <a href="">(how to find the code)</a></label>
+							    <input type="text" class="form-control" placeholder="" value="142326233464566" disabled>
+							  </div>
+								<div class="form-group">
+							    <label for="">Title</label>
+							    <input type="text" class="form-control" placeholder="" value="Meditations" disabled>
+							  </div>
+								<div class="form-group">
+							    <label for="">Author</label>
+							    <input type="text" class="form-control" placeholder="" value="Markus Aurelius" disabled>
+							  </div>
+							  <div class="row">
+							  	<div class="col-xs-7">
+										<div class="form-group">
+									    <label for="">Format <a href="">(what are formats?)</a></label>
+									    <input type="text" class="form-control" placeholder="" value="pocket" disabled>
+									  </div>
+							  	</div>
+							  	<div class="col-xs-5">
+										<div class="form-group">
+									    <label for="">Year</label>
+									    <input type="text" class="form-control" placeholder="" value="2016" disabled>
+									  </div>						  	
+							  	</div>
+							  </div>
+								<div class="form-group">
+							    <label for="">Genre</label>
+							    <input type="text" class="form-control" placeholder="" value="Philosophy" disabled>
+							  </div>
+								<div class="form-group text-right">
+									<button class="btn btn-default">Edit</button>
+									<button class="btn btn-primary" data-toggle="collapse" data-target="#static-form-sample">Accept</button>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</md-whiteframe>
+	
+			<md-whiteframe class="col-md-4 collapse" id="static-form-sample">
+				<div class="">
+					<header>
+						About your copy
+					</header>
+					<div class="content">
+						  <div class="row">
+						  	<div class="col-xs-7">
+									<div class="form-group">
+								    <label for="">Condition <a href="">(how to choose?)</a></label>
+								    <input type="text" class="form-control" placeholder="" value="Used">
+								  </div>
+						  	</div>
+						  	<div class="col-xs-5">
+									<div class="form-group">
+								    <label for="">Price <small class="text-muted">in euro</small></label>
+								    <input type="text" class="form-control" placeholder="" value="300" data-toggle="collapse" data-target="#static-totals-sample">
+								  </div>						  	
+						  	</div>
+						  </div>
+							<div class="form-group">
+						    <label for="">Comment</label>
+						    <textarea class="form-control" rows="3" placeholder="Notes regarding condition and other terms"></textarea>
+						  </div>
+					</div>
+					<div class="box-footer info-footer collapse" id="static-totals-sample">
+							<table class="table-checkout">
+<!--
+								<thead>
+									<tr>
+										<th><h4>Summary</h4></th>
+										<th class="text-right"></th>
+									</tr>
+								</thead>
+-->
+								<tbody>									
+									<tr>
+										<td>Your selling price:</td>
+										<td class="checkout-value">300-</td>
+									</tr>
+									<tr>
+										<td>Seller fees (payments, application):</td>
+										<td class="checkout-value">-120,-</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td class="checkout-total-label">You'll earn</td>
+										<td class="checkout-total">180,-</td>
+									</tr>
+								</tfoot>
+							</table>						
+					</div>
+				</div>
+				<br>
+				<a href="" class="btn btn-primary btn-lg btn-block">Add for sale</a>
+			</md-whiteframe>
+			
+		</div>
+		
+		
+<!--
+		
+		<md-whiteframe class="col-md-5">
+		<div>
+			<div class="well" style="background: white;">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+			<div class="well">
+				<b>Log in with</b>
+			<div class="row">
+				<div class="col-md-6"><a href="" class="btn btn-info btn-sm btn-block"><b class="fa fa-facebook"></b> <b>Facebook</b></a></div>
+				<div class="col-md-6"><a href="" class="btn btn-danger btn-sm btn-block"><b class="fa fa-google"></b> <b>Google</b></a></div>
+			</div>
+			</div>
+			<div class="text-center h4">OR</div>
+			<div class="well">
+				<b>Email log in</b>
+				<input type="text" class="form-control" placeholder="your email"><br><input type="text" class="form-control" placeholder="your password">
+				<br>
+				<a href="" class="btn btn-primary btn-sm btn-block">Log in <b class="fa fa-chevron-right"></b></a>
+			</div>
+			<div class="well" style="background: white; box-shadow: none; margin: 0; border: none;">
+				
+			<div class="row">
+				<div class="col-md-6"><a href="" class="btn btn-default btn-sm btn-block"><b class="fa fa-key"></b> Forgotten password?</a></div>
+				<div class="col-md-6"><a href="" class="btn btn-primary btn-sm btn-block"><b class="fa fa-edit"></b> Sign up now!</a></div>
+			</div>
+			</div>
+			
+			</div>
+		</div>
+		</md-whiteframe>
+-->
+	
+	</div>
+	
+</div>
+
+
+<style type="text/css" media="screen">
+	.info-footer {
+		background: #f5f8f8;
+	}
+</style>

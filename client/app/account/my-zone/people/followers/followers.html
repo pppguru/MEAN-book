@@ -1,0 +1,7 @@
+<div id="followers">
+     <div class="col-xs-3" ng-repeat="person in vm.me.followers | filter: pe.searchText track by person._id">
+          <md-whiteframe class="person-tile">
+               <follow-panel type="user" data="person" following="vm.me.following" layout="column" flex follow="vm.follow({_id, type})" controls="true"></follow-panel>
+          </md-whiteframe>
+     </div>
+</div>

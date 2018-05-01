@@ -1,0 +1,5 @@
+<div layout="row" layout-align="start center" flex="none" class="bookis-rating" ng-class="vm.background === 'white' ? 'white' : 'orange'">
+     <i class="fa fa-star" ng-repeat="i in [1,2,3,4,5]" aria-hidden="true"
+        ng-class="{'empty' : (!vm.rating || vm.rating < i), 'disabled' : vm.dsbl}"
+        ng-click="!vm.dsbl && vm.click({rating: i})"></i>
+</div>

@@ -1,0 +1,233 @@
+.person-profile {
+	aside {
+		img.user-image {
+			@include profile-image(160px, 160px);
+			border: solid 10px #bb431e !important;
+			margin-right: 20px;
+			float: left;
+		}
+
+		.person-info {
+			width: calc( 100% - 205px);
+			float: left;
+			color: white;
+		}
+
+		.user-info {
+			> div {
+				width: 50%;
+				padding-right: 15px;
+				font-size: 20px;
+				line-height: 1;
+				float: left;
+				margin-top: 25px;
+
+				b {
+					display: block;
+				}
+
+				span {
+					font-size: 12px;
+					line-height: 1.67;
+				}
+			}
+		}
+
+		.user-name {
+			margin-bottom: 10px;
+			text-transform: uppercase;
+			font-size: 14px;
+			font-weight: bold;
+			line-height: 1.43;
+			letter-spacing: 2px;
+			color: #ffffff;
+		}
+
+		.user-actions {
+			.btn {
+				margin-left: 0;
+				text-transform: uppercase;
+				width: 100%;
+			}
+		}
+
+		.book-description {
+			margin-top: 40px;
+
+			p {
+				color: white;
+				font-size: 12px;
+				font-weight: normal;
+			}
+
+			label {
+				color: white;
+				opacity: 0.7;
+				text-transform: capitalize;
+			}
+		}
+	}
+}
+
+.author-books-section {
+	padding-left: 60px !important;
+	padding-bottom: 150px !important;
+
+	h1 {
+		margin-top: 40px;
+		margin-bottom: 40px !important;
+	}
+
+	bookis-slick {
+		margin-left: -30px;
+		margin-right: -30px;
+	}
+
+	.user-navigation {
+		margin: 0 0 0 -40px;
+
+		md-pagination-wrapper,
+		md-tabs-canvas {
+			height: 58px;
+		}
+
+		md-tab-item {
+			padding: 19px 23px;
+			color: #1e8197;
+			opacity: 0.7;
+			font-weight: normal;
+
+			&.md-active {
+				color: $color-primary;
+				opacity: 1;
+			}
+		}
+
+		md-ink-bar {
+			background-color: $color-primary;
+		}
+	}
+
+	.buttons {
+		.btn {
+			padding-top: 9px;
+			margin: 0;
+		}
+	}
+	
+	.book-list-item {
+		padding: 0 !important;
+	}
+}
+
+#discussions {
+	header {
+		margin-top: 40px;
+		margin-bottom: 40px;
+
+		h1 {
+			font-size: 36px;
+			font-weight: bold;
+			line-height: 1.22;
+			color: #1f4c56;
+			margin-top: 0;
+			margin-bottom: 0;
+
+			span {
+				font-size: 12px;
+				color: #999999;
+				font-family: 'Fira Sans', sans-serif;
+				margin-left: 20px;
+				font-weight: normal;
+				margin-top: 15px;
+				float: right;
+				display: block;
+
+				img {
+					height: 16px;
+					width: 16px;
+				}
+			}
+		}
+	}
+
+	.discussion-list {
+		.discussion {
+			.avatar {
+				float: left;
+				text-align: center;
+
+				img {
+					width: 50px;
+					height: 50px;
+					margin-bottom: 8px;
+					border-radius: 50%;
+				}
+
+				.star{
+					font-size: 20px;
+					color: #1f4c56;
+					font-weight: 300;
+
+					i{
+						&:before{
+							margin-right: 5px;
+						}
+					}
+				}
+			}
+
+			.discussion-body {
+				margin-left: 80px;
+
+				> a{
+					font-size: 14px;
+					font-weight: bold;
+					line-height: 1.57;
+					color: #1f4c56;
+					margin-bottom: 10px;
+					display: block;
+				}
+				p{
+					font-size: 14px;
+					height: 60px;
+					overflow: hidden;
+					color: #444444;
+				}
+				.actions {
+					border-bottom: 1px solid #d6d6d6;
+					padding-bottom: 15px;
+					margin-bottom: 15px;
+					overflow: hidden;
+					font-size: 12px;
+  					color: #999999;
+					a {
+						font-size: 12px;
+						margin-left: 20px;
+					}
+
+					.time {
+						margin-top: 2px;
+					}
+					@media (max-width: $screen-sm-max) {
+						.time {
+							width: 100%;
+
+							+ a {
+								margin-left: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+.followers-grid{
+	.follow-item{
+		background-color: rgb(240, 243, 243);
+		box-shadow: none;
+	}
+}

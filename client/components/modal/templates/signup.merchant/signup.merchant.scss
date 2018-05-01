@@ -1,0 +1,30 @@
+.signup-merchant {
+    .other {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid grey;
+        color: grey;
+        line-height: 0.1em;
+        margin: 30px 0 20px;
+        span {
+            background: #fff;
+            padding: 0 10px;
+        }
+    }
+    label {
+        text-transform: capitalize;
+    }
+    .md-button.md-raised {
+        text-transform: uppercase !important;
+    }
+    .map-wrapper {
+        margin-left: 15px;
+        height: 100px;
+        .angular-google-map, .angular-google-map-container {
+            height: 100%;
+            max-height: 100px;
+            width: 100%;
+            max-width: 170px;
+        }
+    }
+}

@@ -1,0 +1,343 @@
+<section id="book-details-container" ui-view>
+	<div class="backgound-cover" style="background-image: url({{::vm.book.image.full || '/assets/images/book_avatar.jpg'}})"></div>
+	<div class="container">
+		<div class="row">
+			<aside class="book-details book-details-left col-md-4 col-sm-5">
+				<ol class="breadcrumb text-uppercase">
+					<li><a ui-sref="main">{{'home' | translate}}</a></li>
+					<li class="active" ui-sref="allbooks.details({id: vm.book._id})">{{::vm.book.title}}</li>
+				</ol>
+				<div class="row">
+					<div class="ratings col-sm-6">
+						<p>{{'rate.book' | translate}}</p>
+						<bookis-rating background="orange" rating="vm.myRate[0].rate" click="vm.updateRating({rating})"></bookis-rating>
+						<div ng-repeat="i in [5,4,3,2,1]">
+							<div class="progress-item">
+								<div class="stars">
+									<i flex="none" class="fa fa-star-o" ng-repeat="star in vm.range(i) track by $index"></i>
+								</div>
+								<span flex="none" class="rate-number">{{vm.ratings[$index]}}</span>
+								<uib-progressbar flex max="100" value="(vm.ratings[$index]/vm.total.rating*100)||0">
+									<span style="color:white; white-space:nowrap;">{{vm.round(vm.ratings[$index]/vm.total.rating*100)+'%'}}</span>
+								</uib-progressbar>
+							</div>
+						</div>
+						<span class="ratings-count">
+               {{vm.total.rating}} {{vm.total.rating === 1 ? 'review' : 'reviews' | translate}}
+             </span>
+					</div>
+					<div class="book-cover main col-sm-6">
+						<img ng-src="{{::vm.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+					</div>
+				</div>
+				<div class="sidebar-block hidden-xs">
+					<h4>{{'suggested.books' | translate}}</h4>
+					<div class="suggested-books">
+						<div class="book-block book-block-medium" ng-repeat="suggestion in vm.suggested track by suggestion._id">
+							<div class="book-cover pointable" ui-sref="allbooks.details({id: suggestion._id})">
+								<img ng-src="{{::suggestion.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+							</div>
+							<div class="book-description">
+								<h3 class="dont-break-out">{{::suggestion.title}}</h3>
+								<div class="rating" ng-if="suggestion.rating.avg">
+									<i class="fa fa-star-o"></i> {{::suggestion.rating.avg | number: 1}}/5
+								</div>
+								<div class="rating" ng-if="!suggestion.rating.avg">
+									<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+								</div>
+								<div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({aid: suggestion.author[0]._id})">{{::suggestion.author[0] | authorName}}</a></div>
+								<div class="price" ng-if="suggestion.sales.length">
+									<span>{{suggestion.sales[0].price  | salePrice}},-</span>
+									<a href="#" class="btn btn-primary">{{'add' | translate}}</a>
+								</div>
+								<div ng-if="!suggestion.sales.length">
+									<p translate="no.sales" translate-value-label="{{'used' | translate}}"></p>
+								</div>
+							</div>
+							<div class="availability clearfix" ng-if="suggestion.sales.length">
+								<div layout="row">
+									<a translate="has.sales" translate-value-label="{{'used' | translate}}" translate-value-len="{{suggestion.sales.length}}"></a>&nbsp;
+									<div translate="from.price" translate-value-price="{{suggestion.sales[0].price | salePrice}}"></div>
+								</div>
+								<div layout="row">
+									<p translate="no.sales" translate-value-label="{{'new' | translate}}"></p>
+								</div>
+							</div>
+							<div class="availability clearfix" ng-if="!suggestion.sales.length">
+								<div>
+									<p translate="no.sales" translate-value-label="{{'used' | translate}}"></p>
+								</div>
+								<div>
+									<p translate="no.sales" translate-value-label="{{'new' | translate}}"></p>
+								</div>
+							</div>
+						</div>
+						<a href="#">{{'view.all.suggestions' | translate}}</a>
+					</div>
+				</div>
+			</aside>
+			<div class="book-details book-details-right col-md-8 col-sm-7">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="book-description">
+							<h1 class="pointable" md-truncate title="{{::vm.book.title}}">{{::vm.book.title}}</h1>
+							<div class="author">{{'by' | translate}} <a ui-sref=".author({aid: vm.book.author[0]._id})">{{::vm.book.author[0] | authorName}}</a></div>
+							<ul class="genres list-unstyled list-inline">
+								<li><a ui-sref="advanced({genres:[vm.book.genre[0]._id]})">{{::vm.book | genres}}</a>, <a ui-sref="advanced({year:vm.book.year})">{{::vm.book.year}}</a></li>
+							</ul>
+							<!--<div class="author"><a ui-sref="advanced({year:vm.book.year})">{{::vm.book.year}}</a></div>-->
+							<div class="rating" ng-if="vm.total.rating">
+								<i class="fa fa-star-o"></i> {{vm.round(vm.average(), 1)}}/5
+							</div>
+							<div class="rating" ng-if="!vm.total.rating">
+								<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+							</div>
+							<div class="summary">
+								<input type="checkbox" name="more" id="more" ng-model="more">
+								<p>{{::vm.book.description}}</p>
+								<label ng-if="!more && vm.book.description.length > 500" for="more">{{'read.more' | translate}}&nbsp;<i class="fa fa-angle-down"></i></label>
+								<label ng-if="more && vm.book.description.length > 500" for="more">{{'read.less' | translate}}&nbsp;<i class="fa fa-angle-up"></i></label>
+							</div>
+						</div>
+					</div>
+					<book-sales book="vm.book" override="vm.override" already-waitinglisted="vm.alreadyWaitinglisted"></book-sales>
+					<div class="book-actions col-xs-12">
+						<button class="btn btn-sm-half btn-default" ng-click="vm.sellBook()">
+							<img src="assets/images/sell-icon-orange.png" srcset="assets/images/sell-icon-orange@2x.png 2x, assets/images/sell-icon-orange@3x.png 3x" alt="Sell Books">
+							{{'sell.book' | translate}}
+						</button>
+						<button class="btn btn-sm-half btn-default btn-toggle" ng-click="vm.addToWishList()" NO-ng-disabled="vm.alreadyWishListed.length" ng-class="{'btn-selected' : vm.alreadyWishListed.length}">
+							<img src="assets/images/heart.png" srcset="assets/images/heart@2x.png 2x, assets/images/heart@3x.png 3x" alt="Wishlist" class="image-inactive">
+							<img src="assets/images/heart-white.png" srcset="assets/images/heart-white@2x.png 2x, assets/images/heart-white@3x.png 3x" alt="Wishlist" class="image-active">
+							{{vm.alreadyWishListed.length ? 'in.wishlist' : 'Wishlist' | translate}}
+						</button>
+						<button class="btn btn-sm-half btn-default btn-toggle"
+							   ng-click="vm.markAsRead()"
+							   NO-ng-disabled="vm.alreadyRead.length"
+							   ng-class="{'btn-selected' : vm.alreadyRead.length}"
+						>
+							<img src="assets/images/checkmark.png" srcset="assets/images/checkmark@2x.png 2x, assets/images/checkmark@3x.png 3x" alt="Have read" class="image-inactive">
+							<img src="assets/images/checkmark-white.png" srcset="assets/images/checkmark-white@2x.png 2x, assets/images/checkmark-white@3x.png 3x" alt="Have read" class="image-active">
+							Have read
+						</button>
+						<span uib-dropdown on-toggle="toggled(open)">
+							<button uib-dropdown-toggle class="btn btn-sm-half btn-default"><img src="assets/images/share-icon-orange.png" srcset="assets/images/share-icon-orange@2x.png 2x, assets/images/share-icon-orange@3x.png 3x" alt="Share Books">{{'share' | translate}}</button>
+							<ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+								<li ng-repeat="social in vm.social">
+								<a socialshare
+									socialshare-provider="{{social.provider}}"
+									socialshare-via="{{social.key}}"
+									socialshare-text="{{vm.book.title}}"
+									socialshare-description="{{vm.book.description}}"
+									socialshare-quote="{{(vm.book.author | authors) + ' ('+vm.book.year+')'}}"
+									socialshare-media="{{'http:'+vm.book.image.full}}"
+									socialshare-type="feed"
+									socialshare-hashtags="#bookis"
+									socialshare-url="{{'https://bookis.com/all-books/' + vm.book._id + '/details'}}">{{::social.provider}}</a>
+								</li>
+							</ul>
+						</span>
+					</div>
+
+					<div class="comments col-xs-12">
+						<h5 class="capitalize">{{'reviews' | translate}}</h5>
+						<div class="ratings-comments">
+							<div ng-if="vm.notReviewed()" class="clearfix">
+								<textarea id="review" cols="20" rows="4" ng-model="vm.review" placeholder="{{'type.your' | translate:{a: 'review'} }}" ng-keydown="($event.ctrlKey || $event.metaKey) && $event.keyCode == 13 && vm.review && vm.reviewBook(vm.review)"></textarea>
+								<div class="time pull-left">
+									<img src="assets/images/calendar-icon.png" srcset="assets/images/calendar-icon@2x.png 2x, assets/images/calendar-icon@3x.png 3x" alt="Calendar">&nbsp;{{::vm.currentTime | date: 'dd MMM yyyy'}} @ {{::vm.currentTime | date: 'HH:MM'}}
+								</div>
+								<button class="btn btn-primary pull-right" ng-click="vm.reviewBook(vm.review)" ng-disabled="!vm.review"><i class="fa fa-angle-right" aria-hidden="true"></i> {{'submit' | translate}}</button>
+							</div>
+							<div class="reviews-container">
+								<div class="review" ng-repeat="review in vm.reviews | orderBy:'-noReplies' track by review._id">
+									<a href="#" class="avatar">
+										<img ng-src="{{::review.user.imageUrl || '/assets/images/avatar.png'}}" alt="Profile">
+									</a>
+									<div class="details">
+										<a href="#" class="review-user">{{::review.user | userName}}</a>
+										<div class="user-stars">
+											<i flex="none" class="fa fa-star" ng-repeat="star in vm.range(review.user.userRating || 0) track by $index"></i>
+											<i flex="none" class="fa fa-star-o" ng-repeat="star in vm.range(5 - review.user.userRating || 0) track by $index"></i>
+										</div>
+										<p>{{::review.review}}</p>
+										<div class="actions">
+											<div class="time pull-left">
+												<img src="assets/images/calendar-icon.png" srcset="assets/images/calendar-icon@2x.png 2x, assets/images/calendar-icon@3x.png 3x" alt="Calendar"> {{::review.createdAt | date: 'dd MMM yyyy'}} @ {{::review.createdAt | date: 'HH:MM'}}
+											</div>
+											<a href="#" ng-if="!review.showReply" ng-click="vm.showReplyPartial(review._id, $index)" ng-disabled="!vm.me()._id">{{'reply' | translate}}</a>
+											<a href="#" ng-if="review.noReplies" ng-click="review.collapsed=!review.collapsed;">
+                        {{review.collapsed ? 'show' : 'hide' | translate}} {{review.noReplies}} {{'replies' | translate}}
+                        <i class="fa fa-rotate-90" ng-class="review.collapsed ? 'fa-angle-right' : 'fa-angle-left'" aria-hidden="true"></i>
+                      </a>
+											<div class="pull-right">
+												<a href="#" ng-click="vm.toggleReviewFlag(review)">
+													<md-tooltip md-delay="500" md-direction="top"><span translate="flag.item" translate-value-item="{{'review' | translate}}"></span></md-tooltip>
+													<i class="fa" ng-class="vm.includes(review.flags, vm.me()._id) ? 'fa-flag' : 'fa-flag-o'" aria-hidden="true"></i> {{review.flags.length}}
+												</a>
+												<a href="#" ng-click="vm.toggleReviewLike(review)">
+													<md-tooltip md-delay="500" md-direction="top"><span translate="like.item" translate-value-item="{{'review' | translate}}"></span></md-tooltip>
+													<i class="fa" ng-class="vm.includes(review.likes, vm.me()._id) ? 'fa-heart' : 'fa-heart-o'" aria-hidden="true"></i> {{review.likes.length}}
+												</a>
+											</div>
+										</div>
+									</div>
+									<!--START ADDED INPUT-->
+									<div class="reply-partial horizontal-collapse clearfix" uib-collapse="!review.showReply">
+										<div>
+											<textarea id="{{'reply'+$index}}" cols="20" rows="3" class="form-control" ng-model="vm.reply" placeholder="{{'type.your' | translate:{a: 'reply'} }}" ng-keydown="($event.ctrlKey || $event.metaKey) && $event.keyCode == 13 && vm.reply && vm.createReply(review)"></textarea>
+											<div class="time pull-left">
+												<img src="assets/images/calendar-icon.png" srcset="assets/images/calendar-icon@2x.png 2x, assets/images/calendar-icon@3x.png 3x" alt="Calendar">&nbsp;{{::vm.currentTime | date: 'dd MMM yyyy'}} @ {{::vm.currentTime | date: 'HH:MM'}}
+											</div>
+											<button class="btn btn-primary pull-right" ng-disabled="!vm.reply || vm.reply.length < 3" ng-click="vm.createReply(review)"><i class="fa fa-angle-right" aria-hidden="true"></i> {{'submit' | translate}}</button>
+											<button class="btn btn-primary pull-right" ng-click="vm.cancelReply(review)">{{'cancel' | translate}}</button>
+
+										</div>
+									</div>
+									<!--END ADDED INPUT-->
+									<div class="horizontal-collapse" uib-collapse="review.collapsed" expanding="vm.expanding(review)" collapsing="vm.collapsing(review)">
+										<div ng-if="review.fetched < review.noReplies" layout="row" layout-align="start center" flex="none" class="read-more">
+											<a ng-click="vm.getReplies(review)">{{'load.more' | translate}}</a>
+										</div>
+										<div class="replays" ng-if="review.replies.length">
+											<div class="replay review" ng-repeat="reply in review.replies | orderBy: 'createdAt' track by reply._id">
+												<a href="#" class="avatar">
+													<img ng-src="{{::reply.user.imageUrl || '/assets/images/avatar.png'}}" alt="Profile">
+												</a>
+												<div class="details">
+													<a href="#">{{::reply.user | userName}}</a>
+													<p>{{::reply.reply}}</p>
+													<div class="actions">
+														<div class="time pull-left">
+															<img src="assets/images/calendar-icon.png" srcset="assets/images/calendar-icon@2x.png 2x, assets/images/calendar-icon@3x.png 3x" alt="Calendar"> {{::reply.createdAt | date: 'dd MMM yyyy'}} @ {{::reply.createdAt | date: 'HH:MM'}}
+														</div>
+														<div class="pull-right">
+															<a href="#" ng-click="vm.toggleReplyFlag(review, reply)">
+																<md-tooltip md-delay="500" md-direction="top"><span translate="flag.item" translate-value-item="{{'reply' | translate}}"></span></md-tooltip>
+																<i class="fa" ng-class="vm.includes(reply.flags, vm.me()._id) ? 'fa-flag' : 'fa-flag-o'" aria-hidden="true"></i> {{reply.flags.length}}
+															</a>
+															<a href="#" ng-click="vm.toggleReplyLike(review, reply)">
+																<md-tooltip md-delay="500" md-direction="top"><span translate="like.item" translate-value-item="{{'reply' | translate}}"></span></md-tooltip>
+																<i class="fa" ng-class="vm.includes(reply.likes, vm.me()._id) ? 'fa-heart' : 'fa-heart-o'" aria-hidden="true"></i> {{reply.likes.length}}
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div ng-if="vm.reviews.length < vm.book.reviews" layout="row" layout-align="start center" flex="none" class="read-more">
+									<a ng-click="vm.getReviews()">{{'load.more' | translate}}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="book-summary col-xs-12">
+						<ul class="list-unstyled">
+							<li><span>{{'age.range' | translate}}:</span>&nbsp;{{::vm.book.audience}}</li>
+							<li><span>{{'grade.level' | translate}}:</span> N/A</li>
+							<li><span>{{'lexile.measure' | translate}}:</span> N/A (<a href="#">What’s this?</a>)</li>
+							<li><span>{{'series' | translate}}:</span> <a href="#">N/A</a></li>
+							<li><span>{{'paperback' | translate}}:</span> N/A</li>
+							<li><span>{{'publisher' | translate}}:</span>&nbsp;{{::vm.book.publisher}}</li>
+							<li><span>{{'language' | translate}}:</span> <a href="#">&nbsp;{{::vm.book.language.join(', ')}}</a></li>
+							<li><span>{{'isbn.10' | translate}}:</span>&nbsp;{{vm.book.isbn.short}}</li>
+							<li><span>{{'isbn.13' | translate}}:</span>&nbsp;{{vm.book.isbn.full}}</li>
+							<li><span>{{'product.dimensions' | translate}}:</span>&nbsp;{{::vm.book.measure | measures}}</li>
+							<li><span>{{'shipping.weight' | translate}}:</span>&nbsp;{{::vm.book.measure.weight ? vm.book.measure.weight + ' grams' : 'N/A'}}</li>
+							<li><span>{{'genre' | translate}}:</span>&nbsp;{{::vm.book | genres}}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="sidebar-block visible-xs">
+				<h4>{{'suggested.books' | translate}}</h4>
+				<div class="suggested-books">
+					<div class="book-block book-block-medium">
+						<div class="book-cover">
+							<img ng-src="{{::vm.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+						</div>
+						<div class="book-description">
+							<h3 class="dont-break-out">{{::vm.book.title}}</h3>
+							<div class="rating" ng-if="vm.total.rating">
+								<i class="fa fa-star-o"></i> {{vm.round(vm.average(), 1)}}/5
+							</div>
+							<div class="rating" ng-if="!vm.total.rating">
+								<i class="fa fa-star-o"></i> No ratings
+							</div>
+							<div class="author">by <a href="#">{{::vm.book.author[0] | authorName}}</a></div>
+							<div class="price">
+								<span>72,-</span>
+								<a href="#" class="btn btn-primary">add</a>
+							</div>
+						</div>
+						<div class="availability clearfix">
+							<div>
+								<a href="#">7 new</a> from 86, -
+							</div>
+							<div>
+								<a href="#">7 new</a> from 86, -
+							</div>
+						</div>
+					</div>
+					<div class="book-block book-block-medium">
+						<div class="book-cover">
+							<img ng-src="{{::vm.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+						</div>
+						<div class="book-description">
+							<h3>{{::vm.book.title}}</h3>
+							<div class="rating" ng-if="vm.total.rating">
+								<i class="fa fa-star-o"></i> {{vm.round(vm.average(), 1)}}/5
+							</div>
+							<div class="rating" ng-if="!vm.total.rating">
+								<i class="fa fa-star-o"></i> No ratings
+							</div>
+							<div class="author">by <a href="#">{{::vm.book.author[0] | authorName}}</a></div>
+							<div class="price">
+								<span>72,-</span>
+								<a href="#" class="btn btn-primary">add</a>
+							</div>
+						</div>
+						<div class="availability clearfix">
+							<div>
+								<a href="#">7 new</a> from 86, -
+							</div>
+							<div>
+								<a href="#">7 new</a> from 86, -
+							</div>
+						</div>
+					</div>
+					<div class="book-block book-block-medium">
+						<a href="#" class="book-cover">
+							<img ng-src="{{::vm.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+						</a>
+						<div class="book-description">
+							<h3><a href="#">{{::vm.book.title}}</a></h3>
+							<div class="rating" ng-if="vm.total.rating">
+								<i class="fa fa-star-o"></i> {{vm.round(vm.average(), 1)}}/5
+							</div>
+							<div class="rating" ng-if="!vm.total.rating">
+								<i class="fa fa-star-o"></i> No ratings
+							</div>
+							<div class="author">by <a href="#">{{::vm.book.author[0] | authorName}}</a></div>
+							<div class="price">
+								<span>72,-</span>
+								<a href="#" class="btn btn-primary">add</a>
+							</div>
+						</div>
+						<div class="availability clearfix">
+							<div>
+								<a href="#">7 new</a> from 86, -
+							</div>
+							<div>
+								<a href="#">7 new</a> from 86, -
+							</div>
+						</div>
+					</div>
+					<a href="#">View all Suggestions</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

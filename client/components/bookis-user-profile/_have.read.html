@@ -1,0 +1,50 @@
+<!-- <div layout="row" layout-wrap ng-if="vm.bookshelf.length">
+     <div ng-repeat="book in vm.bookshelf track by book._id" flex="25">
+          <book-panel book="book.book" layout="column" layout-align="center center"></book-panel>
+     </div>
+</div>
+<div ng-if="!vm.bookshelf.length">
+     {{'no.read' | translate}}
+</div> -->
+
+<div class="book-list-holder">
+	<div class="book-list">
+		<ul class="book-list-head list-inline list-unstyled hidden-xs">
+			<li class="fl-b-5"></li>
+			<li class="fl-b-40">{{'title' | translate}}</li>
+			<li class="fl-b-15">{{'price' | translate}}</li>
+			<li class="fl-b-10">Rate</li>
+			<li class="fl-b-30"></li>
+		</ul>
+		<div class="form-group visible-xs">
+			<label class="control-label">{{'sort.by' | translate}}:</label>
+			<bookis-select model="bs.format" options="bs.appConfig.books.formats" change="bs.formatChanged()" placeholder="Select format"></bookis-select>
+		</div>
+		<div class="book-list-body">
+			<div class="book-list-item" ng-repeat="book in vm.bookshelf track by book._id">
+				<div class="fl-b-5 book-title" ui-sref="allbooks.details({id: hit.objectID})">
+					<div class="book-cover">
+						<img ui-sref="allbooks.details({id: book.book._id})" ng-src="{{::book.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image"  alt="book image">
+					</div>
+				</div>
+				<div class="fl-b-40 book-name">
+					<a ui-sref="allbooks.details({id: hit.objectID})">{{::book.book.title}}</a>
+					<div class="book-author">
+						by <a ui-sref="allbooks.details.author({aid: book.book.author[0]._id})">{{::book.book.author | authors}}</a>
+					</div>
+				</div>
+				<div class="fl-b-15 book-price">
+					{{::book.book.price.amount | number}},-
+				</div>
+				<div class="fl-b-10 book-rating">
+					<i class="fa" ng-class="book.book.userRating ? 'fa-star' : 'fa-star-o'" aria-hidden="true" ng-click="vm.rateBook(book.book)"></i>
+					<span>{{book.book.rating.avg}}/5</span>
+				</div>
+				<div class="fl-b-30 book-actions">
+					<md-button class="btn btn-default" ng-click="vm.rateBook(book.book)">Review Book</md-button>
+					<md-button class="btn btn-primary" ng-click="vm.sellBook(book)">Sell</md-button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

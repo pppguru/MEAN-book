@@ -1,0 +1,105 @@
+<md-whiteframe ng-if="vm.showSelectedFilters" class="bookis-filters selected-filters">
+	<collapsible-filter-item i-title="'current filters'" collapsed="vm.collapsed.currentFilters">
+		<div ng-if="vm.selected.ages"><strong>{{'ages' | translate}}</strong> : {{vm.selected.ages.length ? vm.selected.ages.join(', ') : 'All'}}</div>
+		<div ng-if="vm.selected.genres"><strong>{{'genres' | translate}}</strong> : {{vm.selected.genres.length ? vm.selected.genres.join(', ') : 'All'}}</div>
+		<div ng-if="vm.selected.categories"><strong>{{'categories' | translate}}</strong> : {{vm.selected.categories.length ? vm.selected.categories.join(', ') : 'All'}}</div>
+		<div ng-if="vm.selected.condition"><strong>{{'conditions' | translate}}</strong> : {{vm.selected.condition.length ? vm.selected.condition.join(',') : 'All'}}</div>
+		<div ng-if="vm.selected.formats"><strong>{{'format' | translate}}</strong> : {{vm.selected.formats.length ? vm.selected.formats.join(', ') : 'All'}}</div>
+		<div ng-if="vm.selected.rate"><strong>{{'rating' | translate}}</strong> : {{vm.selected.formats ? vm.selected.rate.min + ' - ' + vm.selected.rate.max : 'All'}}</div>
+		<div ng-if="vm.selected.year"><strong>{{'year' | translate}}</strong> : {{vm.selected.year.length ? vm.selected.year.join(', ') : 'All'}}</div>
+	</collapsible-filter-item>
+</md-whiteframe>
+
+<div class="clear-filters" ng-if="vm.showClearFilters() && ('advanced' | isState)" ng-click="vm.clearFilters();vm.instant()">Clear filters</div>
+
+<md-whiteframe class="bookis-filters">
+	<div ng-if="vm.allActions" class="all-actions" layout="row" layout-align="space-between center" flex="none">
+		<div>{{'filter.by' | translate}}</div>
+		<div layout layout-align="center center">
+			<a ng-click="vm.toggleAll(true)">{{'collapse.all' | translate}}</a>&nbsp;/&nbsp;
+			<a ng-click="vm.toggleAll(false)">{{'expand all' | translate}}</a>
+		</div>
+	</div>
+
+	<collapsible-filter-item i-title="'Availability'" collapsed="vm.collapsed.available" ng-if="vm.selected.available">
+		<md-checkbox ng-checked="vm.selected.available.checked" ng-click="vm.selected.available.checked = !vm.selected.available.checked;vm.instant()">
+			<span>Show only available books</span>
+		</md-checkbox>
+	</collapsible-filter-item>
+
+	<collapsible-filter-item i-title="'price'" collapsed="vm.collapsed.price" ng-show="vm.selected.price.max">
+		<bookis-slider values="vm.selected.price" options="vm.options.price" inputs="'kr'"></bookis-slider>
+	</collapsible-filter-item>
+
+	<collapsible-filter-item i-title="'format'" collapsed="vm.collapsed.formats" ng-if="vm.selected.formats">
+		<div class="clearfix buttons-toggle" layout="row" layout-align="start">
+			<div ng-repeat="format in vm.formats" flex="none">
+				<md-checkbox class="formats" ng-checked="vm.selected.formats.indexOf(format) >= 0" ng-click="vm.toggleArray(format, vm.selected.formats, true);vm.instant()">
+					<span class="for">{{format}}</span>
+				</md-checkbox>
+			</div>
+		</div>
+	</collapsible-filter-item>
+
+	<collapsible-filter-item i-title="'age'" collapsed="vm.collapsed.ages" ng-if="vm.selected.ages">
+		<div ng-repeat="age in vm.ages">
+			<md-checkbox ng-checked="vm.selected.ages.indexOf(age) >= 0" ng-click="vm.toggleArray(age, vm.selected.ages);vm.instant()">
+				<span>{{age}}</span>
+			</md-checkbox>
+		</div>
+	</collapsible-filter-item>
+
+	<collapsible-filter-item i-title="'popular categories'" collapsed="vm.collapsed.categories" ng-if="vm.selected.categories">
+		<div ng-repeat="category in vm.categories">
+			<md-checkbox ng-checked="vm.selected.categories.indexOf(category) >= 0" ng-click="vm.toggleArray(category, vm.selected.categories);vm.instant()">
+				<span>{{category}}</span>
+			</md-checkbox>
+		</div>
+	</collapsible-filter-item>
+
+	<collapsible-filter-item i-title="'rating'" collapsed="vm.collapsed.rate" ng-show="vm.selected.rate.max">
+		<bookis-slider values="vm.selected.rate" options="vm.options.rate" inputs="false"></bookis-slider>
+	</collapsible-filter-item>
+
+	<collapsible-filter-item i-title="'delivery method'" collapsed="vm.collapsed.delivery" ng-if="vm.selected.delivery">
+		<!--<md-radio-group ng-model="vm.selected.delivery" ng-change="vm.instant()">-->
+			<!--<md-radio-button value="shipping">Shipping only</md-radio-button>-->
+			<!--<md-radio-button value="meetup">Meetup only</md-radio-button>-->
+			<!--<md-radio-button value="both">Both</md-radio-button>-->
+		<!--</md-radio-group>-->
+		<div ng-repeat="delivery in vm.deliveries">
+			<md-checkbox ng-checked="vm.selected.delivery.indexOf(delivery) >= 0" ng-click="vm.toggleArray(delivery, vm.selected.delivery, true);vm.instant()">
+				<span>{{delivery}}</span>
+			</md-checkbox>
+		</div>
+	</collapsible-filter-item>
+
+	<collapsible-filter-item i-title="'condition'" collapsed="vm.collapsed.condition" ng-if="vm.selected.conditions">
+		<div ng-repeat="condition in vm.conditions">
+			<md-checkbox ng-checked="vm.selected.conditions.indexOf(condition) >= 0" ng-click="vm.toggleArray(condition, vm.selected.conditions);vm.instant()">
+				<span>{{condition}}</span>
+			</md-checkbox>
+		</div>
+	</collapsible-filter-item>
+
+	<collapsible-filter-item i-title="'buying option'" collapsed="vm.collapsed.buying" ng-if="vm.selected.buying">
+		<div ng-repeat="buying in vm.buyings">
+			<md-checkbox ng-checked="vm.selected.buying.indexOf(buying) >= 0" ng-click="vm.toggleArray(buying, vm.selected.buying);vm.instant()">
+				<span>{{buying}}</span>
+			</md-checkbox>
+		</div>
+	</collapsible-filter-item>
+
+	<collapsible-filter-item i-title="'year (published)'" collapsed="vm.collapsed.year" ng-show="vm.selected.year.max">
+		<bookis-slider values="vm.selected.year" options="vm.options.year" inputs="' '"></bookis-slider>
+	</collapsible-filter-item>
+
+	<collapsible-filter-item i-title="'genres'" collapsed="vm.collapsed.genres" ng-if="vm.selected.genres">
+		<div ng-repeat="genre in vm.genres">
+			<md-checkbox ng-checked="vm.selected.genres.indexOf(genre._id) >= 0" ng-click="vm.toggleArray(genre._id, vm.selected.genres);vm.instant()">
+				<span>{{genre.no}}</span>
+			</md-checkbox>
+		</div>
+	</collapsible-filter-item>
+
+</md-whiteframe>

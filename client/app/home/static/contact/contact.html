@@ -1,0 +1,116 @@
+<div id="contacts" class="static-content col-sm-8">
+     <h1>Contact</h1>
+     <div class="row">
+		<div class="col-lg-9">
+			<ul class="contact-list list-unstyled">
+				<li>
+					<div class="list-left">
+						<div class="icon-holder">
+							<img src="assets/images/message-icon-small.png" srcset="assets/images/message-icon-small@2x.png 2x, assets/images/message-icon-small@3x.png 3x" alt="Contacts icons">
+						</div>
+						General:
+					</div>
+					<div class="list-right">
+						<a href="mailto:welcome@bookis.com">welcome@bookis.com</a>
+					</div>
+				</li>
+				<li>
+					<div class="list-left">
+						<div class="icon-holder">
+							<img src="assets/images/sales-icon-small.png" srcset="assets/images/sales-icon-small@2x.png 2x, assets/images/sales-icon-small@3x.png 3x" alt="Contacts icons">
+						</div>
+						Sales:
+					</div>
+					<div class="list-right">
+						<a href="mailto:magnus@bookis.com">magnus@bookis.com</a>
+					</div>
+				</li>
+				<li>
+					<div class="list-left">
+						<div class="icon-holder">
+							<img src="assets/images/microphone-icon.png" srcset="assets/images/microphone-icon@2x.png 2x, assets/images/microphone-icon@3x.png 3x" alt="Contacts icons">
+						</div>
+						Press:
+					</div>
+					<div class="list-right">
+						<a href="mailto:amw@bookis.com">amw@bookis.com</a>
+					</div>
+				</li>
+				<li>
+					<div class="list-left">
+						<div class="icon-holder">
+							<img src="assets/images/cell-phone-icon.png" srcset="assets/images/cell-phone-icon@2x.png 2x, assets/images/cell-phone-icon@3x.png 3x" alt="Contacts icons">
+						</div>
+						Phone:
+					</div>
+					<div class="list-right">
+						<a href="tel:+4748583235">+47 485 83 235</a>
+					</div>
+				</li>
+				<li>
+					<div class="list-left">
+						<div class="icon-holder">
+							<img src="assets/images/marker-icon.png" srcset="assets/images/marker-icon@2x.png 2x, assets/images/marker-icon@3x.png 3x" alt="Contacts icons">
+						</div>
+						Adress:
+					</div>
+					<div class="list-right">
+						Boks 1072 Blindern NO-0316
+					</div>
+				</li>
+			</ul>
+
+			<div class="map-wrapper">
+				<div style="color:white" ng-if="!vm.user.address.coordinates[0]">
+					{{'no.location' | translate}}
+				</div>
+				<ui-gmap-google-map
+					ng-if="vm.user.address.coordinates[0]"
+					center="vm.user.address.coordinates"
+					zoom="13" options="vm.mapOptions">
+					<ui-gmap-marker coords="vm.user.address.coordinates"
+								 options="vm.markerOptions" idkey="0">
+					</ui-gmap-marker>
+				</ui-gmap-google-map>
+			</div>
+
+			<div class="contact-form">
+				<form class="" action="index.html" method="post">
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label class="control-label" for="firsName"><i>*</i>First Name:</label>
+							<div>
+								<input id="firsName" type="text" name="firstName" placeholder="Alex" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group col-sm-6">
+							<label class="control-label" for="LastName"><i>*</i>Lasts Name:</label>
+							<div>
+								<input id="LastName" type="text" name="lastName" placeholder="Willsen" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group col-sm-8">
+							<label class="control-label" for="email"><i>*</i>E-mail:</label>
+							<div>
+								<input id="email" type="email" placeholder="alexwillsen@microsoft.io" name="email" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group col-sm-7">
+							<label class="control-label" for="phone"><i>*</i>Phone:</label>
+							<div>
+								<input id="phone" type="phone" name="phone"  placeholder="+7 (960) 499-93-33" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group col-sm-12">
+							<label class="control-label" for="subject"><i>*</i>Subject:</label>
+							<div>
+								<textarea name="subject" id="subject" cols="20" rows="5" class="form-control" placeholder="Type your comment here"></textarea>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-primary" type="button" name="button">Submit form</button>
+				</form>
+			</div>
+		</div>
+     </div>
+</div>

@@ -1,0 +1,68 @@
+<div layout="row" class="fast-buy-modal">
+     <div flex="none" class="img-section">
+          <img ng-src="{{::modal.data.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+     </div>
+     <div flex layout="column">
+          <div layout="row">
+               <div flex="50">
+                    <div layout="row" layout-align="start center">
+                         <div class="title">{{::modal.data.book.title}}</div>
+                         <span class="year">({{::modal.data.book.year}})</span>
+                    </div>
+                    <div class="author">{{::modal.data.book.author}}</div>
+                    <div class="genre">{{::modal.data.book.genre || 'genre'}}</div>
+                    <div layout="row" class="rating-reviews">
+                         <div flex="60" layout layout-align="space-between center">
+                              <div layout="row" flex="none" layout-align="start center">
+                                   <div layout="row" layout-align="start end">
+                                        <div class="avg">{{::modal.data.book.rating.avg | number: 1}}</div>
+                                        <div>/5</div>
+                                   </div>
+                                   <i class="fa fa-star"></i>
+                              </div>
+                              <div class="meta" flex="none">{{::modal.data.book.rating.votes}} ratings & {{::modal.data.book.reviews}} reviews</div>
+                         </div>
+                    </div>
+               </div>
+               <div flex="50" layout="row" layout-align="center center">
+                    <div class="user-image" flex="none">
+                         <img ng-src="{{::modal.data.book.user.imageUrl || '/assets/images/avatar.png'}}" alt="user image">
+                    </div>
+                    <div flex>
+                         <h4>{{::modal.data.book.user | userName}}</h4>
+                         <div class="info">
+                              <span ng-if="modal.data.book.user.address.coordinates.length">{{::(modal.data.book.user.address.city + ', ' + modal.data.book.user.address.country)}}</span>
+                              <span ng-if="!modal.data.book.user.address.coordinates.length">Location not available</span>
+                         </div>
+                         <div class="info">Member since {{::modal.data.book.user.createdAt | date: 'dd MMM, yyyy'}}</div>
+                         <div class="about">{{::modal.data.book.user.about}}</div>
+                    </div>
+
+               </div>
+          </div>
+
+          <md-divider></md-divider>
+          <div layout="row" class="buttons">
+               <div layout="row" flex layout-align="space-between" class="other-info">
+                    <div flex="none">
+                         <p>Seller Rating (120)</p>
+                         <span class="number">4.3</span>/5
+                         <i class="fa fa-star"></i>
+                    </div>
+                    <div flex="40">
+                         <p>Availability on request</p>
+                         <uib-progressbar flex max="100" value="modal.data.stats.availability">
+                              <span style="color:white; white-space:nowrap;">{{modal.data.stats.availability}}%</span>
+                         </uib-progressbar>
+                    </div>
+                    <div  flex="none">
+                         <p>Expected response time</p>
+                         <div>{{modal.data.stats.getResponseString()}}</div>
+                    </div>
+               </div>
+          </div>
+          <md-divider></md-divider>
+          <div class="comment">{{::modal.data.book.comment || 'N/A'}}</div>
+
+     </div>
+</div>

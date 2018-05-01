@@ -1,0 +1,9 @@
+<div layout layout-align="center center" flex="">
+     <webcam on-streaming="modal.onSuccess()" channel="modal.data.channel"></webcam>
+</div>
+
+<div layout="row" layout-align="end end" flex>
+     <md-button class="md-raised md-primary update" ng-click="modal.makeSnapshot()">
+          Take Image
+     </md-button>
+</div>

@@ -1,0 +1,46 @@
+$screen-xs: 480px;
+$screen-sm: 786px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+
+$container-tablet: (720px + $grid-gutter-width);
+$container-desktop: (940px + $grid-gutter-width);
+$container-large-desktop: (1150px + $grid-gutter-width);
+
+
+
+
+
+$color-primary: #ff5722;
+$color-secondary: #383940;
+$color-border: #ccc;
+$color-title: #1f4c56;
+
+$bookis-colors: (
+    primary: (
+        base: $color-primary,
+        light: lighten($color-primary, 15%),
+        dark: darken($color-primary, 15%),
+        trans: transparentize($color-primary, 0.5)
+    ),
+    secondary: (
+        base: $color-secondary,
+        light: lighten($color-secondary, 15%),
+        dark: darken($color-secondary, 15%),
+        trans: transparentize($color-secondary, 0.5),
+    ),
+    border: (
+        base: $color-border,
+        light: lighten($color-border, 30%),
+    )
+);
+
+@function color($color-name, $color-variant:null) {
+// color variant is optional
+    @if ($color-variant != null) {
+        // map inception
+    @return map-get(map-get($bookis-colors, $color-name), $color-variant);
+    } @else {
+    @return map-get($bookis-colors, $color-name);
+    }
+}

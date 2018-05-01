@@ -1,0 +1,54 @@
+.kids {
+    h1,
+    h2 {
+        @extend .heading-main;
+    }
+
+    aside {
+        display: block;
+        .active {
+            opacity: 1 !important;
+        }
+    }
+
+    .kids-section {
+        z-index: 10;
+        background-color: white;
+        padding-left: 100px;
+
+        @media (max-width: $screen-sm-max) {
+            padding-left: 40px;
+        }
+    }
+//     REMOVE LATER!!! #refactor
+		.book-description .rating {
+			margin-bottom: 5px;
+			font-size: 16px;
+			line-height: 1.2;
+			.fa {
+				line-height: 1.2;
+				font-size: 16px;
+				margin-right: 5px;
+			}
+		}
+		.book-name {
+			display: block;
+			height: 40px;
+			width: 100%;
+			overflow: hidden;
+			margin-bottom: 30px;
+		}
+
+}
+
+// .kids-section {
+// 	z-index: 10;
+// 	background-color: white;
+// 	padding-left: 100px;
+//
+// 	@media (max-width: $screen-xs-max) {
+// 		.kids-section {
+// 			padding-left: 15px;
+// 		}
+// 	}
+// }

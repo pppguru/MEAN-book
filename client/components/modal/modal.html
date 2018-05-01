@@ -1,0 +1,20 @@
+<div class="modal-header text-center">
+     <div ng-if="modal.dismissable" class="modal-close-icon" layout="column" layout-align="center center" flex="none">
+          <md-icon ng-click="$dismiss($event)" flex
+                   md-svg-src="assets/svg/close.svg" aria-label="modal-close"></md-icon>
+     </div>
+	<img ng-if="!modal.hideLogo" src="assets/images/bookis-logo-orange.png" srcset="assets/images/bookis-logo-orange@2x.png 2x, assets/images/bookis-logo-orange@3x.png 3x" alt="logo orange">
+
+     <!--<button ng-if="modal.dismissable" type="button" ng-click="$dismiss($event)" class="close">&times;</button>-->
+     <h4 md-truncate ng-if="modal.data.title || modal.title" class="modal-title">{{modal.data.title || modal.title | translate }}</h4>
+     <p ng-if="modal.data.description|| modal.description" class="modal-description"> {{modal.data.description|| modal.description | translate }}</p>
+</div>
+<div class="modal-body">
+     <p ng-if="modal.text" ng-bind="modal.text"></p>
+     <!--<div ng-if="modal.html" compile="modal.html"></div>-->
+     <div ng-if="modal.html" ng-include="modal.html"></div>
+</div>
+<!--<div class="modal-footer">-->
+     <!--<button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)"-->
+             <!--ng-bind="button.text" class="btn"></button>-->
+<!--</div>-->

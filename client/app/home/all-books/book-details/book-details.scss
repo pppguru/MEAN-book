@@ -1,0 +1,766 @@
+#book-details-container {
+	.user-stars {
+		margin-bottom: 5px;
+
+		.fa-star,
+		.fa-star-o {
+			color: grey;
+		}
+	}
+
+	.review-user {
+		margin-bottom: 0;
+	}
+
+	.backgound-cover {
+		background-repeat: no-repeat;
+		background-size: cover;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		border: 0;
+		width: 50%;
+		height: 100%;
+
+		&:after {
+			content: '';
+			background-color: $color-primary;
+			display: block;
+			opacity: 0.94;
+			height: 100%;
+			width: 100%;
+		}
+		@media (max-width: $screen-xs-max) {
+			width: 100%;
+		}
+	}
+
+	> .container {
+		> .row {
+			display: flex;
+			@media (max-width: $screen-xs-max) {
+				display: block;
+			}
+		}
+	}
+
+	aside.book-details {
+		> .row {
+			@media (max-width: $screen-xs-max) {
+				display: flex;
+				flex-direction: column-reverse;
+
+				.ratings {
+					padding: 30px 100px;
+				}
+			}
+			@media (max-width: $screen-xs-min) {
+				.ratings {
+					padding: 30px;
+				}
+			}
+		}
+	}
+
+	.book-details {
+		min-height: 600px;
+
+		&-left {
+			z-index: 10;
+
+			.book-cover.main {
+				img {
+					width: 130%;
+					left: 15px;
+				}
+
+				&:before {
+					padding-top: 85%;
+				}
+				@media (max-width: $screen-xs-max) {
+					&:before {
+						display: none;
+					}
+
+					img {
+						position: relative;
+						left: 0;
+						width: 100%;
+					}
+				}
+			}
+
+			.ratings {
+				> p {
+					font-size: 14px;
+					font-weight: bold;
+					line-height: 1.43;
+					letter-spacing: 2px;
+					color: #ffffff;
+					text-transform: uppercase;
+				}
+
+				.ratings-count {
+					opacity: 0.7;
+					font-family: 'Fira Sans', sans-serif;
+					font-size: 12px;
+					line-height: 1.67;
+					color: #ffffff;
+				}
+
+				.progress-item {
+					color: white;
+
+					.stars {
+						float: left;
+						font-size: 16px;
+						letter-spacing: 4px;
+					}
+
+					.rate-number {
+						float: right;
+					}
+
+					.progress {
+						clear: both;
+						height: 2px;
+						border-radius: 3px;
+						background-color: #d42d00;
+						margin-bottom: 10px;
+
+						.progress-bar {
+							height: 2px;
+							border-radius: 3px;
+							background-color: #ffffff;
+						}
+					}
+				}
+			}
+		}
+
+		&-right {
+			background-color: white;
+			padding-top: 90px;
+			padding-left: 95px;
+
+			h1 {
+				margin-top: 0;
+				max-height: 80px;
+				white-space: normal;
+				overflow: hidden;
+				cursor: auto;
+			}
+
+			.book-description {
+				margin-bottom: 25px;
+				padding-right: 30px;
+				float: none;
+			}
+
+			.book-summary {
+				margin-top: 20px;
+
+				ul {
+					background-color: #f0f3f3;
+					padding: 20px 30px;
+					column-count: 2;
+				}
+
+				li {
+					font-size: 12px;
+					line-height: 2.08;
+					color: #000000;
+					text-transform: capitalize;
+					span {
+						color: #555555;
+					}
+				}
+				@media (max-width: $screen-sm-max) {
+					ul {
+						column-count: 1;
+					}
+				}
+				@media (max-width: $screen-xs-max) {
+					ul {
+						column-count: 2;
+					}
+				}
+				@media (max-width: $screen-xs-min) {
+					ul {
+						column-count: 1;
+					}
+				}
+			}
+
+			.book-actions {
+				margin-top: 25px;
+
+				.btn:not(:last-child) {
+					margin-right: 7px;
+					margin-bottom: 10px;
+				}
+
+				@media (max-width: $screen-xs-max) {
+					text-align: center;
+				}
+			}
+
+			.variants {
+				h4 {
+					font-family: 'PT Serif', serif;
+					font-size: 20px;
+					font-weight: bold;
+					line-height: 1;
+					margin-top: 30px;
+				}
+
+				> .row .col-xs-6 {
+					@media (max-width: $screen-xs-min) {
+						width: 100%;
+					}
+				}
+
+				.all-sellers {
+					border-top: 1px solid #d6d6d6;
+					display: block;
+					font-size: 12px;
+					padding: 15px 0;
+					margin-top: 20px;
+				}
+			}
+			@media (max-width: $screen-xs-max) {
+				padding-left: 15px;
+				padding-top: 20px;
+
+				.variants{
+					.all-sellers{
+						padding-left: 15px;
+						padding-right: 15px;
+					}
+				}
+			}
+		}
+	}
+
+	.sidebar-block {
+		margin-top: 60px;
+
+		h4 {
+			font-size: 14px;
+			font-weight: bold;
+			line-height: 1.43;
+			letter-spacing: 2px;
+			color: #ffffff;
+			text-transform: uppercase;
+		}
+
+		.suggested-books {
+			padding-top: 20px;
+			padding-right: 25px;
+			padding-bottom: 100px;
+
+			.book-block {
+				&-medium {
+					@media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+						.btn {
+							width: 100%;
+							margin-top: 5px;
+						}
+					}
+				}
+			}
+
+			> a {
+				opacity: 0.7;
+				font-size: 12px;
+				line-height: 1.67;
+				color: #ffffff;
+			}
+		}
+		@media (max-width: $screen-xs-max) {
+			padding: 0 15px;
+			position: relative;
+
+			.suggested-books {
+				padding-right: 0;
+			}
+		}
+	}
+	@media (max-width: $screen-md-max) {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.carousel {
+	.book-variant {
+		padding-bottom: 15px;
+		overflow: hidden;
+	}
+
+	.carousel-inner {
+		width: auto;
+	}
+
+	.carousel-control {
+		color: #999999;
+		background-image: none;
+		line-height: 50px;
+		text-shadow: none;
+		width: 15px;
+
+		&.left {
+			left: -15px;
+			text-align: left;
+		}
+
+		&.right {
+			right: -15px;
+			text-align: right;
+		}
+	}
+}
+// SCSS FOR BOOK BLOCK COMPONENT
+
+.book-description {
+	float: left;
+	position: relative;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: 'PT Serif', serif;
+		font-weight: bold;
+		line-height: 1.1;
+
+		a {
+			color: $color-title;
+		}
+	}
+
+	h3 {
+		font-size: 20px;
+		margin-bottom: 5px;
+	}
+
+	.rating {
+		color: $color-title;
+		margin-bottom: 18px;
+		font-size: 14px;
+		font-weight: 400;
+
+		i {
+			font-size: 24px;
+			vertical-align: middle;
+		}
+	}
+
+	.author {
+		margin-bottom: 10px;
+	}
+
+	.genres {
+		margin-bottom: 18px;
+
+		li {
+			padding-right: 0;
+
+			a {
+				font-size: 12px;
+			}
+
+			&:not(:last-child) {
+				a:after {
+					content: ',';
+				}
+			}
+		}
+	}
+
+	.author {
+		color: $color-title;
+		font-size: 12px;
+
+		a {
+			text-decoration: none;
+			border-bottom: 1px solid rgba(30, 129, 151, 0.3);
+		}
+	}
+
+	.summary {
+		margin-top: 25px;
+		padding-bottom: 30px;
+
+		p {
+			max-height: 240px;
+			overflow: hidden;
+			font-size: 14px;
+			color: #444444;
+			transition: max-height 0.5s;
+			margin-bottom: 0;
+		}
+
+		label {
+			position: absolute;
+			bottom: 0;
+			cursor: pointer;
+			font-size: 12px;
+			color: #1e8197;
+			font-weight: normal;
+			text-decoration: underline;
+
+			span {
+				&:last-child {
+					display: none;
+				}
+
+				&:first-child {
+					display: block;
+				}
+			}
+			@media (max-width: $screen-xs-max) {
+				padding-top: 20px;
+			}
+		}
+
+		input {
+			display: none;
+
+			&:checked {
+				~ label {
+					i:before {
+						content: '\f106';
+					}
+				}
+
+				+ p {
+					max-height: 600px!important;
+					transition: max-height 1s;
+				}
+			}
+		}
+	}
+}
+
+.book-cover {
+	position: relative;
+
+	&:before {
+		content: '';
+		display: block;
+		padding-bottom: 140%;
+	}
+
+	&:after {
+		content: '';
+		display: block;
+		width: 15px;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 25px;
+		opacity: 0.63;
+		background-image: linear-gradient(to right, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+	}
+
+	img {
+		border-radius: 2px;
+		-webkit-box-shadow: 0 37px 45px -24px rgba(65, 42, 35, 0.75);
+		-moz-box-shadow: 0 37px 45px -24px rgba(65, 42, 35, 0.75);
+		box-shadow: 0 37px 45px -24px rgba(65, 42, 35, 0.75);
+		height: 100%;
+		width: 100%;
+	}
+
+	 > a,
+	> img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	}
+}
+
+.book-block {
+	background-color: white;
+	border-radius: 3px;
+
+	&-medium {
+		margin-bottom: 40px;
+
+		.book-description {
+			width: 65%;
+			padding-left: 37px;
+			padding-right: 20px;
+			padding-bottom: 20px;
+
+			h3 {
+				width: 100%;
+			}
+
+			.btn {
+				float: right;
+				margin-top: 3px;
+				padding: 10px 15px;
+			}
+
+			.price {
+				margin-top: 10px;
+				font-size: 36px;
+				font-weight: 300;
+				line-height: 1.11;
+				color: #000000;
+			}
+		}
+
+		.book-cover {
+			width: 35%;
+			float: left;
+
+			img {
+				margin: 0 20px;
+				transform: translateY(-20px);
+				width: 100%;
+				-webkit-box-shadow: 0 19px 45px -15px rgba(65, 42, 35, 0.75);
+				box-shadow: 0 19px 45px -15px rgba(65, 42, 35, 0.75);
+			}
+
+			&:after {
+				position: absolute;
+				top: -20px;
+				bottom: 20px;
+			}
+		}
+
+		.availability {
+			display: block;
+			width: 100%;
+			padding: 10px 20px;
+			clear: both;
+			border-top: 1px solid #d6d6d6;
+
+			> div {
+				font-size: 12px;
+				color: #444444;
+				float: left;
+				width: 50%;
+			}
+		}
+	}
+}
+// SCSS for comments component
+
+.comments {
+	margin-top: 40px;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: 'PT Serif', serif;
+		font-size: 20px;
+		font-weight: bold;
+		line-height: 1;
+		margin-bottom: 15px;
+	}
+
+	textarea {
+		margin-bottom: 10px;
+	}
+
+	.time {
+		font-size: 12px;
+		color: #999999;
+
+		img {
+			width: 13px;
+			vertical-align: text-top;
+		}
+	}
+
+	.reviews-container {
+		margin-top: 30px;
+
+		.review {
+			.avatar {
+				border-radius: 50%;
+				float: left;
+
+				img {
+					height: 50px;
+					width: 50px;
+					border-radius: 50%;
+				}
+			}
+
+			.details {
+				margin-left: 60px;
+
+				> a {
+					font-size: 14px;
+					font-weight: bold;
+					line-height: 1.57;
+					margin-bottom: 10px;
+					display: block;
+				}
+
+				p {
+					font-size: 14px;
+					color: #444444;
+				}
+
+				.actions {
+					border-bottom: 1px solid #d6d6d6;
+					padding-bottom: 15px;
+					margin-bottom: 15px;
+					overflow: hidden;
+
+					a {
+						font-size: 12px;
+						margin-left: 20px;
+					}
+
+					.time {
+						margin-top: 2px;
+					}
+					@media (max-width: $screen-sm-max) {
+						.time {
+							width: 100%;
+
+							+ a {
+								margin-left: 0;
+							}
+						}
+					}
+				}
+			}
+
+			.replays {
+				border-bottom: 1px solid #d6d6d6;
+				margin-bottom: 15px;
+			}
+
+			&.replay {
+				padding-left: 60px;
+
+				&:last-child {
+					.actions {
+						border-bottom: 0;
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+	}
+
+	.btn-primary {
+		float: right;
+		background-color: $color-title;
+		-webkit-box-shadow: 0 6px 20px -6px rgba(31, 76, 86, 0.75);
+		box-shadow: 0 6px 20px -6px rgba(31, 76, 86, 0.75);
+	}
+
+	.reply-partial {
+		.btn {
+			margin-left: 15px;
+
+			&:hover,
+			&:hover:active {
+				background-color: $color-title + #111111;
+			}
+		}
+	}
+}
+
+.breadcrumb {
+	font-family: 'Fira Sans', sans-serif;
+	height: 20px;
+	margin: 30px 0 40px;
+	padding: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: white;
+
+	li {
+		font-size: 12px;
+		display: inline;
+
+		+ li:before {
+			color: white;
+		}
+
+		&:before,
+		a {
+			color: white;
+			opacity: 0.7;
+			line-height: 1.67;
+		}
+
+		&.active,
+		&.active a {
+			opacity: 1;
+		}
+	}
+}
+// SCSS FOR VARIANTS
+
+.book-variant {
+	> span {
+		font-size: 36px;
+		font-weight: 300;
+		line-height: 1.11;
+		float: left;
+	}
+
+	.btn {
+		width: 100%;
+		margin-top: 10px;
+	}
+
+	.avatar {
+		float: left;
+
+		> a {
+			&:first-child {
+				float: left;
+				margin-right: 10px;
+			}
+
+			&:nth-child(2) {
+				color: $color-title;
+				float: none;
+				width: 100%;
+				display: block;
+				font-size: 12px;
+				font-weight: bold;
+
+				span {
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
+			}
+
+			&.location {
+				img {
+					height: 16px;
+					width: auto;
+				}
+			}
+		}
+
+		img {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+		}
+	}
+}

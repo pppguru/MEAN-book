@@ -1,0 +1,12 @@
+<div id="following">
+	<div class="col-xs-3" ng-repeat="person in vm.me.following | filter: pe.searchText track by person._id">
+		<md-whiteframe class="person-tile">
+			<follow-panel type="user" data="person" unfollow="vm.unfollow({_id, type})" controls="true"></follow-panel>
+		</md-whiteframe>
+	</div>
+	<div class="col-xs-3" ng-repeat="author in vm.me.followingAuthors | filter: pe.searchText track by author._id">
+		<md-whiteframe class="person-tile">
+			<follow-panel type="author" data="author" unfollow="vm.unfollow({_id, type})" controls="true"></follow-panel>
+		</md-whiteframe>
+	</div>
+</div>

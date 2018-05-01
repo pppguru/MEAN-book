@@ -1,0 +1,70 @@
+#about-me {
+    .profile-image {
+//         @include profile-image(160px, 160px);
+		    border-radius: 50%;
+		    border: 1px solid white;
+		    max-width: 100%;
+        .uploading {
+            top: 56px;
+            left: 68px;
+            position: absolute;
+        }
+    }
+    .image-section {
+        position: relative;
+
+	   .actions-btn{
+		   margin-top: 10px;
+		   .btn-group {
+			   width: 100%;
+			   display: block;
+			   
+		   }
+
+		   .btn{
+			   width: 100%;
+			   margin: 0 0 10px 0;
+			   padding-left: 0;
+			   padding-right: 0;
+			   display: block;
+		   }
+	   }
+    }
+    .account-note {
+        font-size: 11px;
+        color: grey;
+    }
+    .gender-select {
+        width: 170px;
+    }
+    .deactivate {
+	    display: block;
+    }
+    button {
+        text-transform: uppercase!important;
+        margin-top: 0;
+    }
+    #duration {
+        width: 130px;
+        margin-right: 10px;
+    }
+    .map-wrapper {
+        .angular-google-map, .angular-google-map-container {
+            min-height: 230px;
+            width: 100%;
+        }
+    }
+    .delivery-types{
+	    .content{
+		    > div{
+			    display: flex;
+			    align-items: center;
+		    }
+	    }
+    }
+    .shipping-info{
+	    .btn-primary{
+		    margin: 15px 0 0 0;
+	    }
+    }
+}

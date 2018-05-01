@@ -1,0 +1,33 @@
+<div class="col-md-3 date">
+     <span>{{::no.createdAt | timeline}}</span>
+</div>
+<div class="col-md-9 event">
+     <div class="avatar">
+          <div class="event-icon">
+               <img src="assets/images/plus.png" srcset="assets/images/plus@2x.png 2x, assets/images/plus@3x.png 3x" alt="Pen">
+          </div>
+          <img class="pointable" ui-sref="community.user({id: no.source._id})" ng-src="{{::no.source.imageUrl}}" alt="Avatar">
+     </div>
+     <div class="content-holder">
+          <div class="message" ng-if="('myzone.dashboard' | isState)">
+               <a ui-sref="community.user({id: no.source._id})">{{::no.source | userName}}</a> started following you
+          </div>
+          <div class="message" ng-if="!('myzone.dashboard' | isState)">
+               <a ui-sref="community.user({id: no.source._id})">{{::no.source | userName}}</a> started following {{::no.destination | userName}}
+          </div>
+          <div class="content content-avatar">
+               <div>
+                    <img ng-src="{{::no.source.imageUrl}}" ui-sref="community.user({id: no.source._id})" alt="Avatar">
+               </div>
+               <!--<div>-->
+               <!--<img src="https://cdn.zeplin.io/58e6346a03ab532a12ca7b66/assets/9F64029A-3774-429D-9FA2-158EBD7655A3.png" alt="Avatar">-->
+               <!--</div>-->
+               <!--<div>-->
+               <!--<img src="https://cdn.zeplin.io/58e6346a03ab532a12ca7b66/assets/9F64029A-3774-429D-9FA2-158EBD7655A3.png" alt="Avatar">-->
+               <!--</div>-->
+               <!--<div>-->
+               <!--<img src="https://cdn.zeplin.io/58e6346a03ab532a12ca7b66/assets/9F64029A-3774-429D-9FA2-158EBD7655A3.png" alt="Avatar">-->
+               <!--</div>-->
+          </div>
+     </div>
+</div>

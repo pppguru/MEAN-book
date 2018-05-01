@@ -1,0 +1,70 @@
+<div class="user-profile with-sidebar">
+     <div class="container">
+          <div class="row">
+               <aside class="col-sm-4">
+                    <ol class="breadcrumb text-uppercase">
+                         <li md-truncate><a ui-sref="main">{{'home' | translate}}</a></li>
+                         <li md-truncate ng-if="!('allbooks.details.seller'|isState)"><a>{{'users' | translate}}</a></li>
+                         <li ng-if="'allbooks.details.seller'|isState" ui-sref="allbooks.details({id: vm.sellerBook._id})" md-truncate>
+                              <a>{{::vm.sellerBook.title}}</a>
+                         </li>
+                         <li md-truncate class="active"><a>{{::vm.user | userName}}</a></li>
+                    </ol>
+                    <div layout-gt-sm="row" layout-sm="column" layout-xs="row">
+                         <div flex="none">
+                              <img class="user-image" ng-src="{{vm.user.imageUrl || '/assets/images/avatar.png'}}" alt="user-image">
+                         </div>
+                         <div flex layout="column" layout-align="center start">
+                              <div class="user-name">{{::vm.user | userName}}</div>
+                              <div class="location">
+                                   <img src="assets/images/marker.png" srcset="assets/images/marker@2x.png 2x, assets/images/marker@3x.png 3x" alt="Marker">
+                                   <a href="#">{{::vm.user.address.city}}, {{::vm.user.address.country}}</a>
+                              </div>
+                              <div class="member-since">{{'member.since' | translate}}: <span>{{::vm.user.createdAt  | date: 'dd MMM, yyyy'}}</span></div>
+                         </div>
+                    </div>
+
+                    <div class="map-wrapper" layout="column" layout-align="center center">
+                         <div style="color:white" ng-if="!vm.user.address.coordinates[0]">
+                              {{'no.location' | translate}}
+                         </div>
+                         <ui-gmap-google-map
+                              ng-if="vm.user.address.coordinates[0]"
+                              center="vm.user.address.coordinates"
+                              zoom="13" options="vm.mapOptions">
+                              <ui-gmap-marker coords="vm.user.address.coordinates"
+                                              options="vm.markerOptions" idkey="0">
+                              </ui-gmap-marker>
+                         </ui-gmap-google-map>
+                    </div>
+
+                    <div class="buttons" layout="row" flex layout-align="space-between">
+                         <div flex="45">
+                              <md-button class="btn btn-primary message"
+                                         ng-disabled="vm.me()._id === vm.user._id"
+                                         ng-click="vm[!vm.me()._id ? 'login' : 'newMessage']({user: vm.user})">{{'message' | translate}}</md-button>
+                         </div>
+                         <div flex="45">
+                              <md-button class="btn btn-default follow"
+                                         ng-click="vm[vm.me()._id ? 'toggleFollow' : 'login'](vm.user)"
+                                         ng-disabled="vm.me()._id === vm.user._id">{{vm.following(vm.me().following, vm.user._id) ? 'unfollow' : 'follow' | translate}}</md-button>
+                         </div>
+                    </div>
+               </aside>
+
+               <div class="user-profile-holder col-sm-8">
+                    <md-tabs class="hidden-xs user-navigation" md-dynamic-height md-border-bottom flex="none" md-center-tabs md-selected="vm.selectedIndex">
+                         <md-tab ng-repeat="item in vm.items" ng-click="vm.viewChanged({value: item.name})">
+                              <md-tab-label>
+                                   {{item.name | translate}}
+                                   <!-- <span class="badge" ng-if="item.number.length">{{ item.number.length }}</span> -->
+                              </md-tab-label>
+                         </md-tab>
+                    </md-tabs>
+                    <bookis-select class="visible-xs user-navigation" field="name" model="vm.viewModel" options="vm.items" change="vm.viewChanged({type, value})"></bookis-select>
+                    <ng-include src="vm.items[vm.selectedIndex].template"></ng-include>
+               </div>
+
+          </div>
+     </div>
+</div>

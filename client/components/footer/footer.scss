@@ -1,0 +1,129 @@
+.footer {
+    text-align: center;
+    padding: 15px 15px;
+    background-color: #1f4c56;
+    box-shadow: inset 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+    display: flex;
+
+    .bookis-footer-links {
+        a.active {
+            text-decoration: underline;
+        }
+        a:hover {
+	        text-decoration: none;
+        }
+    }
+
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    a {
+        opacity: .7;
+        text-decoration: none;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    button {
+        height: auto !important;
+        padding: 0 !important;
+    }
+    .bookis-footer-links {
+        text-align: center;
+
+        a {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.67;
+            color: #ffffff;
+            text-transform: uppercase;
+
+            &:not(:last-child) {
+                margin-right: 25px;
+            }
+        }
+    }
+    .bookis-footer-right {
+        text-align: right;
+        margin-left: auto;
+
+        a {
+            width: 24px;
+            height: 24px;
+            line-height: 26px;
+            text-align: center;
+            display: inline-block;
+            border-radius: 50%;
+            background-color: #ffffff;
+        }
+        & > i:not(:first-child) {
+            margin-left: 10px;
+        }
+    }
+    .bookis-footer-left {
+        text-align: left;
+        margin-right: auto;
+
+        a {
+            color: white;
+            margin-right: 25px;
+
+            img {
+                margin-right: 10px;
+            }
+        }
+        button {
+            border-radius: 0;
+            color: white;
+            img {
+                height: 25px;
+            }
+        }
+        img {
+            height: 28px;
+        }
+    }
+    @media (max-width: $screen-xs-max) {
+        .bookis-footer-links {
+            a {
+                display: block;
+                margin-right: 0 !important;
+                margin-bottom: 20px;
+            }
+        }
+        .bookis-footer-left {
+            text-align: center;
+            a {
+                margin-right: 0;
+                margin-bottom: 15px;
+                display: block;
+            }
+            translate-component {
+                display: inline-block;
+            }
+        }
+    }
+    @media (max-width: $screen-sm-max) {
+        .row {
+            flex-direction: column;
+
+            > div:not(:first-child) {
+                margin-top: 20px;
+            }
+        }
+        .bookis-footer-links {
+            order: 3;
+        }
+        .bookis-footer-left {
+            margin-right: 0;
+        }
+        .bookis-footer-right {
+            margin-left: 0;
+            order: 2
+        }
+    }
+}

@@ -1,0 +1,26 @@
+<div>
+     <div ng-repeat="no in vm.notifications">
+          <div class="notification clearfix" ng-if="no.type === 'reply'">
+               <div class="message">You replied to <a ui-sref="allbooks.details({id: no.book._id})">{{::no.book.title}}</a> review.</div>
+               <!-- <div class="time">{{::no.createdAt | timeline}}</div> -->
+          </div>
+          <div class="notification clearfix" ng-if="no.type === 'following'">
+			<img ng-src="{{::no.source.imageUrl}}" ui-sref="community.user({id: no.source._id})" alt="Avatar">
+               <a ui-sref="community.user({id: no.source._id})">{{::no.source | userName}}</a> started following you
+               <!-- <div class="time">{{::no.createdAt | timeline}}</div> -->
+          </div>
+          <div class="notification clearfix" ng-if="no.type === 'review'">
+               You reviewed book <a ui-sref="allbooks.details({id: no.book._id})">{{::no.book.title}}</a>
+               <!-- <div class="time">{{::no.createdAt | timeline}}</div> -->
+          </div>
+          <div class="notification clearfix" ng-if="no.type === 'bought'">
+               <div ng-if="vm.me()._id === no.destination._id || vm.user._id === no.destination._id">
+                    You bought book <a ui-sref="allbooks.details({id: no.book._id})">{{::no.book.title}}</a> from <a  href="#">{{::no.source | userName}}</a>
+               </div>
+               <div ng-if="vm.me()._id === no.source._id || vm.user._id === no.source._id">
+                    You sold book <a ui-sref="allbooks.details({id: no.book._id})">{{::no.book.title}}</a> to <a  href="#">{{::no.destination | userName}}</a>
+               </div>
+               <!-- <div class="time">{{::no.createdAt | timeline}}</div> -->
+          </div>
+     </div>
+</div>

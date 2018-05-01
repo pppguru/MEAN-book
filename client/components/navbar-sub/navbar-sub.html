@@ -1,0 +1,168 @@
+<div class="navbar main-nav navbar-static-top no-overflow" hl-sticky event="vm.stickyEvent(event)" >
+	<div class="container">
+		<div id="navbar-main">
+			<ul class="nav navbar-nav">
+				<li class="visible-fixed">
+					<a ui-sref="main" ng-if="!vm.isMerchant()" class="navbar-brand"><img src="assets/images/bookis-logo-orange.png" srcset="assets/images/bookis-logo-orange@2x.png 2x, assets/images/bookis-logo-orange@3x.png 3x" alt="bookis-logo-orange"></a>
+				</li>
+				<li class="pointable hidden-xs hidden-sm" popover-is-open="vm.allBooksOpen" popover-class="all-books-popover" popover-trigger="'click'" uib-popover-template="vm.templateUrl" popover-placement="bottom-left">
+					<a>{{'All Books' | translate}} <b class="fa fa-chevron-down caret-down"></b></a>
+				</li>
+				<li ng-repeat="item in vm.menu" ui-sref-active="active" class="pointable hidden-xs hidden-sm">
+					<a ng-if="item.state" ng-click="vm.clear()" ui-sref="{{item.state}}"><i class="{{item.icon}}" aria-hidden="true" ng-show="item.icon">&nbsp;&nbsp;</i>{{item.title | translate}}</a>
+					<a ng-if="!item.state" ng-click="vm.clear()"><i class="{{item.icon}}" aria-hidden="true" ng-show="item.icon">&nbsp;&nbsp;</i>{{item.title | translate}}</a>
+				</li>
+			</ul>
+			<div ng-if="!vm.isMerchant()" class="pull-right search-holder">
+				<div uib-dropdown on-toggle="vm.toggled(open)" is-open="vm.isOpen" auto-close="always" keyboard-nav="true" layout="column" flex="none" class="hits-wrapper search-nav-inside">
+
+					<div class="input-container" flex layout="row">
+						<a href="#"><img src="assets/images/search-icon.png" srcset="assets/images/search-icon@2x.png 2x, assets/images/search-icon@3x.png 3x" alt="Search Icon"></a>
+						<input class="algolia-input form-control" type="text" placeholder="{{'main.searchPlaceholder' | translate}}" ng-model="vm.query" ng-change="vm.search(vm.query)" ng-keydown="($event.keyCode === 40 && vm.tab())||($event.keyCode === 13 && vm.redirectTo('advanced', {query: vm.query}))">
+					</div>
+
+					<ul class="dropdown-menu algolia-simple" uib-dropdown-menu>
+						<li class="dropdown-title">BOOKS</li>
+						<li ng-repeat="hit in vm.hits.books track by $index">
+							<a class="algolia-anchors" id="{{$index}}" ui-sref="allbooks.details({id: hit.objectID})" ng-click="vm.clear()">
+								<div layout="row" flex="none" class="hit">
+									<div flex="none" class="hit-image book-cover">
+										<img ng-src="{{hit.image || '/assets/images/book_avatar.jpg'}}" alt="image">
+									</div>
+									<div layout="column" flex class="hit-info">
+										<div class="title" md-truncate>{{hit.title}} <span>({{hit.year}})</span></div>
+										<div class="author">{{hit.author[0].displayName}}</div>
+									</div>
+									<div flex="none" layout="column" layout-align="start end">
+										<div class="availability" ng-if="hit.available" translate="books.available" translate-value-books="{{hit.available}}"></div>
+										<div class="availability" ng-if="!hit.available" translate="not.available"></div>
+										<div class="rate">
+											<i class="fa" ng-class="hit.rate ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i><span>&nbsp;{{hit.rate}}/5</span>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="dropdown-title no-border" ng-if="vm.hits.users.length">USERS</li>
+						<li class="dropdown-users" ng-repeat="hit in vm.hits.users track by $index">
+							<a id="{{'user'+$index}}" class="algolia-anchors" ui-sref="community.user({id: hit.objectID})">
+								<div layout="row" flex="none" class="hit">
+									<div class="hit-image book-cover">
+										<img ng-src="{{hit.image || '/assets/images/avatar.png'}}" alt="image">
+									</div>
+									<div layout="column" flex class="hit-info">
+										<div class="title" md-truncate>{{hit.name}}</div>
+										<div class="user-address">
+											<img src="assets/images/map.png" srcset="assets/images/map@2x.png 2x, assets/images/map@3x.png 3x" alt="Map">
+											address
+										</div>
+									</div>
+									<div class="rating">
+										<div class="rate">
+											<i class="fa" ng-class="hit.rate ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i><span>&nbsp;{{hit.rate || 0}}/5</span>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="dropdown-additional">
+							<a class="algolia-anchors">
+								<div flex="none" layout="row" layout-align="space-between" class="hit-status">
+									<a flex ui-sref="advanced({query: vm.query})" translate="all.results" translate-value-text="{{vm.query}}"></a>
+									<div flex="none" translate="result" translate-value-hits="{{vm.stats.nbHits}}" translate-value-time=" {{vm.stats.processingTimeMS}}"></div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="visible-fixed pull-right fixed-navbar">
+				<ul class="list-unstyled list-inline">
+					<li class="hidden-xs hidden-sm" ng-click="vm.sellBook()">
+						<a><img src="assets/images/sell.png" srcset="assets/images/sell@2x.png 2x, assets/images/sell@3x.png 3x" alt="Sell Books"></a>
+					</li>
+					<li class="hidden-xs hidden-sm" ui-sref-active="active">
+						<a ui-sref="community"><img src="assets/images/community.png" srcset="assets/images/community@2x.png 2x, assets/images/community@3x.png 3x" alt="Community"></a>
+					</li>
+					<li class="hidden-xs hidden-sm" ui-sref-active="active" ng-if="!vm.isMerchant() && vm.isLoggedIn()" uib-dropdown>
+						<a id="myzone-dropdown" uib-dropdown-toggle><img src="assets/images/my-zone.png" srcset="assets/images/my-zone@2x.png 2x, assets/images/my-zone@3x.png 3x" alt="My Zone"></a>
+						<ul class="dropdown-menu arrow dropdown-menu-right navbar-myzone-menu" uib-dropdown-menu aria-labelledby="myzone-dropdown">
+							<li class="user-image" ui-sref="myzone.settings.account">
+								<a href="#" class="algolia-anchors">
+									<img ng-src="{{vm.getCurrentUser().imageUrl || 'assets/images/avatar.png'}}" alt="User image">
+									{{vm.getCurrentUser() | userName}}
+								</a>
+							</li>
+							<li ng-repeat="mz in vm.myZoneMenu" ui-sref-active="active">
+								<a class="algolia-anchors" ui-sref="{{'myzone' + mz.state}}">
+									<span class="icon-image"><b><img ng-src="{{mz.icon}}" ng-srcset="{{mz.srcset}}" alt="Icon"></b></span>
+									{{mz.title | translate}}
+								</a>
+							</li>
+							<li class="sub-drop" ng-click="vm.logout()">
+								<a class="algolia-anchors">
+									<span class="icon-image"><b><img src="assets/images/exit.png" srcset="assets/images/exit@2x.png 2x, assets/images/exit@3x.png 3x" alt="Log out"></b></span>
+									{{'Log out' | translate}}
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="hidden-xs hidden-sm" ng-if="!vm.isLoggedIn()">
+						<a ng-click="vm.openLogin()"><img src="assets/images/my-zone.png" srcset="assets/images/my-zone@2x.png 2x, assets/images/my-zone@3x.png 3x" alt="My Zone"></a>
+					</li>
+					<li class="hidden-xs hidden-sm" popover-enable="vm.notifications.length" popover-is-open="vm.notificationsOpen" popover-class="notifications-popover" popover-trigger="'outsideClick'" uib-popover-template="vm.notificationsTemplateUrl" popover-placement="bottom">
+						<a><img src="assets/images/notifications.png" srcset="assets/images/notifications@2x.png 2x, assets/images/notifications@3x.png 3x" alt="Notifications"></a>
+
+					</li>
+					<li class="hidden-xs hidden-sm" ui-sref-active="active">
+						<a href="#"><span class="notifications">3</span><img src="assets/images/cart.png" srcset="assets/images/cart@2x.png 2x, assets/images/cart@3x.png 3x" alt="Cart"></a>
+					</li>
+					<li class="visible-xs visible-sm">
+						<span class="fa fa-bars mobile-nav-icon"></span>
+					</li>
+<!--
+					<li class="toggle-menu visible-xs visible-sm">
+						<label for="toggle-menu-checker-sticky"><img src="assets/images/more.png" srcset="assets/images/more@2x.png 2x, assets/images/more@3x.png 3x" alt="More"></label>
+					</li>
+-->
+				</ul>
+			</div>
+<!-- 			<input type="checkbox" name="toggle-menu" id="toggle-menu-checker-sticky" class="hide" ng-model="vm.subnavcol"> -->
+				
+
+			
+				
+<!--
+				<ul class="navbar-mobile navbar visible-xs visible-sm">
+				<li ng-click="vm.subnavcol = false;vm.sellBook()">
+				  <a><img src="assets/images/sell.png" srcset="assets/images/sell@2x.png 2x, assets/images/sell@3x.png 3x" alt="Sell Books">{{'Sell Books' | translate}}</a>
+				</li>
+				<li ui-sref-active="active" ui-sref="community" ng-click="vm.subnavcol = false;">
+				  <a><img src="assets/images/community.png" srcset="assets/images/community@2x.png 2x, assets/images/community@3x.png 3x" alt="Community">{{'Community' | translate}}</a>
+				</li>
+				<li ui-sref-active="active" ui-sref="myzone" ng-if="vm.isLoggedIn()" ng-click="vm.subnavcol = false;">
+				  <a><img src="assets/images/my-zone.png" srcset="assets/images/my-zone@2x.png 2x, assets/images/my-zone@3x.png 3x" alt="My Zone">{{'My Zone' | translate}}</a>
+				</li>
+				<li ng-if="!vm.isLoggedIn()" ng-click="vm.subnavcol = false;vm.openLogin()">
+					<a><img src="assets/images/my-zone.png" srcset="assets/images/my-zone@2x.png 2x, assets/images/my-zone@3x.png 3x" alt="My Zone">{{'Login / Register' | translate}}</a>
+				</li>
+				<li class="sub-mobile sub-mobile-first" ui-sref-active="active" ui-sref="allbooks" ng-click="vm.subnavcol = false;">
+					<a>{{'All Books' | translate}}</a>
+				</li>
+				<li class="sub-mobile" ui-sref-active="active" ui-sref="student" ng-click="vm.subnavcol = false;">
+					<a>{{'Student' | translate}}</a>
+				</li>
+				<li class="sub-mobile" ui-sref-active="active" ui-sref="kids" ng-click="vm.subnavcol = false;">
+					<a>{{'Kids' | translate}}</a>
+				</li>
+				<li class="sub-mobile" ui-sref-active="active" ui-sref="top100" ng-click="vm.subnavcol = false;">
+					<a>{{'Top 100' | translate}}</a>
+				</li>
+			</ul>
+			</div>
+-->
+		</div>
+	</div>
+</div>
+
+

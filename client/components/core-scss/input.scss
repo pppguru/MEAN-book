@@ -1,0 +1,29 @@
+.md-button.md-small {
+    height: 26px;
+    line-height: 20px;
+    min-height: 20px;
+    font-size: 10px;
+}
+a.md-button.md-small{
+    line-height: 25px;
+}
+textarea {
+    resize: vertical;
+}
+.progress {
+    height: 15px;
+    .progress-bar {
+        background-color: color(secondary, light);
+        height:15px;
+        font-size: 10px;
+        line-height: 15px;
+    }
+}
+.fake-anchor {
+    color: #337ab7;
+    &:hover {
+        cursor: pointer;
+        color: #23527c;
+        text-decoration: underline;
+    }
+}

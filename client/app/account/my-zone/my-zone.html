@@ -1,0 +1,45 @@
+<div id="my-zone" class="container-fluid">
+	<div class="row">
+		<md-sidenav class="side-bar md-sidenav-left col-md-2" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
+			<div class="{{'c100 center orange disable-hover p' + vm.profilePercentage()}}">
+				<span>
+					<img ui-sref=".settings.account" class="profile-image pointable" ng-src="{{vm.me.imageUrl || '/assets/images/avatar.png'}}" alt="profile image">
+				</span>
+				<div class="slice">
+					<div class="bar"></div>
+					<div class="fill"></div>
+				</div>
+			</div>
+			<div class="profile-name pointable text-center">
+				<div ui-sref=".settings.account">{{vm.me | userName}}</div>
+				<a href="#" uib-popover-template="'profile.html'" popover-append-to-body="true" popover-placement="auto right" popover-trigger="'focus'">
+					{{vm.profilePercentage()}}% Profile completeness
+				</a>
+			</div>
+			<ul>
+				<li ui-sref-active="{'active': item.active}" ng-repeat="item in vm.navigationItems" ng-if="!item.hide" ui-sref="{{ item.state }}" ng-click="vm.closeSidenav()">
+					<a>
+						<div>
+							<img ng-src="{{item.icon}}" ng-srcset="{{item.srcset}}" alt="Search Icon">
+						</div>
+						{{item.title | translate}}
+					</a>
+				</li>
+				<li ng-click="vm.logout() && vm.closeSidenav()">
+					<a>
+						<div>
+							<img src="/assets/images/exit.png" srcset="/assets/images/exit@2x.png 2x, /assets/images/exit@3x.png 3x" alt="Logout Icon">
+						</div>
+						{{'Log out' | translate}}
+					</a>
+				</li>
+			</ul>
+		</md-sidenav>
+		<div id="my-zone-content" class="col-md-10 col-xs-12">
+			<md-button class="md-icon-button" ng-click="vm.toggle()" hide-gt-xs aria-label="toggle-sidenav">
+				<i class="fa fa-bars"></i>
+			</md-button>
+			<div ui-view="" class="row"></div>
+		</div>
+	</div>
+</div>

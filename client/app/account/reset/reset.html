@@ -1,0 +1,39 @@
+<div class="container reset">
+     <div layout="row" layout-align="center center" flex="none">
+          <md-whiteframe class="md-whiteframe-1dp status" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout="column" layout-padding>
+               <h4>Change your password: </h4>
+               <md-divider></md-divider>
+               <form class="form" name="form" ng-submit="form.$valid && vm.reset()" novalidate>
+                    <div class="form-group" ng-class="{ 'has-success': form.password.$valid && form.$submitted, 'has-error': form.password.$invalid && form.$submitted }">
+                         <label for="password" class="control-label">New password</label>
+                         <input type="password" id="password" name="password" class="form-control" ng-model="vm.password" ng-minlength="3" required mongoose-error/>
+                         <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && form.$submitted">
+                              New password must be at least 3 characters.
+                         </p>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && form.$submitted, 'has-error': form.confirmPassword.$invalid && form.$submitted }">
+                         <label for="confirm" class="control-label">Confirm new password</label>
+                         <input type="password" id="confirm" name="confirmPassword" class="form-control" ng-model="vm.confirmPassword" match="vm.password" ng-minlength="3" required/>
+                         <p class="help-block" ng-show="form.confirmPassword.$error.match && form.$submitted">
+                              Passwords must match.
+                         </p>
+                    </div>
+
+                    <div class="alert alert-success" ng-if="vm.message == 'Success!'">
+                         <strong>Success!</strong> Go to <a ui-sref="main({openLogin: true})">Log in</a>
+                    </div>
+                    <div class="alert alert-danger" ng-if="vm.message == 'Error!'">
+                         <strong>Error!</strong> Something went wrong</a>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">
+                         Confirm
+                    </button>
+
+               </form>
+
+          </md-whiteframe>
+
+     </div>
+</div>

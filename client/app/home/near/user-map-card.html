@@ -1,0 +1,72 @@
+<div class="user-map-item">
+     <div class="image-wrapper">
+          <img ng-src="{{ ::parameter.imageUrl || '/assets/images/avatar.png' }}" alt="">
+     </div>
+
+     <div class="user-name">{{parameter | userName}}</div>
+
+     <div layout="row" class="numeric-data">
+          <div flex layout="column">
+               <div class="value">{{::parameter.numeric.followers}}</div>
+               <div class="desc">Followers</div>
+          </div>
+          <div flex layout="column">
+               <div class="value">{{::parameter.numeric.sales}}</div>
+               <div class="desc">For sale</div>
+          </div>
+          <div flex layout="column">
+               <div class="value">{{::parameter.numeric.bookshelf}}</div>
+               <div class="desc">In Bookshelf</div>
+          </div>
+     </div>
+
+     <md-tabs class="sales-booth-nav tabs-small" md-stretch-tabs="always" md-border-bottom>
+          <md-tab label="for sale">
+               <md-content>
+                    <div ng-repeat="sale in parameter.sales track by sale._id">
+                         <div layout="row" class="book-wrapper">
+                              <div class="book-title" ui-sref="allbooks.details({id: sale.book._id})">
+                                   <div class="index">
+                                        <span>{{$index + 1}}</span>
+                                   </div>
+                                   <div class="book-cover">
+                                        <img class="exclude" ng-src="{{::sale.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+                                   </div>
+                              </div>
+                              <div layout="column">
+                                   <a ui-sref="allbooks.details({id: sale.book._id})">{{sale.book.title}}</a>
+                                   <div>{{sale.book.avg.rate || 0}} / 5</div>
+                                   <a ui-sref="community.author({id: sale.book.author[0]._id})">{{sale.book.author | authors}}</a>
+                              </div>
+                         </div>
+                    </div>
+               </md-content>
+          </md-tab>
+          <md-tab label="bookshelf">
+               <md-content>
+                    <div ng-repeat="book in parameter.bookshelf track by book._id">
+                         <div layout="row" class="book-wrapper">
+                              <div class="book-title" ui-sref="allbooks.details({id: book.book._id})">
+                                   <div class="index">
+                                        <span>{{$index + 1}}</span>
+                                   </div>
+                                   <div class="book-cover">
+                                        <img class="exclude" ng-src="{{::book.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+                                   </div>
+                              </div>
+                              <div layout="column">
+                                   <a ui-sref="allbooks.details({id: book.book._id})">{{book.book.title}}</a>
+                                   <div>{{book.book.avg.rate || 0}} / 5</div>
+                                   <a ui-sref="community.author({id: book.book.author[0]._id})">{{book.book.author | authors}}</a>
+                              </div>
+                         </div>
+                    </div>
+               </md-content>
+          </md-tab>
+     </md-tabs>
+
+
+     <md-divider></md-divider>
+     <a ui-sref="community.user({id: parameter._id})">View all books</a>
+
+</div>

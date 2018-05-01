@@ -1,0 +1,77 @@
+.follow-item {
+	padding: 20px;
+
+	.follow-image {
+		cursor: pointer;
+		margin: 10px 0;
+		text-align: center;
+
+		img {
+			@include profile-image(64px, 64px);
+		}
+	}
+
+	.follow-name {
+		margin-bottom: 10px;
+		font-size: 14px;
+		font-weight: bold;
+		color: $color-title;
+		cursor: pointer;
+		text-align: center;
+	}
+
+	.follow-address {
+		text-align: center;
+		font-size: 12px;
+
+		img{
+			vertical-align: sub;
+		}
+	}
+
+	.follow-info {
+		text-align: center;
+		margin-top: 10px;
+		margin-bottom: 15px;
+		font-size: 12px;
+
+		> div{
+			display: inline-block;
+			min-width: 49%;
+		}
+
+		span {
+			margin-left: 5px;
+			font-weight: bold;
+		}
+	}
+	.follow-actions{
+		border-top: 1px solid rgba(177, 191, 194, 0.3);
+		display: flex;
+		padding-top: 15px;
+
+		.btn{
+			text-transform: uppercase;
+			padding-left: 10px;
+			padding-right: 10px;
+			width: 100%;
+			
+			&:first-child{
+				margin-left: 0;
+				margin-right: 5px;
+			}
+			&:last-child{
+				margin-right: 0;
+				margin-left: 5px;
+			}
+
+			&.btn-primary{
+				width: 50%;
+
+				+ .btn-default{
+					width: 50%;
+				}
+			}
+		}
+	}
+}

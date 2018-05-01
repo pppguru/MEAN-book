@@ -1,0 +1,17 @@
+#following {
+    .search-wrapper {
+        height: 70px;
+        .user-search {
+            position: relative;
+            input {
+                box-shadow: 0 4px 20px -6px grey;
+            }
+            md-icon {
+                position: absolute;
+                outline: none;
+                right: 5px;
+                top: calc(50% - 12px);
+            }
+        }
+    }
+}

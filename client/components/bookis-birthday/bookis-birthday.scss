@@ -1,0 +1,8 @@
+.birth-picker {
+    div {
+        &:not(:first-child) {
+            margin-left: 10px;
+        }
+    }
+}
+

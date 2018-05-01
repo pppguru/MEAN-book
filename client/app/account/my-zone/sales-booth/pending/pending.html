@@ -1,0 +1,112 @@
+<div id="sales-booth-pending" class="whishlist-table">
+     <!-- <div layout="row" layout-align="space-between center" flex="none" class="search-wrapper">
+          <h4 flex="20" hide-xs></h4>
+          <div flex="60" class="book-search">
+               <md-icon ng-if="!vm.searchText" md-svg-src="assets/svg/search.svg" aria-label="search"></md-icon>
+               <md-icon ng-if="vm.searchText" ng-click="vm.searchText=''" md-svg-src="assets/svg/close.svg" aria-label="search"></md-icon>
+               <input type="text" class="form-control" placeholder="{{'search' | translate}}" ng-model="vm.searchText">
+          </div>
+          <div flex="10">
+          </div>
+     </div> -->
+	<md-whiteframe class="col-xs-12">
+		<div>
+			<div class="content">
+				<div class="book-list-holder">
+					<div class="book-list">
+						<ul class="book-list-head list-inline list-unstyled hidden-xs">
+							<li class="fl-b-5"></li>
+							<li class="fl-b-25">{{'title' | translate}}</li>
+							<li class="fl-b-15">{{'price' | translate}}</li>
+							<li class="fl-b-15">{{'condition' | translate}}</li>
+							<li class="fl-b-15">{{'date.added' | translate}}</li>
+							<li class="fl-b-25"></li>
+						</ul>
+						<div class="form-group visible-xs">
+							<label class="control-label">{{'sort.by' | translate}}:</label>
+							<bookis-select model="bs.format" options="bs.appConfig.books.formats" change="bs.formatChanged()" placeholder="Select format"></bookis-select>
+						</div>
+						<div class="book-list-body">
+							<div class="book-list-item" ng-repeat="request in vm.requests track by request._id | filter: vm.searchText">
+								<div class="fl-b-5 book-title" ui-sref="allbooks.details({id: hit.objectID})">
+									<div class="book-cover">
+										<img class="pointable"
+					                              ng-src="{{::request.sale.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image"
+					                              ui-sref="allbooks.details({id: sale.book._id})">
+									</div>
+								</div>
+								<div class="fl-b-25 book-name">
+									<a href="#">{{::request.sale.book.title}}</a>
+									<div class="book-author">
+										by <a href="#">{{::request.sale.book.author | authors}}</a>
+									</div>
+								</div>
+								<div class="fl-b-15 book-price">
+									{{request.sale.price | salePrice}},-
+								</div>
+								<div class="fl-b-15 book-condition">
+									{{request.sale.condition}}
+								</div>
+								<div class="fl-b-15 book-added">
+									{{::request.createdAt | date:'MM/dd/yyyy'}}
+								</div>
+								<div class="fl-b-25 book-actions">
+									<md-button class="btn btn-default decline" ng-click="vm.declineRequest(request)">{{'decline' | translate}}</md-button>
+									<md-button class="btn btn-primary approve" ng-click="vm.approveRequest(request)">{{'approve' | translate}}</md-button>
+			                         </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</md-whiteframe>
+
+
+<!--
+     <div layout="row" flex="none" layout-wrap>
+          <md-whiteframe class="md-whiteframe-4dp" flex-gt-md="30" flex-gt-sm="45" flex-sm flex-xs layout-margin layout
+                         ng-repeat="request in vm.requests track by request._id | filter: vm.searchText">
+               <div layout="column" flex ng-class="{'not-seen' : !request.seen.seller}">
+                    <div layout="row" flex="none">
+                         <div flex="none" layout="column" class="left">
+                              <div flex="none">
+                                   <img ng-src="{{::request.sale.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+                              </div>
+                         </div>
+                         <div flex layout="column" class="right">
+                              <div layout="row" layout-align="space-between">
+                                   <div>{{::request.sale.book.title}}</div>
+                                   <i ng-if="request.message" title="{{::request.message}}" class="fa fa-comment-o pointable" ui-sref="myzone.messages({id: request._id})" aria-hidden="true"></i>
+                              </div>
+
+                              <div class="author" ui-sref="allbooks.details.author({aid: request.sale.book.author[0]._id})">{{::request.sale.book.author | authors}}</div>
+                              <br>
+                              <dl class="dl-horizontal">
+                                   <dt>Price:</dt>
+                                   <dd>{{request.sale.price | salePrice}} NOK</dd>
+                                   <dt>Requested by:</dt>
+                                   <dd>{{::request.user | userName}}</dd>
+                                   <dt>Requested on:</dt>
+                                   <dd>{{::request.createdAt | date:'MM/dd/yyyy'}}</dd>
+                                   <dt>Delivery by:</dt>
+                                   <dd>{{::request.delivery}}</dd>
+                                   <dt ng-if="request.message">Message:</dt>
+                                   <dd ng-if="request.message" md-truncate title="{{::request.message}}">{{::request.message}}</dd>
+                              </dl>
+                         </div>
+                    </div>
+                    <div layout="row" layout-align="space-between center" flex="none">
+                         <div><i class="fa fa-hourglass" aria-hidden="true"></i>
+                              <span>{{(request.expire | amDifference : null : 'hours') }}hrs</span>&nbsp;
+                              <span>{{((request.expire | amDifference : null : 'minutes') % 60) }}mins</span>
+                         </div>
+                         <div layout="row" layout-align="end" flex="none">
+                              <md-button class="md-raised md-primary md-small approve" ng-click="vm.approveRequest(request)">{{'approve' | translate}}</md-button>
+                              <md-button class="md-raised md-small decline" ng-click="vm.declineRequest(request)">{{'decline' | translate}}</md-button>
+                         </div>
+                    </div>
+               </div>
+          </md-whiteframe>
+     </div> -->
+</div>

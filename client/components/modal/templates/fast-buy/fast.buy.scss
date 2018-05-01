@@ -1,0 +1,66 @@
+.fast-buy-modal {
+    .img-section {
+        margin-right: 10px;
+        img {
+            height: 100px;
+            width: 60px;
+        }
+    }
+    .title {
+        font-size: 16px;
+    }
+    .year {
+        margin-left: 10px;
+        font-size: 10px;
+        color: grey;
+    }
+    .author {
+        margin-top: 10px;
+    }
+    .fa-star {
+        margin-left: 10px;
+        font-size: 16px;
+    }
+    .author, .genre {
+        font-size: 12px;
+        color: grey;
+    }
+    .rating-reviews {
+        margin: 10px 0;
+        font-size: 12px;
+        .avg {
+            font-size: 15px;
+            font-weight: bold;
+        }
+    }
+    .buttons {
+        margin: 10px 0;
+        .condition {
+            font-weight: bold;
+        }
+        .price {
+            color: color(primary, base);
+            font-weight: bold;
+        }
+        .meta-other {
+            font-size: 12px;
+            color: color(primary, base);
+            text-decoration: underline;
+        }
+        .from {
+            font-size: 10px;
+        }
+    }
+    .seller-image {
+        img {
+            @include profile-image(40px, 40px);
+        }
+    }
+    .seller-info {
+        margin-left: 10px;
+    }
+    .comment {
+        margin: 10px 0;
+    }
+
+}

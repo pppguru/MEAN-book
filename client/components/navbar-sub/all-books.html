@@ -1,0 +1,28 @@
+<div class="menu-allbooks">
+	<div layout="row">
+	   <div flex="20" layout="column" class="menu-allbooks-recommend">
+	     <h4>We Recommend</h4>
+	        <a>Most Popular</a>
+	        <a>New Releases</a>
+	        <a>Super Cheap</a>
+	        <a ui-sref="top100">Top 100</a>
+
+	   </div>
+	   <div flex="60" class="menu-allbooks-genres">
+	     <h4>By Genre</h4>
+	     <div layout="row" layout-wrap>
+	        <div flex="33" ng-repeat="genre in vm.mainGenres">
+	             <a ng-click="vm.redirectTo({sref: 'advanced', params: {genres:[genre._id]}})" class="genre" flex="none">{{genre.no}}</a>
+	        </div>
+	     </div>
+	   </div>
+	   <div flex="20" layout="column" class="menu-allbooks-kids">
+	    	<h4>Kids</h4>
+	        <a>0-3</a>
+	        <a>3-6</a>
+	        <a>6-9</a>
+	        <a>9-12</a>
+	        <a>Parents</a>
+	   </div>
+	</div>
+</div>

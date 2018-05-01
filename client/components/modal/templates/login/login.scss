@@ -1,0 +1,109 @@
+.login {
+	.other {
+		width: 100%;
+		text-align: center;
+		border-bottom: 1px solid grey;
+		color: grey;
+		line-height: 0.1em;
+		margin: 30px 0 20px;
+
+		span {
+			background: #fff;
+			padding: 0 10px;
+		}
+	}
+
+	input[type="email"],
+	input[type="password"],
+	input[type="text"] {
+		height: auto;
+		padding: 15px;
+	}
+	@keyframes colors {
+		0% {
+			stroke: white;
+		}
+
+		25% {
+			stroke: white;
+		}
+
+		50% {
+			stroke: white;
+		}
+
+		75% {
+			stroke: white;
+		}
+
+		100% {
+			stroke: white;
+		}
+	}
+
+	md-progress-circular {
+		margin-right: 10px;
+	}
+
+	md-progress-circular path {
+		animation: colors 5.6s ease-in-out infinite;
+	}
+
+	.other {
+		width: 100%;
+		text-align: center;
+		border-bottom: 1px solid grey;
+		color: grey;
+		line-height: 0.1em;
+		margin: 30px 0 20px;
+
+		span {
+			background: #fff;
+			padding: 0 10px;
+		}
+	}
+
+	.forgot {
+		min-height: 50px;
+
+		a {
+			font-size: 12px;
+		}
+	}
+
+	.form-group{
+
+		i{
+			top: 16px;
+			right: 15px;
+		}
+	}
+	.btn{
+		font-size: 14px;
+		font-weight: normal;
+	}
+	.btn-primary {
+		padding: 20px;
+	}
+
+	.subtitle {
+		margin-top: 0;
+		display: inline;
+	}
+
+	.success-block {
+		color: limegreen;
+	}
+
+	.inline-link {
+		margin-right: 15px;
+		font-size: 12px;
+	}
+
+	button.btn{
+		width: 100%;
+		margin-bottom: 15px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+}

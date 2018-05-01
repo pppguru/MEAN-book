@@ -1,0 +1,46 @@
+<div class="col-md-3 date">
+     <span>{{::no.createdAt | timeline}}</span>
+</div>
+<div class="col-md-9 event">
+     <div class="avatar">
+          <div class="event-icon">
+               <img src="assets/images/pen.png" srcset="assets/images/pen@2x.png 2x, assets/images/pen@3x.png 3x" alt="Pen">
+          </div>
+          <img ng-src="{{::no.source.imageUrl}}" alt="Avatar">
+     </div>
+     <div class="content-holder">
+          <div ng-if="('myzone.dashboard' | isState)">
+               You reviewed book <a ui-sref="allbooks.details({id: no.book._id})">{{::no.book.title}}</a>
+          </div>
+          <div ng-if="!('myzone.dashboard' | isState)">
+               {{::no.source | userName}} reviewed book
+          </div>
+          <div class="content content-book">
+               <div class="book-cover pointable" ui-sref="allbooks.details({id: no.book._id})">
+                    <img ng-src="{{no.book.image.full}}" alt="rec image">
+               </div>
+               <div class="book-description">
+                    <h3><a ui-sref="allbooks.details({id: no.book._id})">{{::no.book.title}}</a></h3>
+                    <div class="rating">
+                         <i class="fa fa-star-o"></i>{{::no.book.rating.avg}}/5
+                    </div>
+                    <div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({aid: no.book.author[0]._id})">{{::no.book.author | authors}}</a></div>
+                    <ul class="genres list-unstyled list-inline">
+                         <li><a >{{::no.book | genres}}</a></li>
+                    </ul>
+               </div>
+               <div class="review-message book-description">
+                    <div class="summary">
+                         <input type="checkbox" name="more" id="more" ng-model="more" aria-invalid="false">
+                         <p>{{::no.meta}}</p>
+                         <label for="more">read more&nbsp;<i class="fa fa-angle-down"></i></label>
+                    </div>
+               </div>
+          </div>
+          <div class="content content-avatar hidden">
+               <div>
+                    <img src="assets/images/avatar.png" alt="User name">
+               </div>
+          </div>
+     </div>
+</div>

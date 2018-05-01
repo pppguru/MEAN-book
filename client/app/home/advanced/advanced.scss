@@ -1,0 +1,125 @@
+.advanced {
+    .book-cover {
+        height: 240px;
+        width: 160px;
+    }
+    aside {
+        .bookis-slider.rzslider {
+            .rz-selection {
+                background-color: white !important;
+                z-index: 1000;
+            }
+            .rz-bar-wrapper {
+                z-index: 10;
+            }
+            .rz-pointer {
+                background-color: white;
+                color: white;
+                border-radius: 50%;
+                height: 15px;
+                width: 15px;
+                z-index: 10;
+                top: -7px;
+            }
+            .rz-bar {
+                background: #bb431e;
+            }
+            .rz-tick {
+                font-size: 12px;
+                opacity: .6;
+                top: -5px;
+
+                span {
+                    bottom: 20px;
+                    color: white;
+                }
+            }
+            .rz-bubble {
+                bottom: -25px;
+                color: white;
+            }
+        }
+    }
+
+    md-checkbox {
+        &:hover {
+            span {
+                opacity: 1;
+            }
+        }
+
+        span {
+            color: white;
+            opacity: 0.6;
+            font-size: 12px;
+        }
+
+        .md-icon {
+            border-color: white !important;
+        }
+    }
+
+    .book-list-holder {
+        background-color: white;
+        z-index: 10;
+        padding-left: 60px;
+        padding-top: 30px;
+
+        .title-font {
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 0.67;
+            color: #1f4c56;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #f0f3f3;
+            .stats {
+                font-size: 12px;
+                margin-top: 5px;
+                color: #444444;
+            }
+        }
+
+        .book-list-body {
+            img {
+                box-shadow: 0px 19px 45px -15px rgba(65, 42, 35, 0.75);
+            }
+            .rate {
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 1.43;
+                color: #000000;
+                margin-top: 15px;
+                margin-bottom: 10px;
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        @media (max-width: $screen-sm-max) {
+            padding-left: 35px;
+        }
+        @media (max-width: $screen-xs-max) {
+            padding-left: 15px;
+        }
+    }
+
+    .genre-filters {
+        .genre {
+            opacity: 0.6;
+            font-size: 12px;
+            line-height: 1.67;
+            color: #ffffff;
+
+            &.active-filter {
+                opacity: 1;
+            }
+        }
+    }
+
+}

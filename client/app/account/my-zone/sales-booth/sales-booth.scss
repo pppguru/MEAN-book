@@ -1,0 +1,47 @@
+#sales-booth-views {
+
+	.book-list-holder{
+		.book-actions{
+			.btn + .btn{
+				margin-left: 5px;
+			}
+		}
+		.book-date,
+		.book-condition,
+		.book-added{
+			font-size: 14px;
+			line-height: 1.43;
+			color: #444444;
+			text-transform: capitalize;
+		}
+	}
+	.search-wrapper{
+		margin-top: 20px;
+
+		.btn{
+			margin: 0;
+		}
+	}
+	.buttons{
+		.btn{
+			width: auto;
+		}
+	}
+
+    // .search-wrapper {
+    //     height: 70px;
+    //
+    //     .book-search {
+    //         position: relative;
+    //         input {
+    //             box-shadow: 0 4px 20px -6px grey;
+    //         }
+    //         md-icon {
+    //             position: absolute;
+    //             outline: none;
+    //             right: 5px;
+    //             top: calc(50% - 12px);
+    //         }
+    //     }
+    // }
+}

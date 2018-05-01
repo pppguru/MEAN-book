@@ -1,0 +1,270 @@
+<div class="popular-view">
+
+	<div class="container-fluid popular-books">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<ol class="breadcrumb text-uppercase mt0">
+						<li><a ui-sref="main">{{'home' | translate}}</a></li>
+						<li class="active">All books</li>
+					</ol>
+					<p class="title mb0">{{'popular.books' | translate}}<a>{{'top.100.popular' | translate}}</a></p>
+				</div>
+				<div class="col-md-4 col-xs-12" ng-repeat="book in vm.books | limitTo: 6 track by book._id">
+					<div class="book-block book-block-medium clearfix">
+						<a class="book-cover" ui-sref="allbooks.details({id: book._id})">
+							<img ng-src="{{::book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+						</a>
+						<div class="book-description">
+							<h3><a ui-sref="allbooks.details({id: book._id})">{{::book.title}}</a></h3>
+							<div class="rating" ng-if="book.ratings.avg">
+								<i class="fa fa-star-o"></i> {{::book.ratings.avg | number: 1}}/5
+							</div>
+							<div class="rating" ng-if="!book.ratings.avg">
+								<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+							</div>
+							<div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({id: book._id, aid: book.author[0]._id})">{{::book.author | authors}}</a></div>
+							<div class="price">
+								<span ng-if="book.sales.length">{{book.sales[0].price | salePrice}},-</span>
+								<button ng-if="book.sales.length" class="btn btn-primary"
+								   ng-click="vm.requestBook({book})" ng-disabled="vm.me()._id && vm.me()._id === book.sales[0].seller._id">{{'request' | translate}}</button>
+							</div>
+						</div>
+						<div class="availability clearfix">
+							<div ng-repeat="(condition, label) in {new: 'new', sales: 'used'} track by $index">
+								<div ng-if="book[condition].length">
+									<a ui-sref="allbooks.details.sellers({id: book._id})" translate="has.sales" translate-value-label="{{label | translate}}" translate-value-len="{{book[condition].length}}">
+									</a>&nbsp;
+									<div translate="from.price" translate-value-price="{{book[condition][0].price | salePrice}}"></div>
+								</div>
+								<div ng-if="!book[condition].length" translate="no.sales" translate-value-label="{{label | translate}}"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid popular-books white-bg genre-slider">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<p class="title mb0">Crime</p>
+				</div>
+				<md-whiteframe layout-padding class="carousel-holder" ng-if="vm.books.length">
+					<bookis-slick settings="vm.slickGenreConfig" prev-arrow=".slick-prev-books" next-arrow=".slick-next-books">
+						<div class="col-xs-12">
+							<div class="col-md-4 col-xs-12" ng-repeat="book in vm.books | limitTo: 6 track by book._id">
+								<div class="book-block book-block-medium clearfix">
+									<a class="book-cover" ui-sref="allbooks.details({id: book._id})">
+										<img ng-src="{{::book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+									</a>
+									<div class="book-description">
+										<h3><a ui-sref="allbooks.details({id: book._id})">{{::book.title}}</a></h3>
+										<div class="rating" ng-if="book.ratings.avg">
+											<i class="fa fa-star-o"></i> {{::book.ratings.avg | number: 1}}/5
+										</div>
+										<div class="rating" ng-if="!book.ratings.avg">
+											<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+										</div>
+										<div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({id: book._id, aid: book.author[0]._id})">{{::book.author | authors}}</a></div>
+										<div class="price">
+											<span ng-if="book.sales.length">{{book.sales[0].price | salePrice}},-</span>
+											<button ng-if="book.sales.length" class="btn btn-primary"
+												   ng-click="vm.requestBook({book})" ng-disabled="vm.me()._id && vm.me()._id === book.sales[0].seller._id">{{'request' | translate}}</button>
+										</div>
+									</div>
+									<div class="availability clearfix">
+										<div ng-repeat="(condition, label) in {new: 'new', sales: 'used'} track by $index">
+											<div ng-if="book[condition].length" layout="row" layout-align="start center">
+												<a ui-sref="allbooks.details.sellers({id: book._id})" translate="has.sales" translate-value-label="{{label | translate}}" translate-value-len="{{book[condition].length}}">
+												</a>&nbsp;
+												<div translate="from.price" translate-value-price="{{book[condition][0].price | salePrice}}"></div>
+											</div>
+											<div ng-if="!book[condition].length" translate="no.sales" translate-value-label="{{label | translate}}"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<div class="col-md-4 col-xs-12" ng-repeat="book in vm.books | limitTo: 6 track by book._id">
+								<div class="book-block book-block-medium">
+									<a class="book-cover" ui-sref="allbooks.details({id: book._id})">
+										<img ng-src="{{::book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+									</a>
+									<div class="book-description">
+										<h3><a ui-sref="allbooks.details({id: book._id})">{{::book.title}}</a></h3>
+										<div class="rating" ng-if="book.ratings.avg">
+											<i class="fa fa-star-o"></i> {{::book.ratings.avg | number: 1}}/5
+										</div>
+										<div class="rating" ng-if="!book.ratings.avg">
+											<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+										</div>
+										<div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({id: book._id, aid: book.author[0]._id})">{{::book.author | authors}}</a></div>
+										<div class="price">
+											<span ng-if="book.sales.length">{{book.sales[0].price | salePrice}},-</span>
+											<button ng-if="book.sales.length" class="btn btn-primary"
+												   ng-click="vm.requestBook({book})" ng-disabled="vm.me()._id && vm.me()._id === book.sales[0].seller._id">{{'request' | translate}}</button>
+										</div>
+									</div>
+									<div class="availability clearfix">
+										<div ng-repeat="(condition, label) in {new: 'new', sales: 'used'} track by $index">
+											<div ng-if="book[condition].length" layout="row" layout-align="start center">
+												<a ui-sref="allbooks.details.sellers({id: book._id})" translate="has.sales" translate-value-label="{{label | translate}}" translate-value-len="{{book[condition].length}}">
+												</a>&nbsp;
+												<div translate="from.price" translate-value-price="{{book[condition][0].price | salePrice}}"></div>
+											</div>
+											<div ng-if="!book[condition].length" translate="no.sales" translate-value-label="{{label | translate}}"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</bookis-slick>
+					<div class="slick-prev-books slick-prev hidden-xs">
+						<i class="fa fa-angle-left" aria-hidden="true"></i>
+					</div>
+					<div class="slick-next-books slick-next hidden-xs">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</div>
+				</md-whiteframe>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid popular-books black-bg genre-slider">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<p class="title mb0">Crime</p>
+				</div>
+				<md-whiteframe layout-padding class="carousel-holder" ng-if="vm.books.length">
+					<bookis-slick settings="vm.slickGenreConfig" prev-arrow=".slick-prev-books-romance" next-arrow=".slick-next-books-romance">
+						<div class="col-xs-12">
+							<div class="col-md-4 col-xs-12" ng-repeat="book in vm.books | limitTo: 6 track by book._id">
+								<div class="book-block book-block-medium clearfix">
+									<a class="book-cover" ui-sref="allbooks.details({id: book._id})">
+										<img ng-src="{{::book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+									</a>
+									<div class="book-description">
+										<h3><a ui-sref="allbooks.details({id: book._id})">{{::book.title}}</a></h3>
+										<div class="rating" ng-if="book.ratings.avg">
+											<i class="fa fa-star-o"></i> {{::book.ratings.avg | number: 1}}/5
+										</div>
+										<div class="rating" ng-if="!book.ratings.avg">
+											<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+										</div>
+										<div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({id: book._id, aid: book.author[0]._id})">{{::book.author | authors}}</a></div>
+										<div class="price">
+											<span ng-if="book.sales.length">{{book.sales[0].price | salePrice}},-</span>
+											<button ng-if="book.sales.length" class="btn btn-primary"
+												   ng-click="vm.requestBook({book})" ng-disabled="vm.me()._id && vm.me()._id === book.sales[0].seller._id">{{'request' | translate}}</button>
+										</div>
+									</div>
+									<div class="availability clearfix">
+										<div ng-repeat="(condition, label) in {new: 'new', sales: 'used'} track by $index">
+											<div ng-if="book[condition].length" layout="row" layout-align="start center">
+												<a ui-sref="allbooks.details.sellers({id: book._id})" translate="has.sales" translate-value-label="{{label | translate}}" translate-value-len="{{book[condition].length}}">
+												</a>&nbsp;
+												<div translate="from.price" translate-value-price="{{book[condition][0].price | salePrice}}"></div>
+											</div>
+											<div ng-if="!book[condition].length" translate="no.sales" translate-value-label="{{label | translate}}"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<div class="col-md-4 col-xs-12" ng-repeat="book in vm.books | limitTo: 6 track by book._id">
+								<div class="book-block book-block-medium">
+									<a class="book-cover" ui-sref="allbooks.details({id: book._id})">
+										<img ng-src="{{::book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book cover image">
+									</a>
+									<div class="book-description">
+										<h3><a ui-sref="allbooks.details({id: book._id})">{{::book.title}}</a></h3>
+										<div class="rating" ng-if="book.ratings.avg">
+											<i class="fa fa-star-o"></i> {{::book.ratings.avg | number: 1}}/5
+										</div>
+										<div class="rating" ng-if="!book.ratings.avg">
+											<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+										</div>
+										<div class="author">{{'by' | translate}} <a ui-sref="allbooks.details.author({id: book._id, aid: book.author[0]._id})">{{::book.author | authors}}</a></div>
+										<div class="price">
+											<span ng-if="book.sales.length">{{book.sales[0].price | salePrice}},-</span>
+											<button ng-if="book.sales.length" class="btn btn-primary"
+												   ng-click="vm.requestBook({book})" ng-disabled="vm.me()._id && vm.me()._id === book.sales[0].seller._id">{{'request' | translate}}</button>
+										</div>
+									</div>
+									<div class="availability clearfix">
+										<div ng-repeat="(condition, label) in {new: 'new', sales: 'used'} track by $index">
+											<div ng-if="book[condition].length" layout="row" layout-align="start center">
+												<a ui-sref="allbooks.details.sellers({id: book._id})" translate="has.sales" translate-value-label="{{label | translate}}" translate-value-len="{{book[condition].length}}">
+												</a>&nbsp;
+												<div translate="from.price" translate-value-price="{{book[condition][0].price | salePrice}}"></div>
+											</div>
+											<div ng-if="!book[condition].length" translate="no.sales" translate-value-label="{{label | translate}}"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</bookis-slick>
+					<div class="slick-prev-books-romance slick-prev hidden-xs">
+						<i class="fa fa-angle-left" aria-hidden="true"></i>
+					</div>
+					<div class="slick-next-books-romance slick-next hidden-xs">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</div>
+				</md-whiteframe>
+			</div>
+		</div>
+	</div>
+	<div class="container genres-holder">
+		<div class="row">
+			<h2 class="title-font col-xs-12"><b>{{'genres' | translate}}</b></h2>
+			<div>
+				<div class="genre-block col-md-3 col-xs-6" ng-repeat="genre in vm.genres | limitTo: 8 track by genre._id">
+					<a ui-sref="advanced({genres:[genre.no]})">
+						<div class="genre-square">
+							<img src="/assets/images/genre.png" alt="Genre">
+							<span>{{::genre.no}}</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<h2 class="title-font col-xs-12"><b>{{'recommended.books' | translate}}</b></h2>
+			<div>
+				<div class="book-small col-md-2 col-sm-4 col-xs-6" ng-repeat="vm in vm.books.slice().reverse() | limitTo: 12 track by vm._id">
+					<div class="book-cover">
+						<a ui-sref="allbooks.details({id: vm._id})">
+							<img ng-src="{{::vm.image.full || '/assets/images/cover.png'}}" alt="book image">
+						</a>
+					</div>
+					<div class="book-description">
+						<div class="rating" ng-if="vm.ratings.avg">
+							<i class="fa fa-star-o"></i> {{::vm.ratings.avg | number: 1}}/5
+						</div>
+						<div class="rating" ng-if="!vm.ratings.avg">
+							<i class="fa fa-star-o"></i> {{'no.ratings' | translate}}
+						</div>
+					</div>
+					<a ui-sref="allbooks.details({id: vm._id})">{{::vm.title}}</a>
+					<div class="price">
+						<span ng-if="vm.sales.length">{{vm.sales[0].price | salePrice}},-</span>
+						<div ng-if="vm.sales.length" layout="column" flex>
+							<a ui-sref="allbooks.details.sellers({id: vm._id})" flex translate="has.sales" translate-value-label="{{'used' | translate}}" translate-value-len="{{vm.sales.length}}">
+							</a>
+							<div translate="from.price" flex translate-value-price="{{vm.sales[0].price | salePrice}}">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

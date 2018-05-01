@@ -1,0 +1,55 @@
+<div id="user-payments">
+	<md-whiteframe class="col-xs-12">
+		<div>
+			<header>
+				{{'payment.methods' | translate}}
+			</header>
+			<div class="content clearfix">
+				<bookis-card card="card" remove="vm.removePaymentMethod({account})" set-default="vm.setAsDefault({account})"
+						   ng-repeat="card in vm.me.accounts.payment | orderBy: '-isDefault' track by $index"></bookis-card>
+				<bookis-card new-payment="vm.newPaymentMethod()"></bookis-card>
+			</div>
+		</div>
+	</md-whiteframe>
+	<md-whiteframe class="col-xs-12">
+		<div>
+			<header>
+				{{'payout.preferences' | translate}}
+			</header>
+			<div class="content">
+				<div class="payout-note">
+					<div>{{'payout.note1' | translate}}</div>
+					<div>{{'payout.note2' | translate}}</div>
+				</div>
+				<div class="payments-list">
+					<div class="payments-list-header">
+						<div class="fl-b-20">{{'method' | translate}}</div>
+						<div class="fl-b-35">{{'details' | translate}}</div>
+					</div>
+					<div class="payments-list-content">
+						<div ng-repeat="payout in vm.me.accounts.payout | orderBy: '-isDefault' track by $index">
+							<div class="fl-b-20 name">
+								{{payout.account_holder_type || payout.brand}}
+							</div>
+							<div class="fl-b-35 details">
+								**** **** **** {{payout.endingWith}}
+							</div>
+							<div class="actions">
+								<md-button class="btn btn-default" ng-if="!payout.isDefault" ng-click="vm.setAsDefaultPayout(payout)">{{'set.default' | translate}}</md-button>
+								<md-button class="btn btn-default" ng-if="!payout.isDefault" ng-click="vm.removePayoutMethod(payout)">{{'remove' | translate}}</md-button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="add-payout">
+		               <md-button class="btn btn-primary" ng-click="vm.newPayoutMethod()">
+		                    {{'add.payout.method' | translate}}
+		               </md-button>
+		               <div>
+		                    {{'bank.account' | translate}}, {{'debit.card' | translate}}
+		               </div>
+		          </div>
+			</div>
+		</div>
+	</md-whiteframe>
+</div>

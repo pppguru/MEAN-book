@@ -1,0 +1,45 @@
+<div layout="column" flex="none" class="book-component">
+     <img ui-sref="allbooks.details({id: vm.book._id})" class="book-image pointable" ng-src="{{::vm.book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+     <span class="book-name" md-truncate>{{::vm.book.title}}</span>
+     <div layout="row" layout-align="space-between center" flex="none" class="author-rating">
+          <span class="author-name" ui-sref="allbooks.details.author({aid: vm.book.author[0]._id})">{{vm.book.author[0] | authorName}}</span>
+          <div ng-if="::vm.book.rating.avg">
+               {{::vm.book.rating.avg | number: 1}} <i class="fa fa-star-o" aria-hidden="true"></i>
+          </div>
+     </div>
+     <div layout="row" layout-align="start center" flex="none">
+          <div>
+               <md-button class="md-primary md-raised book-panel-btn" ng-click="vm.click({book: vm.book})" ng-disabled="vm.user._id === vm.book.user">
+                    {{::vm.book.price}} NOK
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i></md-button>
+          </div>
+          <div layout="column" layout-align="start start" flex="none" class="book-details">
+               <span uib-dropdown class="book-number" dropdown-append-to-body="true" ng-if="vm.book.sales.length">
+                    <div>
+                         <a translate="has.sales" href id="sale-dropdown" uib-dropdown-toggle
+                            translate-value-label="{{'used' | translate}}"
+                            translate-value-len="{{vm.book.sales.length}}"></a>
+                         <div translate="from.price"
+                              translate-value-price="{{::vm.book.sales[0].price | salePrice}}">
+                         </div>
+                    </div>
+                    <ul ng-class="{'dropdown-menu-right': (vm.i + 1) % 5 === 0}" ng-if="vm.book.sales.length" class="dropdown-menu with-arrow sales-dropdown-items" uib-dropdown-menu aria-labelledby="sale-dropdown">
+                         <li ng-repeat="sale in vm.book.sales track by sale._id">
+                              <a ui-sref="allbooks.details({id: vm.book._id, sale: sale._id})">
+                                   <div layout="row">
+                                        <div class="image">
+                                             <img ng-src="{{::sale.seller.imageUrl}}" alt="seller image">
+                                        </div>
+                                        <div layout="column" class="info">
+                                             <div class="user">{{::sale.seller | userName}}</div>
+                                             <div class="price">{{::sale.condition}} / {{sale.price | salePrice}} NOK</div>
+                                        </div>
+                                   </div>
+                              </a>
+                         </li>
+                    </ul>
+               </span>
+               <p ng-if="!vm.book.sales.length" translate="no.sales" translate-value-label="{{'used' | translate}}"></p>
+          </div>
+     </div>
+</div>

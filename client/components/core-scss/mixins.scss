@@ -1,0 +1,69 @@
+@mixin profile-image ($h, $w) {
+    height: $h;
+    width: $w;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+@mixin nav-hover ($text, $hover) {
+    & ul {
+        list-style: none;
+        text-align: center;
+    }
+    & ul li a {
+        color: $text;
+        font-weight: 800;
+    }
+
+    & ul li a,
+    & ul li a:after,
+    & ul li a:before {
+        transition: all .5s;
+    }
+    & ul li a:hover {
+        color: $hover;
+    }
+    /* stroke */
+    &.stroke ul li a,
+    &.fill ul li a {
+        position: relative;
+    }
+    &.stroke ul li a:after,
+    &.fill ul li a:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 0;
+        content: '.';
+        color: transparent;
+        background: $text;
+        height: 1px;
+    }
+    &.stroke ul li a:hover:after {
+        width: 100%;
+    }
+
+    &.fill ul li a {
+        transition: all 2s;
+    }
+
+    &.fill ul li a:after {
+        text-align: left;
+        content: '.';
+        margin: 0;
+        opacity: 0;
+    }
+    &.fill ul li a:hover {
+        color: $text;
+        z-index: 1;
+    }
+    &.fill ul li a:hover:after {
+        z-index: -10;
+        animation: fill 1s forwards;
+        -webkit-animation: fill 1s forwards;
+        -moz-animation: fill 1s forwards;
+        opacity: 1;
+    }
+}

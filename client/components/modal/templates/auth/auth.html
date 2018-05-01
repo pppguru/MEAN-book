@@ -1,0 +1,4 @@
+<!--<pre style="font-size:8px;">{{ modal.data | json }}</pre>-->
+<div ng-if="modal.data.modal === 'login'" ng-include="'login.html'"></div>
+<div ng-if="modal.data.modal === 'signup'" ng-include="'signup.html'"></div>
+<div ng-if="modal.data.modal === 'merchant'" ng-include="'signup.merchant.html'"></div>

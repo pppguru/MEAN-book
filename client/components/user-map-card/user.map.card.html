@@ -1,0 +1,33 @@
+<div class="user-map-card">
+     <md-whiteframe class="md-whiteframe-2dp" flex
+                    ng-mouseenter="mc.enter()"
+                    ng-mouseleave="mc.leave()">
+
+          <div layout="column" flex>
+
+               <div layout="row" class="header" flex="none">
+                    <i ng-if="mc.pinned === mc.user._id" class="fa fa-map-pin" aria-hidden="true"></i>
+                    <div flex="none" class="image-wrapper" layout="row" layout-align="center center">
+                         <img ng-src="{{ ::mc.user.imageUrl || '/assets/images/avatar.png' }}" class="profile-image" alt="user-image">
+                    </div>
+                    <div flex="none" class="user-name">{{ mc.user | userName }}</div>
+               </div>
+
+               <div flex="none" layout="column" class="user-info">
+                    <div layout="row" layout-align="start center" class="user-detail">
+                         <i class="fa fa-map-marker" aria-hidden="true"></i>
+                         <span class="value">{{::mc.user.address.city}}, {{::mc.user.address.country}}</span>
+                    </div>
+                    <div layout="row" layout-align="start center" class="user-detail">
+                         <i class="fa fa-envelope" aria-hidden="true"></i>
+                         <span class="value">{{ ::mc.user.email }}</span>
+                    </div>
+                    <div layout="row" layout-align="start center" class="user-detail">
+                         <i class="fa fa-phone" aria-hidden="true"></i>
+                         <span class="value">{{ ::mc.user.phone }}</span>
+                    </div>
+               </div>
+
+          </div>
+     </md-whiteframe>
+</div>

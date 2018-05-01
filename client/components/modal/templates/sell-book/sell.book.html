@@ -1,0 +1,79 @@
+<form name="form" ng-submit="form.$valid && modal.confirm()" class="sell-book-modal" novalidate>
+
+     <!--<pre style="font-size:8px;">{{ modal.sale | json }}</pre>-->
+
+	<p class="subtitle">{{'type.isbn' | translate}}:</p>
+     <div class="form-group" ng-class="{ 'has-success': form.isbn.$valid && form.$submitted, 'has-error': form.isbn.$invalid && form.$submitted }">
+          <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" ng-model="modal.sale.book.isbn.full" ng-model-options="{debounce: 1000}" ng-change="modal.autocomplete()" required>
+     </div>
+	<a href="#">{{'where.isbn' | translate}}</a>
+
+     <div class="form-group" ng-class="{ 'has-success': form.name.$valid && form.$submitted, 'has-error': form.name.$invalid && form.$submitted }">
+          <input ng-disabled="true" type="text" class="form-control" id="name" name="name" placeholder="{{'title' | translate}}" ng-model="modal.sale.book.title" required>
+     </div>
+
+
+     <div ng-if="!author.corporateName" class="row">
+          <div class="form-group col-xs-6">
+               <input ng-disabled="true" type="text" class="form-control" id="authorFirst" name="author" placeholder="{{'first.name' | translate}}" ng-model="author.firstName">
+          </div>
+          <div class="form-group col-xs-6">
+               <input ng-disabled="true" type="text" class="form-control" id="authorLast" name="author" placeholder="{{'last.name' | translate}}" ng-model="author.lastName">
+          </div>
+     </div>
+
+     <div class="row">
+          <div class="col-xs-6">
+               <div class="form-group" ng-class="{ 'has-success': form.year.$valid && form.$submitted, 'has-error': form.year.$invalid && form.$submitted }">
+                    <bookis-select disabled="true" class="small" flex="none" id="year" name="year" options="modal.years"
+                                   placeholder="{{'select.x' | translate: {x:'year'} }}" model="modal.sale.book.year" required="true"></bookis-select>
+               </div>
+          </div>
+          <div class="col-xs-6">
+               <div class="form-group" ng-class="{ 'has-success': form.format.$valid && form.$submitted, 'has-error': form.format.$invalid && form.$submitted }">
+                    <bookis-select class="small" flex="none" id="format" name="format" options="modal.formats"
+                                   placeholder="{{'select.x' | translate: {x:'format'} }}" model="modal.sale.format" required="true"></bookis-select>
+                    <p class="help-block" ng-show="form.format.$error.required && form.$submitted">
+                         {{'_is.required' | translate:{a: 'format'} }}
+                    </p>
+               </div>
+          </div>
+     </div>
+
+     <div class="row">
+          <div class="col-xs-6">
+               <div class="form-group" ng-class="{ 'has-success': form.condition.$valid && form.$submitted, 'has-error': form.condition.$invalid && form.$submitted }">
+                    <bookis-select class="small" flex="none" id="condition" name="condition" options="modal.conditions"
+                                   placeholder="{{'select.x' | translate: {x:'condition'} }}" model="modal.sale.condition" required="true"></bookis-select>
+                    <p class="help-block" ng-show="form.condition.$error.required && form.$submitted">
+                         {{'_is.required' | translate:{a: 'condition'} }}
+                    </p>
+               </div>
+          </div>
+          <div class="col-xs-6">
+               <div class="form-group" ng-class="{ 'has-success': form.price.$valid && form.$submitted, 'has-error': form.price.$invalid && form.$submitted }">
+                    <input type="text" id="price" name="price" class="form-control" placeholder="{{'price' | translate}}" ng-model="modal.sale.price" allowed-chars="[^0-9]" required>
+                    <p class="help-block" ng-show="form.price.$error.required && form.$submitted">
+                         {{'_is.required' | translate:{a: 'price'} }}
+                    </p>
+               </div>
+          </div>
+     </div>
+
+     <a ui-sref="myzone.salesbooth.condition" target="_blank">{{'set.condition' | translate}}</a>
+
+     <div class="form-group" ng-class="{ 'has-success': form.comment.$valid && form.$submitted, 'has-error': form.comment.$invalid && form.$submitted }">
+          <textarea id="comment" cols="20" rows="4" class="form-control" ng-model="modal.sale.comment"
+                    placeholder="{{'type.your' | translate: {a:'comment'} }}"></textarea>
+     </div>
+
+     <div class="row">
+		<div class="col-xs-6">
+			<md-button class="btn btn-default" ng-click="modal.cancel()">{{'cancel' | translate}}</md-button>
+		</div>
+		<div class="col-xs-6">
+			<md-button type="submit" class="btn btn-primary">{{'add.to.sales' | translate}}</md-button>
+		</div>
+     </div>
+
+</form>

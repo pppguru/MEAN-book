@@ -1,0 +1,25 @@
+.hit-component {
+    height: 350px;
+    width: 170px;
+    .book-image {
+        height: 250px !important;
+        width: 170px !important;
+        margin-bottom: 5px;
+    }
+    .author-rating {
+        .author-name {
+            font-size: 12px;
+        }
+    }
+    .book-genre {
+        font-size: 12px;
+    }
+    .book-format {
+        font-size: 12px;
+    }
+    .book-details {
+        font-size: 11px;
+        color: color(primary, base);
+        font-weight: bold;
+    }
+}

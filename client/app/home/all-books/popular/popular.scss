@@ -1,0 +1,89 @@
+.popular-view {
+	.slick-next:before,
+	.slick-prev:before {
+		font-family: "Glyphicons Halflings", "slick", sans-serif;
+		color: color(secondary, base);
+		font-size: 40px;
+	}
+
+	.slick-prev:before {
+		content: "\e257";
+	}
+
+	.slick-next:before {
+		content: "\e258";
+	}
+
+	.breadcrumb{
+		margin-bottom: 30px;
+	}
+	.popular-books {
+		&.genre-slider {
+			.book-block {
+				box-shadow: 0 0 20px 0 rgba(0,0,0,0.25);
+			}
+
+			bookis-slick {
+				margin: 0;
+			}
+
+			.slick-slide {
+				padding: 0;
+				display: flex;
+				flex-wrap: wrap;
+				margin-bottom: 0;
+			}
+
+			.slick-arrow {
+				width: 40px;
+
+				&:before {
+					display: none;
+				}
+
+				&:after {
+					display: none;
+				}
+			}
+
+			.slick-track {
+				padding-top: 30px;
+			}
+		}
+
+		&.white-bg {
+			background-color: white;
+
+			p.title {
+				color: $color-title;
+			}
+		}
+
+		&.black-bg {
+			background-color: #333333;
+
+			p.title {
+				color: white;
+			}
+		}
+	}
+
+	bookis-slick {
+		margin: 0 50px 0 30px;
+	}
+
+	.genres-holder {
+		margin-top: 60px;
+		background-color: white;
+		padding-bottom: 0;
+
+		h2.title-font {
+			color: $color-title;
+		}
+	}
+
+	.title-font {
+		margin-bottom: 30px;
+		margin-top: 60px;
+	}
+}

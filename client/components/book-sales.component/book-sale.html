@@ -1,0 +1,17 @@
+<div class="variants col-md-5">
+     <div class="form-group">
+          <label class="control-label capitalize">{{'select.type' | translate}}</label>
+          <bookis-select model="bs.format" trans="true" options="bs.appConfig.books.formats" change="bs.formatChanged({type, value})" placeholder="Select format"></bookis-select>
+     </div>
+	<div class="row">
+		<div class="col-sm-12 col-xs-6 book-sale-option">
+			<sale-items sales="bs.newSales" ititle="new" index="0"></sale-items>
+		</div>
+		<div class="col-sm-12 col-xs-6 book-sale-option">
+			<sale-items sales="bs.groupedSales[bs.format]" index="bs.index" ititle="used" request-book="bs.requestBook({sale})" sell-book="bs.sellBook()" notified="bs.alreadyWaitinglisted" notify-me="bs.addToWaitinglist()"></sale-items>
+		</div>
+		<hr>
+		<a ng-if="bs.book.sales.length" class="all-sellers col-xs-12" ui-sref="allbooks.details.sellers({id: bs.book._id})"
+		translate="all.sellers" translate-value-number="{{bs.book.sales.length}}"><i class="fa fa-carret-right"></i></a>
+	</div>
+</div>

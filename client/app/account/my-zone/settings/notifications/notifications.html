@@ -1,0 +1,14 @@
+<div id="notifications-settings">
+	<md-whiteframe class="col-md-5">
+		<div>
+			<header>
+				{{'notifications.header' | translate}}
+			</header>
+			<div class="content">
+				<md-switch ng-model="vm.me.notifications[value]" ng-change="vm.updateNotification(value)" aria-label="notification" ng-repeat="(value, key) in vm.me.notifications">
+		               {{value === 'message' ? 'notif.message' : value | translate}}
+		          </md-switch>
+			</div>
+		</div>
+	</md-whiteframe>
+</div>

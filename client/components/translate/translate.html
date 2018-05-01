@@ -1,0 +1,13 @@
+<md-menu md-no-ink md-position-mode="target-right target" ng-if="vm.visible" layout-align="center center" flex="none" class="translate">
+     <md-button aria-label="translate menu" class="md-icon-button" ng-click="$mdMenu.open()">
+          <img flex="none" height="20" ng-src="{{ vm.flag }}"><span>{{ vm.active.substring(0, 2) }}</span>
+     </md-button>
+     <md-menu-content>
+          <md-menu-item ng-repeat="localesDisplayName in vm.localesDisplayNames">
+               <md-button ng-click="vm.changeLanguage(localesDisplayName)">
+                    <img flex="none" height="20" ng-src="{{ vm.flags[localesDisplayName] }}">
+                    {{localesDisplayName}}
+               </md-button>
+          </md-menu-item>
+     </md-menu-content>
+</md-menu>

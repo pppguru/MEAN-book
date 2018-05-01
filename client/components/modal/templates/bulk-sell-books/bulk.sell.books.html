@@ -1,0 +1,52 @@
+<div id="bulk-sell-books">
+     <div class="alert alert-info">
+          <strong>Note!</strong> Make sure your excel file contains at least these {{::modal.required.length}} columns:
+          <div layout="row" layout-wrap>
+               <div flex="50" ng-repeat="field in ::modal.required track by $index">
+                    <div>- {{::field}}</div>
+               </div>
+          </div>
+          <br>
+          Or you can download our excel template using links below:
+          <br>
+          <a ng-href="{{modal.url(false)}}" title="Export template" target="_self" aria-label="csv">I have book ISBN</a><br>
+          <a ng-href="{{modal.url(true)}}" title="Export template" target="_self" aria-label="csv">I don't have book ISBN</a>
+     </div>
+
+     <div layout="row" layout-align="start center" flex="none">
+          <md-button class="md-raised md-small" accept=".xls,.xlsx" ngf-select ngf-change="modal.data.excelFile && modal.validate()" ng-model="modal.data.excelFile" name="file">
+               Choose file
+          </md-button>
+          <span ng-if="!modal.data.excelFile">(file not selected)</span>
+          <span ng-if="modal.data.excelFile">{{modal.data.excelFile.name}}</span>
+     </div>
+
+     <div class="alert alert-info" ng-if="modal.data.validated">
+          <strong>Bulk upload status: </strong> {{modal.data.valid / modal.data.total * 100 | number: 0}}% valid records.<br>
+          Total records: {{modal.data.total}}<br>
+          Valid records: {{modal.data.valid}}<br>
+          <div ng-if="modal.data.invalid">
+               Invalid records: {{modal.data.invalid}} <a ng-href="{{modal.invalidUrl()}}" title="Export template" target="_self" aria-label="csv">Download invalid</a>
+          </div>
+     </div>
+
+     <div class="alert alert-success" ng-if="modal.data.uploaded">
+          <strong>Success!</strong> {{modal.data.valid}} books added for sale!
+     </div>
+
+     <uib-progressbar max="100" value="modal.data.progress" ng-if="modal.data.uploading">
+          <span style="color:white; white-space:nowrap;">{{modal.data.progress}}%</span>
+     </uib-progressbar>
+
+     <div layout="row" layout-align="end end" flex="none">
+          <md-button class="md-raised" ng-click="modal.cancel()">Cancel</md-button>
+          <md-button class="md-raised md-primary"
+                     ng-if="!modal.data.uploaded"
+                     ng-disabled="!modal.data.excelFile || !modal.data.validated || !modal.data.valid || modal.data.uploading"
+                     ng-click="modal.bulk()">Upload</md-button>
+          <md-button class="md-raised md-primary"
+                     ng-disabled="!modal.data.uploaded"
+                     ng-click="modal.finish()">Finish</md-button>
+     </div>
+
+</div>

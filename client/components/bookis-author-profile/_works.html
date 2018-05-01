@@ -1,0 +1,85 @@
+<div id="_booksSale">
+     <!-- <div class="search-wrapper">
+          <div class="book-search">
+               <md-icon ng-if="!vm.searchText" md-svg-src="assets/svg/search.svg" aria-label="search"></md-icon>
+               <md-icon ng-if="vm.searchText" ng-click="vm.searchText=''" md-svg-src="assets/svg/close.svg" aria-label="search"></md-icon>
+               <input type="text" class="form-control" placeholder="{{'search' | translate}}" ng-model="vm.searchText">
+          </div>
+     </div> -->
+	<div class="">
+		<h1>most popular books</h1>
+		<md-whiteframe layout-padding class="carousel-holder">
+			<bookis-slick settings="vm.slickConfig" responsive="vm.breakpointsBooks" slides-to-show='4' infinite='false' prev-arrow=".slick-prev-books" next-arrow=".slick-next-books" ng-if="vm.books.length">
+				<div class="book-small romb-rate" ng-repeat="book in vm.books track by book._id">
+					<div class="book-cover">
+						<img src="{{book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+					</div>
+					<div class="rating-holder">
+						<div class="rating">
+							<div>
+								<i class="fa fa-star-o" aria-hidden="true"></i>
+								<span class="rate-number">{{::book.rating.avg | number:book.rating.avg ? 1 : 0}}/5</span>
+							</div>
+						</div>
+					</div>
+					<a class="title" ui-sref="allbooks.details({id: book._id})">{{::book.title}}</a>
+					<div class="buttons">
+						<div>
+							<a href="#" class="btn btn-primary">
+								<img src="assets/images/shopping-cart.png" srcset="assets/images/shopping-cart@2x.png 2x, assets/images/shopping-cart@3x.png 3x" alt="Shopping Cart">
+								<span>{{::book.sales[0].price}},-</span>
+							</a>
+						</div>
+					</div>
+					<div class="availabilty">
+						<a href="#">{{::book.sales.length}} new</a> from {{::book.sales[0].price}}-,
+					</div>
+				</div>
+			</bookis-slick>
+			<div class="slick-prev-books slick-prev hidden-xs">
+				<i class="fa fa-angle-left" aria-hidden="true"></i>
+			</div>
+			<div class="slick-next-books slick-next hidden-xs">
+				<i class="fa fa-angle-right" aria-hidden="true"></i>
+			</div>
+		</md-whiteframe>
+	</div>
+
+	<div class="book-list-holder">
+		<h1 class="title-font">Books by year published</h1>
+
+		<div class="book-list">
+			<div class="book-list-body">
+				<div class="book-list-item" ng-repeat="book in vm.books | filter: vm.searchText track by book._id">
+					<div class="fl-b-10 book-title" ui-sref="allbooks.details({id: book._id})">
+						<div class="book-cover">
+							<img ui-sref="allbooks.details({id: book._id})" ng-src="{{book.image.full || '/assets/images/book_avatar.jpg'}}" alt="book image">
+						</div>
+					</div>
+					<div class="fl-b-35 book-name">
+						<a ui-sref="allbooks.details({id: book._id})">{{::book.title}}</a>
+					</div>
+					<div class="fl-b-5">
+						<a>{{::book.year}}</a>
+					</div>
+					<div class="fl-b-15 book-rating">
+						<i class="fa fa-star-o" aria-hidden="true"></i>
+						{{::book.rating.avg | number: 1}}/5
+					</div>
+					<div class="fl-b-15 book-price">
+						{{book.sales[0].price | salePrice}},-
+					</div>
+					<div class="fl-b-20 book-actions buttons">
+						<md-button class="btn btn-primary btn-blue" ng-click="vm.requestBook(book)">
+			                    <img src="assets/images/marker.png" srcset="assets/images/marker@2x.png 2x, assets/images/marker@3x.png 3x" alt="Marker">
+			                    <span>{{'request' | translate}}</span>
+			               </md-button>
+					</div>
+					<div ng-if="!vm.books">
+				          <p translate="no.sales" translate-value-label="{{'used' | translate}}"></p>
+				     </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

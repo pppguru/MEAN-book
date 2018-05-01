@@ -1,0 +1,5 @@
+<div class="row persons">
+     <div class="col-md-4 col-sm-6 person-card-bottom-padding" ng-repeat="person in vm.user.followers track by person._id">
+          <follow-panel type="user" data="person" following="vm.me().following" follow="vm.toggleFollow({_id})" controls="vm.me()._id === vm.user._id"></follow-panel>
+     </div>
+</div>
